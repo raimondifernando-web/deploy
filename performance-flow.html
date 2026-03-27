@@ -91,11 +91,15 @@ h1{font-size:28px;font-weight:700;text-align:center;margin-bottom:4px}
 .pill-logo-meta{background:#1877f2;color:#fff}
 .pill-logo-notion{background:#2f2f2f;color:#fff;border:1px solid #555}
 .pill-logo-netlify{background:#00c7b7;color:#fff}
+.pill-logo-vercel{background:#000;color:#fff;border:1px solid #333}
+.pill-logo-github{background:#24292e;color:#fff}
 .pill-logo-odoo{background:#71639e;color:#fff}
 .pill-logo-memory{background:#06b6d4;color:#0f0f13}
 .pill-claude{background:#d4a27415;color:#d4a274;border-color:#d4a27433}
 .pill-notion{background:#ffffff10;color:#ccc;border-color:#ffffff20}
 .pill-netlify{background:#00c7b720;color:#00c7b7;border-color:#00c7b733}
+.pill-vercel{background:#ffffff10;color:#e5e5e5;border-color:#ffffff25}
+.pill-github{background:#24292e40;color:#aaa;border-color:#24292e80}
 .pill-meta{background:#1877f220;color:#5a9cf5;border-color:#1877f233}
 .pill-odoo{background:#71639e20;color:#a99bce;border-color:#71639e33}
 .pill-memory{background:#06b6d420;color:#06b6d4;border-color:#06b6d433}
@@ -110,7 +114,7 @@ h1{font-size:28px;font-weight:700;text-align:center;margin-bottom:4px}
   <a href="https://www.notion.so/32d1b4e444eb810785c3dd0e7b2ad64a" target="_blank" style="display:inline-block;padding:5px 14px;border-radius:8px;font-size:11px;font-weight:600;color:#888;text-decoration:none;border:1px solid #333;transition:all .2s" onmouseover="this.style.background='#1a1a22';this.style.color='#e5e5e5'" onmouseout="this.style.background='transparent';this.style.color='#888'">Learnings <span style="font-size:9px">↗</span></a>
 </nav>
 <h1>Performance Learning System</h1>
-<p class="sub">THIS IS BP — 10 pasos: validación → datos → historia → insights → acciones → aprobación → ejecución → review → aprendizaje → notificación<br><span style="font-size:11px;color:#555">v4 · Plan completo · daily-engine.sh orquesta 10 scripts · KB validation en código · Anti-patrones · Thresholds adaptativos</span></p>
+<p class="sub">THIS IS BP — 10 pasos: validación → datos → historia → insights → acciones → aprobación → ejecución → review → aprendizaje → notificación<br><span style="font-size:11px;color:#555">v5 · Plan completo · daily-engine.sh orquesta 10 scripts · KB validation en código · Anti-patrones · Thresholds adaptativos · Deploy Vercel · Backup GitHub</span></p>
 
 <!-- Step 0 -->
 <div class="step s-teal">
@@ -147,7 +151,8 @@ h1{font-size:28px;font-weight:700;text-align:center;margin-bottom:4px}
   <div class="step-detail">
     <strong>Orquestador:</strong> daily-engine.sh (10 pasos automáticos, Lun-Vie 8:32 AM)<br>
     <strong>Scripts:</strong> update-report.sh → parse-meta-data.py<br>
-    <strong>Seguridad:</strong> Tokens en .env (chmod 600), check_token_health(), retry x3, lineage audit trail<br>
+    <strong>Seguridad:</strong> Token Meta 60 días (~/.mcp.json), retry x3, lineage audit trail<br>
+    <strong>Logging:</strong> Todo stdout+stderr a data/pipeline.log via tee — diagnóstico exacto si algo falla<br>
     <strong>Módulo compartido:</strong> scripts/lib/ (config, notion_helpers, meta_helpers) — 0 duplicación<br>
     <strong>Genera:</strong> KPIs, tendencia 7 días, funnel, creativos, lineage.json
     <div class="platforms">
@@ -222,7 +227,7 @@ h1{font-size:28px;font-weight:700;text-align:center;margin-bottom:4px}
     <strong>KB-validado:</strong> Checklist de 20 reglas Meta Ads antes de crear cualquier AC en Notion
     <div class="platforms">
       <a href="https://www.notion.so/32d1b4e444eb817d805fc4ff4f994475" class="pill pill-notion" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#191919"/><path d="M4.5 4v8M4.5 4L11.5 12M11.5 4v8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Notion — Acciones del Día</a>
-      <a href="https://storied-swan-c4ab8c.netlify.app/dashboard.html" class="pill pill-netlify" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#00c7b7"/><path d="M8 3L13 12H3L8 3z" fill="none" stroke="white" stroke-width="1.4" stroke-linejoin="round"/><path d="M5.5 9.5h5" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>Reporte Web (Netlify)</a>
+      <a href="https://deploy-mu-eight-84.vercel.app/" class="pill pill-vercel" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#000"/><path d="M8 3.5L13 12.5H3L8 3.5z" fill="white"/></svg>Reporte Web (Vercel)</a>
     </div>
   </div>
   <div class="connector"></div>
@@ -355,6 +360,33 @@ h1{font-size:28px;font-weight:700;text-align:center;margin-bottom:4px}
       <a href="https://www.notion.so/32d1b4e444eb810785c3dd0e7b2ad64a" class="pill pill-notion" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#191919"/><path d="M4.5 4v8M4.5 4L11.5 12M11.5 4v8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Notion — Resumen diario</a>
       <a href="https://chat.claude.ai" class="pill pill-claude" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#7c3aed"/><rect x="2.5" y="3" width="11" height="7.5" rx="2" fill="white" opacity=".9"/><path d="M5 10.5L3.5 13l3-2.5H5z" fill="white" opacity=".9"/><circle cx="8" cy="6.75" r="1.2" fill="#7c3aed" opacity=".7"/></svg>Claude Chat / Cowork</a>
     </div>
+  </div>
+</div>
+
+<!-- Infrastructure -->
+<div class="m2m" style="margin-top:40px;margin-bottom:0">
+  <h2>🏗️ Infraestructura y backup automático</h2>
+  <p style="font-size:13px;color:#888;margin-bottom:16px">El pipeline finaliza con deploy + backup a GitHub. Todo queda versionado y el dashboard live en Vercel.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+    <div style="padding:14px 16px;border-radius:12px;background:#24292e30;border:1px solid #24292e80">
+      <div style="font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">📦 Repo privado (scripts)</div>
+      <div style="font-size:13px;font-weight:600;color:#e5e5e5;margin-bottom:4px">thisisbp-performance</div>
+      <div style="font-size:11px;color:#777">Scripts, datos procesados, KBs, HTML fuente<br>Backup automático cada día al final del pipeline</div>
+    </div>
+    <div style="padding:14px 16px;border-radius:12px;background:#24292e30;border:1px solid #24292e80">
+      <div style="font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">🚀 Repo público (deploy)</div>
+      <div style="font-size:13px;font-weight:600;color:#e5e5e5;margin-bottom:4px">raimondifernando-web/deploy</div>
+      <div style="font-size:11px;color:#777">index.html + data JSONs procesados<br>deploy-report.sh hace push → Vercel auto-despliega</div>
+    </div>
+    <div style="padding:14px 16px;border-radius:12px;background:#ffffff08;border:1px solid #ffffff15">
+      <div style="font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">🌐 Dashboard live</div>
+      <div style="font-size:13px;font-weight:600;color:#e5e5e5;margin-bottom:4px">Vercel</div>
+      <div style="font-size:11px;color:#777"><a href="https://deploy-mu-eight-84.vercel.app/" target="_blank" style="color:#4a9eed;text-decoration:none">deploy-mu-eight-84.vercel.app</a><br>Deploy automático en cada push al repo</div>
+    </div>
+  </div>
+  <div style="margin-top:12px;padding:10px 14px;border-radius:10px;background:#22c55e08;border:1px solid #22c55e22;font-size:12px;color:#888">
+    <strong style="color:#22c55e">Token Meta:</strong> Long-lived 60 días (~/.mcp.json) · Renovar antes del 26 May 2026 ·
+    <strong style="color:#22c55e">PAT GitHub:</strong> Sin expiración · <strong style="color:#22c55e">Saldo Meta:</strong> override manual en data/meta-account-override.json cuando se cargan fondos
   </div>
 </div>
 
