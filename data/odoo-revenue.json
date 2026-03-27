@@ -1,0 +1,47 @@
+{
+  "updated": "2026-03-26",
+  "source": "odoo_api",
+  "currency": "ARS",
+  "months": [
+    {
+      "month": "2025-08",
+      "revenue": 29679132.02,
+      "orders": 250
+    },
+    {
+      "month": "2025-09",
+      "revenue": 15174413.13,
+      "orders": 165
+    },
+    {
+      "month": "2025-10",
+      "revenue": 14633550.99,
+      "orders": 154
+    },
+    {
+      "month": "2025-11",
+      "revenue": 69580039.52,
+      "orders": 653
+    },
+    {
+      "month": "2025-12",
+      "revenue": 71635792.73,
+      "orders": 662
+    },
+    {
+      "month": "2026-01",
+      "revenue": 17622229.51,
+      "orders": 166
+    },
+    {
+      "month": "2026-02",
+      "revenue": 15064796.52,
+      "orders": 145
+    },
+    {
+      "month": "2026-03",
+      "revenue": 80469960.38,
+      "orders": 675
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "updated": "2026-03-27",
+  "name": "THIS IS BP",
+  "currency": "ARS",
+  "balance_api": 5827.22,
+  "balance": 5827.22,
+  "funds_total": 1086988.85,
+  "available": 1081161.6300000001,
+  "spend_cap": 0.0,
+  "amount_spent": 60656571.45,
+  "remaining": 1081161.6300000001,
+  "funding_type": 1,
+  "funding_display": "Mastercard *0666",
+  "source": "hybrid"
+}

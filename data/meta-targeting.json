@@ -1,0 +1,321 @@
+{
+  "updated": "2026-03-27",
+  "targeting": [
+    {
+      "name": "2026 - 03 - Switch Sale - 4 BOFU (Retargeting)",
+      "status": "ACTIVE",
+      "optimization_goal": "VALUE",
+      "age_min": 20,
+      "age_max": 65,
+      "custom_audiences": [
+        "2025 (Ago) - Add to cart  180D",
+        "2025 (Ago) - All visit 180D",
+        "2025 (Ago) - IG TIBP - Seguidores",
+        "2025 (Ago) - FB TIBP - Seguidores",
+        "2025 (Ago) - Play videos",
+        "2025 (Sep) - IG - Interactuaron",
+        "2025 (Sep) - IG - Interactuaron ADS 365",
+        "2025 (Oct) - Web - Clientes",
+        "2025 - 11 - 26 - Clientes web B2C",
+        "2025 - 11 - 26 - BBDD unificada - Suscriptores"
+      ],
+      "excluded_audiences": [
+        "2025 - Compras Purchase 30 d\u00edas"
+      ]
+    },
+    {
+      "name": "2026 - 03 - Switch Sale - 3 BOFU (Conversi\u00f3n)",
+      "status": "ACTIVE",
+      "optimization_goal": "OFFSITE_CONVERSIONS",
+      "age_min": 20,
+      "age_max": 65,
+      "custom_audiences": [
+        "2025 (Ago) - Compraron 180D",
+        "2025 (Ago) - Add to cart  180D",
+        "2025 (Ago) - Start paid 180D",
+        "2025 (Ago) - All visit 180D",
+        "2025 (Ago) - IG TIBP - Seguidores",
+        "2025 (Ago) - FB TIBP - Seguidores",
+        "2025 (Ago) - IG - Seguidores - P similar (AR, 2%)",
+        "2025 (Ago) - Play videos",
+        "2025 (Sep) - IG - Interactuaron",
+        "P\u00fablico similar (AR, 1%) - 2025 (Sep) - IG - Interactuaron",
+        "2025 (Sep) - IG - Interactuaron ADS 365",
+        "2025 (Oct) - Web - Clientes",
+        "2025 - 11 - 26 - Clientes web B2C",
+        "P\u00fablico similar (AR, 3%) - 2025 - 11 - 26 - Clientes web B2C",
+        "2025 - 11 - 26 - BBDD unificada - Suscriptores",
+        "2025 - Compras Purchase 30 d\u00edas"
+      ],
+      "excluded_audiences": []
+    },
+    {
+      "name": "2026 - 03 - Switch Sale - 1 TOFU",
+      "status": "ACTIVE",
+      "optimization_goal": "PROFILE_VISIT",
+      "age_min": 18,
+      "age_max": 65,
+      "custom_audiences": [
+        "2025 (Ago) - FB TIBP - Seguidores",
+        "2025 (Ago) - Play videos",
+        "2025 (Sep) - IG - Interactuaron",
+        "P\u00fablico similar (AR, 1%) - 2025 (Sep) - IG - Interactuaron",
+        "P\u00fablico similar (AR, 2% to 3%) - 2025 (Sep) - IG - Interactuaron",
+        "P\u00fablico similar (AR, 1% to 2%) - 2025 (Sep) - IG - Interactuaron",
+        "2025 (Sep) - IG - Interactuaron ADS 365",
+        "P\u00fablico similar (AR, 3%) - 2025 (Sep) - IG - Interactuaron ADS 365",
+        "P\u00fablico similar (AR, 3%) - 2025 (Oct) - Web - Clientes",
+        "P\u00fablico similar (AR, 3%) - 2025 - 11 - 26 - Clientes web B2C",
+        "2025 - 11 - 26 - BBDD unificada - Suscriptores"
+      ],
+      "excluded_audiences": [
+        "2025 (Ago) - Compraron 180D",
+        "2025 (Ago) - IG TIBP - Seguidores",
+        "2025 (Oct) - Web - Clientes"
+      ]
+    },
+    {
+      "name": "2026 - 01 - Summer Sale - 3 BOFU (Conversi\u00f3n)",
+      "status": "PAUSED",
+      "optimization_goal": "OFFSITE_CONVERSIONS",
+      "age_min": 20,
+      "age_max": 65,
+      "custom_audiences": [
+        "2025 (Ago) - Compraron 180D",
+        "2025 (Ago) - Add to cart  180D",
+        "2025 (Ago) - Start paid 180D",
+        "2025 (Ago) - All visit 180D",
+        "2025 (Ago) - IG TIBP - Seguidores",
+        "2025 (Ago) - FB TIBP - Seguidores",
+        "2025 (Ago) - IG - Seguidores - P similar (AR, 2%)",
+        "2025 (Ago) - Play videos",
+        "2025 (Sep) - IG - Interactuaron",
+        "P\u00fablico similar (AR, 1%) - 2025 (Sep) - IG - Interactuaron",
+        "2025 (Sep) - IG - Interactuaron ADS 365",
+        "2025 (Oct) - Web - Clientes",
+        "2025 - 11 - 26 - Clientes web B2C",
+        "P\u00fablico similar (AR, 3%) - 2025 - 11 - 26 - Clientes web B2C",
+        "2025 - 11 - 26 - BBDD unificada - Suscriptores",
+        "2025 - Compras Purchase 30 d\u00edas"
+      ],
+      "excluded_audiences": []
+    },
+    {
+      "name": "2026 - 01 - Summer Sale - 1 TOFU",
+      "status": "PAUSED",
+      "optimization_goal": "PROFILE_VISIT",
+      "age_min": 18,
+      "age_max": 65,
+      "custom_audiences": [
+        "2025 (Ago) - FB TIBP - Seguidores",
+        "2025 (Sep) - IG - Interactuaron",
+        "P\u00fablico similar (AR, 1%) - 2025 (Sep) - IG - Interactuaron",
+        "P\u00fablico similar (AR, 2% to 3%) - 2025 (Sep) - IG - Interactuaron",
+        "P\u00fablico similar (AR, 1% to 2%) - 2025 (Sep) - IG - Interactuaron",
+        "2025 (Sep) - IG - Interactuaron ADS 365",
+        "P\u00fablico similar (AR, 3%) - 2025 (Sep) - IG - Interactuaron ADS 365",
+        "P\u00fablico similar (AR, 3%) - 2025 (Oct) - Web - Clientes",
+        "P\u00fablico similar (AR, 3%) - 2025 - 11 - 26 - Clientes web B2C"
+      ],
+      "excluded_audiences": [
+        "2025 (Ago) - Compraron 180D",
+        "2025 (Ago) - IG TIBP - Seguidores",
+        "2025 (Oct) - Web - Clientes"
+      ]
+    },
+    {
+      "name": "2026 - 01 - TUFO - Stores - Joaquina",
+      "status": "PAUSED",
+      "optimization_goal": "PROFILE_VISIT",
+      "age_min": 18,
+      "age_max": 65,
+      "custom_audiences": [],
+      "excluded_audiences": []
+    },
+    {
+      "name": "2025 - 12 - Fiestas - 2 MOFU (Rosario)",
+      "status": "PAUSED",
+      "optimization_goal": "PROFILE_VISIT",
+      "age_min": 18,
+      "age_max": 65,
+      "custom_audiences": [
+        "2025 (Ago) - All visit 180D",
+        "2025 (Ago) - Add to cart 180D - P simil (AR, 2%)",
+        "2025 (Ago) - Compraron 180D - P similar (AR, 2%)",
+        "2025 (Ago) - IG - Seguidores - P similar (AR, 2%)",
+        "2025 (Ago) - Play videos",
+        "2025 (Ago) - Play videos - P similar (AR, 2%)",
+        "2025 (Sep) - IG - Interactuaron",
+        "2025 (Sep) - IG - Interactuaron ADS 365",
+        "P\u00fablico similar (AR, 3%) - 2025 (Oct) - Web - Clientes",
+        "2025 - 11 - 26 - BBDD unificada - Suscriptores"
+      ],
+      "excluded_audiences": [
+        "2025 (Ago) - Compraron 180D",
+        "2025 (Ago) - IG TIBP - Seguidores",
+        "2025 (Oct) - Web - Clientes"
+      ]
+    },
+    {
+      "name": "2025 - 12 - 1 TOFU - Rosario",
+      "status": "ACTIVE",
+      "optimization_goal": "REACH",
+      "age_min": 18,
+      "age_max": 65,
+      "custom_audiences": [],
+      "excluded_audiences": []
+    },
+    {
+      "name": "2025 - 11 - Navidad - 3 BOFU (Conversi\u00f3n)",
+      "status": "PAUSED",
+      "optimization_goal": "OFFSITE_CONVERSIONS",
+      "age_min": 20,
+      "age_max": 65,
+      "custom_audiences": [
+        "2025 (Ago) - Compraron 180D",
+        "2025 (Ago) - Add to cart  180D",
+        "2025 (Ago) - Start paid 180D",
+        "2025 (Ago) - All visit 180D",
+        "2025 (Ago) - IG TIBP - Seguidores",
+        "2025 (Ago) - FB TIBP - Seguidores",
+        "2025 (Ago) - IG - Seguidores - P similar (AR, 2%)",
+        "2025 (Ago) - Play videos",
+        "2025 (Sep) - IG - Interactuaron",
+        "P\u00fablico similar (AR, 1%) - 2025 (Sep) - IG - Interactuaron",
+        "2025 (Sep) - IG - Interactuaron ADS 365",
+        "2025 (Oct) - Web - Clientes",
+        "2025 - 11 - 26 - Clientes web B2C",
+        "P\u00fablico similar (AR, 3%) - 2025 - 11 - 26 - Clientes web B2C",
+        "2025 - 11 - 26 - BBDD unificada - Suscriptores",
+        "2025 - Compras Purchase 30 d\u00edas"
+      ],
+      "excluded_audiences": []
+    },
+    {
+      "name": "2025 - 11 - Black friday - 4 RE (Conversi\u00f3n) - Nos conocen",
+      "status": "PAUSED",
+      "optimization_goal": "OFFSITE_CONVERSIONS",
+      "age_min": 20,
+      "age_max": 65,
+      "custom_audiences": [
+        "2025 (Ago) - Compraron 180D",
+        "2025 (Ago) - Add to cart  180D",
+        "2025 (Ago) - Start paid 180D",
+        "2025 (Ago) - All visit 180D",
+        "2025 (Ago) - IG TIBP - Seguidores",
+        "2025 (Ago) - FB TIBP - Seguidores",
+        "2025 (Ago) - Play videos",
+        "2025 (Sep) - IG - Interactuaron",
+        "2025 (Sep) - IG - Interactuaron ADS 365",
+        "2025 - 11 - 26 - BBDD unificada - Suscriptores"
+      ],
+      "excluded_audiences": [
+        "2025 - Compras Purchase 30 d\u00edas"
+      ]
+    },
+    {
+      "name": "2025 - 11 - Black friday - 2 MOFU",
+      "status": "PAUSED",
+      "optimization_goal": "PROFILE_VISIT",
+      "age_min": 18,
+      "age_max": 65,
+      "custom_audiences": [
+        "2025 (Ago) - All visit 180D",
+        "2025 (Ago) - Add to cart 180D - P simil (AR, 2%)",
+        "2025 (Ago) - Compraron 180D - P similar (AR, 2%)",
+        "2025 (Ago) - IG - Seguidores - P similar (AR, 2%)",
+        "2025 (Ago) - Play videos",
+        "2025 (Ago) - Play videos - P similar (AR, 2%)",
+        "2025 (Sep) - IG - Interactuaron",
+        "2025 (Sep) - IG - Interactuaron ADS 365",
+        "P\u00fablico similar (AR, 3%) - 2025 (Oct) - Web - Clientes",
+        "2025 - 11 - 26 - BBDD unificada - Suscriptores"
+      ],
+      "excluded_audiences": [
+        "2025 (Ago) - Compraron 180D",
+        "2025 (Ago) - IG TIBP - Seguidores",
+        "2025 (Oct) - Web - Clientes"
+      ]
+    },
+    {
+      "name": "2025 - 11 - Black friday - 3 MOFU (Conversi\u00f3n) - Nos conocen",
+      "status": "ACTIVE",
+      "optimization_goal": "OFFSITE_CONVERSIONS",
+      "age_min": 20,
+      "age_max": 65,
+      "custom_audiences": [
+        "2025 (Ago) - Compraron 180D",
+        "2025 (Ago) - Add to cart  180D",
+        "2025 (Ago) - Start paid 180D",
+        "2025 (Ago) - All visit 180D",
+        "2025 (Ago) - IG TIBP - Seguidores",
+        "2025 (Ago) - FB TIBP - Seguidores",
+        "2025 (Ago) - Play videos",
+        "2025 (Sep) - IG - Interactuaron",
+        "2025 (Sep) - IG - Interactuaron ADS 365",
+        "2025 - 11 - 26 - BBDD unificada - Suscriptores"
+      ],
+      "excluded_audiences": []
+    },
+    {
+      "name": "2025 - 11 - Black Friday - 1 TOFU",
+      "status": "PAUSED",
+      "optimization_goal": "REACH",
+      "age_min": 18,
+      "age_max": 65,
+      "custom_audiences": [],
+      "excluded_audiences": [
+        "2025 (Ago) - Compraron 180D",
+        "2025 (Ago) - IG TIBP - Seguidores"
+      ]
+    },
+    {
+      "name": "2025 - 10 - Cyber Monday - 3 MOFU (Conversi\u00f3n) - Clientes, suscriptores y seguidores",
+      "status": "ACTIVE",
+      "optimization_goal": "VALUE",
+      "age_min": 18,
+      "age_max": 65,
+      "custom_audiences": [
+        "2025 (Ago) - Compraron 180D",
+        "2025 (Ago) - Add to cart  180D",
+        "2025 (Ago) - Start paid 180D",
+        "2025 (Ago) - All visit 180D",
+        "2025 (Ago) - IG TIBP - Seguidores",
+        "2025 (Ago) - FB TIBP - Seguidores",
+        "2025 (Ago) - Play videos",
+        "2025 (Ago) - Clientes B2C",
+        "2025 (Sep) - Emails web",
+        "2025 (Sep) - IG - Interactuaron",
+        "2025 (Sep) - IG - Interactuaron ADS 365",
+        "2025 (Oct) - Web - Suscriptores News",
+        "2025 (Oct) - Web - Clientes",
+        "2025 (Oct 31) - Suscriptores Cyber Week META"
+      ],
+      "excluded_audiences": []
+    },
+    {
+      "name": "2025 - 10 - Cyber Monday - 3 MOFU (Conversi\u00f3n) - Clientes, suscriptores y seguidores",
+      "status": "ACTIVE",
+      "optimization_goal": "VALUE",
+      "age_min": 18,
+      "age_max": 65,
+      "custom_audiences": [
+        "2025 (Ago) - Compraron 180D",
+        "2025 (Ago) - Add to cart  180D",
+        "2025 (Ago) - Start paid 180D",
+        "2025 (Ago) - All visit 180D",
+        "2025 (Ago) - IG TIBP - Seguidores",
+        "2025 (Ago) - FB TIBP - Seguidores",
+        "2025 (Ago) - Play videos",
+        "2025 (Ago) - Clientes B2C",
+        "2025 (Sep) - Emails web",
+        "2025 (Sep) - IG - Interactuaron",
+        "2025 (Sep) - IG - Interactuaron ADS 365",
+        "2025 (Oct) - Web - Suscriptores News",
+        "2025 (Oct) - Web - Clientes",
+        "2025 (Oct 31) - Suscriptores Cyber Week META"
+      ],
+      "excluded_audiences": []
+    }
+  ]
+}

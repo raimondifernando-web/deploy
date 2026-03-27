@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Performance Learning — Flujo de Proceso</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0f0f13;color:#e5e5e5;min-height:100vh;padding:40px 20px}
+.w{max-width:900px;margin:0 auto}
+h1{font-size:28px;font-weight:700;text-align:center;margin-bottom:4px}
+.sub{text-align:center;color:#888;font-size:14px;margin-bottom:40px}
+
+/* Flow steps */
+.step{position:relative;margin-bottom:8px}
+.step-header{display:flex;align-items:center;gap:14px;padding:20px 24px;border-radius:16px;cursor:default;transition:transform .2s}
+.step-header:hover{transform:translateX(4px)}
+.step-num{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;flex-shrink:0}
+.step-info{flex:1}
+.step-title{font-size:17px;font-weight:600;margin-bottom:2px}
+.step-desc{font-size:13px;color:#aaa;line-height:1.5}
+.step-badge{font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0}
+.step-detail{margin:0 0 16px 82px;padding:16px 20px;border-radius:12px;background:#1a1a22;border:1px solid #2a2a35;font-size:13px;line-height:1.7;color:#bbb}
+.step-detail strong{color:#e5e5e5}
+
+/* Connector */
+.connector{width:2px;height:24px;margin:0 0 0 41px;background:linear-gradient(to bottom,#333,#555);position:relative}
+.connector::after{content:'';position:absolute;bottom:-3px;left:-4px;width:10px;height:10px;border-radius:50%;background:#555}
+
+/* Colors */
+.s-blue .step-header{background:linear-gradient(135deg,#1a2744,#1a3355)}
+.s-blue .step-num{background:#2563eb;color:#fff}
+.s-blue .step-badge{background:#2563eb20;color:#4a9eed}
+.s-blue .connector{background:linear-gradient(to bottom,#2563eb,#2563eb55)}
+.s-blue .connector::after{background:#2563eb}
+
+.s-green .step-header{background:linear-gradient(135deg,#1a3325,#1a4030)}
+.s-green .step-num{background:#22c55e;color:#fff}
+.s-green .step-badge{background:#22c55e20;color:#22c55e}
+.s-green .connector{background:linear-gradient(to bottom,#22c55e,#22c55e55)}
+.s-green .connector::after{background:#22c55e}
+
+.s-purple .step-header{background:linear-gradient(135deg,#251a44,#2d1b55)}
+.s-purple .step-num{background:#8b5cf6;color:#fff}
+.s-purple .step-badge{background:#8b5cf620;color:#8b5cf6}
+.s-purple .connector{background:linear-gradient(to bottom,#8b5cf6,#8b5cf655)}
+.s-purple .connector::after{background:#8b5cf6}
+
+.s-amber .step-header{background:linear-gradient(135deg,#332a1a,#443318)}
+.s-amber .step-num{background:#f59e0b;color:#fff}
+.s-amber .step-badge{background:#f59e0b20;color:#f59e0b}
+.s-amber .connector{background:linear-gradient(to bottom,#f59e0b,#f59e0b55)}
+.s-amber .connector::after{background:#f59e0b}
+
+.s-red .step-header{background:linear-gradient(135deg,#331a1a,#441c1c)}
+.s-red .step-num{background:#ef4444;color:#fff}
+.s-red .step-badge{background:#ef444420;color:#ef4444}
+
+.s-teal .step-header{background:linear-gradient(135deg,#1a3333,#1a4040)}
+.s-teal .step-num{background:#06b6d4;color:#fff}
+.s-teal .step-badge{background:#06b6d420;color:#06b6d4}
+
+/* Many to many section */
+.m2m{margin-top:40px;padding:24px;border-radius:16px;background:#1a1a22;border:1px solid #2a2a35}
+.m2m h2{font-size:18px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.m2m-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center}
+.m2m-ac{padding:10px 14px;border-radius:10px;background:#f59e0b15;border:1px solid #f59e0b33;font-size:13px;font-weight:600;color:#f59e0b}
+.m2m-arrow{color:#555;font-size:18px;text-align:center}
+.m2m-pl{padding:10px 14px;border-radius:10px;background:#8b5cf615;border:1px solid #8b5cf633;font-size:12px;color:#c4b5fd;line-height:1.5}
+.m2m-pl span{display:block;font-size:11px;color:#888;margin-top:2px}
+
+/* DBs summary */
+.dbs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}
+.db-kb{background:#ef444415;border:1px solid #ef444433}
+.db-card{padding:16px;border-radius:12px;text-align:center}
+.db-card .db-icon{font-size:24px;margin-bottom:6px}
+.db-card .db-name{font-size:14px;font-weight:600;margin-bottom:2px}
+.db-card .db-id{font-size:11px;color:#888;font-family:monospace}
+.db-pl{background:#8b5cf615;border:1px solid #8b5cf633}
+.db-ac{background:#f59e0b15;border:1px solid #f59e0b33}
+.db-ex{background:#ef444415;border:1px solid #ef444433}
+
+/* Platform pills */
+.platforms{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:8px;font-size:11px;font-weight:500;text-decoration:none;transition:opacity .2s;border:1px solid #333}
+.pill:hover{opacity:.8}
+.pill img{width:16px;height:16px;border-radius:3px}
+.pill-logo{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:3px;font-size:9px;font-weight:700;flex-shrink:0;line-height:1}
+.pill-logo-claude{background:#c96442;color:#fff}
+.pill-logo-meta{background:#1877f2;color:#fff}
+.pill-logo-notion{background:#2f2f2f;color:#fff;border:1px solid #555}
+.pill-logo-netlify{background:#00c7b7;color:#fff}
+.pill-logo-odoo{background:#71639e;color:#fff}
+.pill-logo-memory{background:#06b6d4;color:#0f0f13}
+.pill-claude{background:#d4a27415;color:#d4a274;border-color:#d4a27433}
+.pill-notion{background:#ffffff10;color:#ccc;border-color:#ffffff20}
+.pill-netlify{background:#00c7b720;color:#00c7b7;border-color:#00c7b733}
+.pill-meta{background:#1877f220;color:#5a9cf5;border-color:#1877f233}
+.pill-odoo{background:#71639e20;color:#a99bce;border-color:#71639e33}
+.pill-memory{background:#06b6d420;color:#06b6d4;border-color:#06b6d433}
+</style>
+</head>
+<body>
+<div class="w">
+<nav style="display:flex;gap:4px;margin-bottom:24px">
+  <a href="performance-report.html" style="display:inline-block;padding:5px 14px;border-radius:8px;font-size:11px;font-weight:600;color:#888;text-decoration:none;border:1px solid #333;transition:all .2s" onmouseover="this.style.background='#1a1a22';this.style.color='#e5e5e5'" onmouseout="this.style.background='transparent';this.style.color='#888'">Dashboard</a>
+  <a href="performance-flow.html" style="display:inline-block;padding:5px 14px;border-radius:8px;font-size:11px;font-weight:600;background:#e5e5e5;color:#0f0f13;text-decoration:none;border:1px solid #e5e5e5">Proceso</a>
+  <a href="https://www.notion.so/32d1b4e444eb817d805fc4ff4f994475" target="_blank" style="display:inline-block;padding:5px 14px;border-radius:8px;font-size:11px;font-weight:600;color:#888;text-decoration:none;border:1px solid #333;transition:all .2s" onmouseover="this.style.background='#1a1a22';this.style.color='#e5e5e5'" onmouseout="this.style.background='transparent';this.style.color='#888'">Acciones <span style="font-size:9px">↗</span></a>
+  <a href="https://www.notion.so/32d1b4e444eb810785c3dd0e7b2ad64a" target="_blank" style="display:inline-block;padding:5px 14px;border-radius:8px;font-size:11px;font-weight:600;color:#888;text-decoration:none;border:1px solid #333;transition:all .2s" onmouseover="this.style.background='#1a1a22';this.style.color='#e5e5e5'" onmouseout="this.style.background='transparent';this.style.color='#888'">Learnings <span style="font-size:9px">↗</span></a>
+</nav>
+<h1>Performance Learning System</h1>
+<p class="sub">THIS IS BP — 10 pasos: validación → datos → historia → insights → acciones → aprobación → ejecución → review → aprendizaje → notificación<br><span style="font-size:11px;color:#555">v4 · Plan completo · daily-engine.sh orquesta 10 scripts · KB validation en código · Anti-patrones · Thresholds adaptativos</span></p>
+
+<!-- Step 0 -->
+<div class="step s-teal">
+  <div class="step-header">
+    <div class="step-num">0</div>
+    <div class="step-info">
+      <div class="step-title">Validación de datos</div>
+      <div class="step-desc">Antes de procesar nada, validate-meta-data.py verifica calidad, frescura y límites de los datos crudos y procesados. Genera reporte de calidad que bloquea el pipeline si hay anomalías.</div>
+    </div>
+    <div class="step-badge">script: validate-meta-data.py</div>
+  </div>
+  <div class="step-detail">
+    <strong>Qué valida:</strong> Datos raw vs procesados, frescura (timestamps), bounds checks (valores fuera de rango), integridad de campos obligatorios<br>
+    <strong>Output:</strong> quality-report.json — si hay errores críticos, el pipeline se detiene y notifica<br>
+    <strong>Frecuencia:</strong> Corre como primer paso de daily-engine.sh antes de cualquier extracción o transformación
+    <div class="platforms">
+      <a href="https://claude.ai/claude-code" class="pill pill-claude" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#c96442"/><path d="M4 5l3.5 3L4 11" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 11h3.5" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Claude Code</a>
+      <a href="https://developers.facebook.com/docs/marketing-api/" class="pill pill-meta" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#0866ff"/><path d="M8 8c-1-1.5-2-2.5-3.2-2.5C3.3 5.5 2 6.8 2 8.2s1.3 2.7 2.8 2.7c1.2 0 2.2-1 3.2-2.5m0 0c1 1.5 2 2.5 3.2 2.5 1.5 0 2.8-1.3 2.8-2.7S13.7 5.5 12.2 5.5c-1.2 0-2.2 1-3.2 2.5" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Meta Ads API</a>
+    </div>
+  </div>
+  <div class="connector"></div>
+</div>
+
+<!-- Step 1 -->
+<div class="step s-blue">
+  <div class="step-header">
+    <div class="step-num">1</div>
+    <div class="step-info">
+      <div class="step-title">Reporte diario — Meta Ads + Odoo</div>
+      <div class="step-desc">Cada mañana a las 8:30, daily-engine.sh orquesta el pipeline completo: extrae datos frescos de Meta Ads API y ventas reales de Odoo. Valida token, retry automático, detección de errores.</div>
+    </div>
+    <div class="step-badge">script: daily-engine.sh</div>
+  </div>
+  <div class="step-detail">
+    <strong>Orquestador:</strong> daily-engine.sh (10 pasos automáticos, Lun-Vie 8:32 AM)<br>
+    <strong>Scripts:</strong> update-report.sh → parse-meta-data.py<br>
+    <strong>Seguridad:</strong> Tokens en .env (chmod 600), check_token_health(), retry x3, lineage audit trail<br>
+    <strong>Módulo compartido:</strong> scripts/lib/ (config, notion_helpers, meta_helpers) — 0 duplicación<br>
+    <strong>Genera:</strong> KPIs, tendencia 7 días, funnel, creativos, lineage.json
+    <div class="platforms">
+      <a href="https://claude.ai/claude-code" class="pill pill-claude" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#c96442"/><path d="M4 5l3.5 3L4 11" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 11h3.5" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Claude Code</a>
+      <a href="https://developers.facebook.com/docs/marketing-api/" class="pill pill-meta" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#0866ff"/><path d="M8 8c-1-1.5-2-2.5-3.2-2.5C3.3 5.5 2 6.8 2 8.2s1.3 2.7 2.8 2.7c1.2 0 2.2-1 3.2-2.5m0 0c1 1.5 2 2.5 3.2 2.5 1.5 0 2.8-1.3 2.8-2.7S13.7 5.5 12.2 5.5c-1.2 0-2.2 1-3.2 2.5" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Meta Ads API</a>
+      <a href="https://www.thisisbp.com/web#action=389&model=sale.order&view_type=list&cids=1&menu_id=242" class="pill pill-odoo" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#71639e"/><circle cx="8" cy="8" r="3.5" fill="none" stroke="white" stroke-width="1.4"/><circle cx="8" cy="8" r="1.3" fill="white" opacity=".8"/></svg>Odoo ERP</a>
+    </div>
+  </div>
+  <div class="connector"></div>
+</div>
+
+<!-- Step 2: Validación KB -->
+<div class="step s-red">
+  <div class="step-header">
+    <div class="step-num">2</div>
+    <div class="step-info">
+      <div class="step-title">Validación contra Knowledge Bases</div>
+      <div class="step-desc">validate-meta-data.py valida calidad de los datos procesados contra las KBs. history-manager.py guarda snapshot diario del estado actual para comparación futura.</div>
+    </div>
+    <div class="step-badge">script: history-manager.py</div>
+  </div>
+  <div class="step-detail">
+    <strong>validate-meta-data.py:</strong> Verifica datos contra 20 reglas de Meta Ads — valores esperados, rangos normales, consistencia temporal<br>
+    <strong>history-manager.py:</strong> Guarda snapshot diario (métricas actuales + estado de campañas) como punto de comparación para el review de día +3<br>
+    <strong>Fuentes KB:</strong> meta-knowledge-base.md (20 reglas) + performance-playbook.md + research-performance-metrics.md<br>
+    <strong>Se actualiza:</strong> Semanalmente (scheduled task lunes 10:00 AM) + sync bidireccional con Notion
+    <div class="platforms">
+      <a href="https://claude.ai/claude-code" class="pill pill-claude" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#c96442"/><path d="M4 5l3.5 3L4 11" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 11h3.5" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Claude Code — meta-knowledge-base.md</a>
+      <a href="https://developers.facebook.com/docs/marketing-api/" class="pill pill-meta" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#0866ff"/><path d="M8 8c-1-1.5-2-2.5-3.2-2.5C3.3 5.5 2 6.8 2 8.2s1.3 2.7 2.8 2.7c1.2 0 2.2-1 3.2-2.5m0 0c1 1.5 2 2.5 3.2 2.5 1.5 0 2.8-1.3 2.8-2.7S13.7 5.5 12.2 5.5c-1.2 0-2.2 1-3.2 2.5" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Meta Docs — fuente oficial</a>
+      <a href="https://claude.ai/claude-code" class="pill pill-memory" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#06b6d4"/><ellipse cx="8" cy="5" rx="3.5" ry="1.3" fill="none" stroke="white" stroke-width="1.2"/><path d="M4.5 5v6M11.5 5v6" stroke="white" stroke-width="1.2"/><ellipse cx="8" cy="11" rx="3.5" ry="1.3" fill="none" stroke="white" stroke-width="1.2"/></svg>Memory MCP — reglas críticas</a>
+    </div>
+  </div>
+  <div class="connector"></div>
+</div>
+
+<!-- Step 3: Insights -->
+<div class="step s-purple">
+  <div class="step-header">
+    <div class="step-num">3</div>
+    <div class="step-info">
+      <div class="step-title">Insights → Learnings (PL)</div>
+      <div class="step-desc">generate-actions.py detecta patrones en los datos: fatiga creativa (CTR -20% + freq >3x en 14 días), tendencias rolling 90 días, anomalías. Los hallazgos se convierten en Learnings validados por KB.</div>
+    </div>
+    <div class="step-badge">script: generate-actions.py</div>
+  </div>
+  <div class="step-detail">
+    <strong>Ejemplo:</strong> PL-11 "TOFU optimiza por Visitas Perfil — solo 25 outbound clicks de $864K invertidos"<br>
+    <strong>Tipos de learning:</strong> Observación → Acción tomada → Resultado → Patrón confirmado<br>
+    <strong>KB-validado:</strong> Cada learning se contrasta contra meta-knowledge-base.md antes de guardarse en Notion
+    <div class="platforms">
+      <a href="https://www.notion.so/32d1b4e444eb810785c3dd0e7b2ad64a" class="pill pill-notion" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#191919"/><path d="M4.5 4v8M4.5 4L11.5 12M11.5 4v8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Notion — Performance Learnings</a>
+      <a href="https://claude.ai/claude-code" class="pill pill-claude" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#c96442"/><path d="M4 5l3.5 3L4 11" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 11h3.5" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Claude Code</a>
+    </div>
+  </div>
+  <div class="connector"></div>
+</div>
+
+<!-- Step 4 -->
+<div class="step s-amber">
+  <div class="step-header">
+    <div class="step-num">4</div>
+    <div class="step-info">
+      <div class="step-title">Acciones automáticas → Acciones del Día (AC)</div>
+      <div class="step-desc">generate-actions.py aplica 8 reglas de detección (fatiga, low performer, MER, frecuencia, saldo, pixel). Valida cada acción contra KB + anti-patrones, deduplica, y crea en Notion.</div>
+    </div>
+    <div class="step-badge">script: generate-actions.py</div>
+  </div>
+  <div class="step-detail">
+    <strong>Ejemplo:</strong> AC-5 "Cambiar TOFU a Landing Page Views" → resuelve PL-1 + PL-11<br>
+    <strong>Incluye:</strong> Cómo ejecutar (pasos concretos), impacto esperado, comando técnico<br>
+    <strong>Anti-patrones:</strong> Si la acción fue ejecutada antes y empeoró resultados → bloqueada automáticamente<br>
+    <strong>KB-validado:</strong> Checklist de 20 reglas Meta Ads antes de crear cualquier AC en Notion
+    <div class="platforms">
+      <a href="https://www.notion.so/32d1b4e444eb817d805fc4ff4f994475" class="pill pill-notion" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#191919"/><path d="M4.5 4v8M4.5 4L11.5 12M11.5 4v8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Notion — Acciones del Día</a>
+      <a href="https://storied-swan-c4ab8c.netlify.app/dashboard.html" class="pill pill-netlify" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#00c7b7"/><path d="M8 3L13 12H3L8 3z" fill="none" stroke="white" stroke-width="1.4" stroke-linejoin="round"/><path d="M5.5 9.5h5" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>Reporte Web (Netlify)</a>
+    </div>
+  </div>
+  <div class="connector"></div>
+</div>
+
+<!-- Step 5 -->
+<div class="step s-green">
+  <div class="step-header">
+    <div class="step-num">5</div>
+    <div class="step-info">
+      <div class="step-title">Fernando aprueba</div>
+      <div class="step-desc">Revisás las acciones en Notion y decidís: aprobar, posponer o rechazar. Podés aprobar varias a la vez.</div>
+    </div>
+    <div class="step-badge">manual</div>
+  </div>
+  <div class="step-detail">
+    <strong>Cada acción tiene dos columnas clave:</strong>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0">
+      <div style="padding:10px 14px;background:#22c55e10;border:1px solid #22c55e33;border-radius:10px">
+        <div style="font-size:12px;font-weight:600;color:#22c55e;margin-bottom:4px">Claude puede (SI / NO)</div>
+        <div style="font-size:11px;color:#aaa">Lo llena Claude. Indica si tiene capacidad tecnica para ejecutar via API. No lo podes cambiar.</div>
+      </div>
+      <div style="padding:10px 14px;background:#4a9eed10;border:1px solid #4a9eed33;border-radius:10px">
+        <div style="font-size:12px;font-weight:600;color:#4a9eed;margin-bottom:4px">Ejecutar con Claude (tilde)</div>
+        <div style="font-size:11px;color:#aaa">Lo controlas vos. Si lo tildas y aprobas, Claude ejecuta automaticamente. Si no, lo haces manual.</div>
+      </div>
+    </div>
+    <strong>Combinaciones posibles:</strong><br>
+    <span style="color:#22c55e">Claude puede SI</span> + <span style="color:#4a9eed">Tilde ON</span> + Aprobada → <strong style="color:#22c55e">Claude ejecuta automaticamente</strong><br>
+    <span style="color:#22c55e">Claude puede SI</span> + <span style="color:#ef4444">Tilde OFF</span> + Aprobada → <strong>Fernando ejecuta manual</strong><br>
+    <span style="color:#ef4444">Claude puede NO</span> → <strong>Siempre manual</strong> (requiere accion humana: diseño, desarrollo, etc.)
+    <div class="platforms">
+      <a href="https://www.notion.so/32d1b4e444eb817d805fc4ff4f994475" class="pill pill-notion" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#191919"/><path d="M4.5 4v8M4.5 4L11.5 12M11.5 4v8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Notion — Cambiar estado + tildar</a>
+      <a href="https://claude.ai/claude-code" class="pill pill-claude" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#c96442"/><path d="M4 5l3.5 3L4 11" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 11h3.5" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Claude Code — dar la orden</a>
+      <a href="https://chat.claude.ai" class="pill pill-claude" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#7c3aed"/><rect x="2.5" y="3" width="11" height="7.5" rx="2" fill="white" opacity=".9"/><path d="M5 10.5L3.5 13l3-2.5H5z" fill="white" opacity=".9"/><circle cx="8" cy="6.75" r="1.2" fill="#7c3aed" opacity=".7"/></svg>Claude Chat — dar la orden</a>
+    </div>
+  </div>
+  <div class="connector"></div>
+</div>
+
+<!-- Step 6 -->
+<div class="step s-purple">
+  <div class="step-header">
+    <div class="step-num">6</div>
+    <div class="step-info">
+      <div class="step-title">Claude ejecuta + registra</div>
+      <div class="step-desc">execute-actions.py cambia budgets, audiencias o creativos via Meta Ads API. log-action.py registra cada ejecución en el Execution Log de Notion (EX) con snapshot de métricas antes.</div>
+    </div>
+    <div class="step-badge">script: execute-actions.py</div>
+  </div>
+  <div class="step-detail">
+    <strong>Por cada acción:</strong><br>
+    1. Ejecuta el cambio en Meta Ads<br>
+    2. Marca AC → 🚀 Ejecutada<br>
+    3. Crea EX con métricas "antes" como snapshot<br>
+    4. Actualiza TODOS los PL vinculados → "Pendiente de resultado"<br>
+    5. Programa revisión para 3 días después
+    <div class="platforms">
+      <a href="https://claude.ai/claude-code" class="pill pill-claude" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#c96442"/><path d="M4 5l3.5 3L4 11" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 11h3.5" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Claude Code — execute-actions.py</a>
+      <a href="https://developers.facebook.com/docs/marketing-api/" class="pill pill-meta" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#0866ff"/><path d="M8 8c-1-1.5-2-2.5-3.2-2.5C3.3 5.5 2 6.8 2 8.2s1.3 2.7 2.8 2.7c1.2 0 2.2-1 3.2-2.5m0 0c1 1.5 2 2.5 3.2 2.5 1.5 0 2.8-1.3 2.8-2.7S13.7 5.5 12.2 5.5c-1.2 0-2.2 1-3.2 2.5" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Meta Ads API — cambios</a>
+      <a href="https://www.notion.so/32d1b4e444eb81a79f12de38bdc62fbf" class="pill pill-notion" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#191919"/><path d="M4.5 4v8M4.5 4L11.5 12M11.5 4v8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Notion — Execution Log</a>
+    </div>
+  </div>
+  <div class="connector"></div>
+</div>
+
+<!-- Step 7 -->
+<div class="step s-amber">
+  <div class="step-header">
+    <div class="step-num">7</div>
+    <div class="step-info">
+      <div class="step-title">Día +3: Revisión automática de resultados</div>
+      <div class="step-desc">review-results.py compara snapshot del día de ejecución vs hoy. Clasifica: ✅ Positivo, ➡️ Neutro, ❌ Negativo. Los negativos generan anti-patrones.</div>
+    </div>
+    <div class="step-badge">script: review-results.py</div>
+  </div>
+  <div class="step-detail">
+    <strong>Actualiza EX:</strong> Métricas después + Impacto medido (Positivo/Neutro/Negativo)<br>
+    <strong>Actualiza PL:</strong> Resultado observado + si se confirma → "Patrón confirmado"
+    <div class="platforms">
+      <a href="https://claude.ai/claude-code" class="pill pill-claude" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#c96442"/><path d="M4 5l3.5 3L4 11" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 11h3.5" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Claude Code — revisión auto</a>
+      <a href="https://developers.facebook.com/docs/marketing-api/" class="pill pill-meta" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#0866ff"/><path d="M8 8c-1-1.5-2-2.5-3.2-2.5C3.3 5.5 2 6.8 2 8.2s1.3 2.7 2.8 2.7c1.2 0 2.2-1 3.2-2.5m0 0c1 1.5 2 2.5 3.2 2.5 1.5 0 2.8-1.3 2.8-2.7S13.7 5.5 12.2 5.5c-1.2 0-2.2 1-3.2 2.5" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Meta Ads API — métricas</a>
+      <a href="https://www.notion.so/32d1b4e444eb81a79f12de38bdc62fbf" class="pill pill-notion" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#191919"/><path d="M4.5 4v8M4.5 4L11.5 12M11.5 4v8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Notion — Execution Log</a>
+      <a href="https://www.notion.so/32d1b4e444eb810785c3dd0e7b2ad64a" class="pill pill-notion" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#191919"/><path d="M4.5 4v8M4.5 4L11.5 12M11.5 4v8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Notion — Learnings</a>
+    </div>
+  </div>
+  <div class="connector"></div>
+</div>
+
+<!-- Step 8 -->
+<div class="step s-teal">
+  <div class="step-header">
+    <div class="step-num">8</div>
+    <div class="step-info">
+      <div class="step-title">Aprendizaje → Playbook + Thresholds</div>
+      <div class="step-desc">update-thresholds.py ajusta scoring automáticamente cuando 3+ learnings confirman un patrón. update-knowledge-base.py incorpora los aprendizajes confirmados al playbook local.</div>
+    </div>
+    <div class="step-badge">script: update-thresholds.py</div>
+  </div>
+  <div class="step-detail">
+    <strong>Feedback loop cerrado:</strong><br>
+    • Confirmado → update-knowledge-base.py actualiza playbook + update-thresholds.py ajusta scoring (3+ confirmaciones)<br>
+    • Empeoró → anti-patterns.json → generate-actions.py NO repite la misma acción<br>
+    • Sin efecto → nota para re-evaluación en próximo ciclo
+    <div class="platforms">
+      <a href="https://claude.ai/claude-code" class="pill pill-claude" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#c96442"/><path d="M4 5l3.5 3L4 11" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 11h3.5" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Claude Code — Playbook local</a>
+      <a href="https://claude.ai/claude-code" class="pill pill-memory" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#06b6d4"/><ellipse cx="8" cy="5" rx="3.5" ry="1.3" fill="none" stroke="white" stroke-width="1.2"/><path d="M4.5 5v6M11.5 5v6" stroke="white" stroke-width="1.2"/><ellipse cx="8" cy="11" rx="3.5" ry="1.3" fill="none" stroke="white" stroke-width="1.2"/></svg>Memory MCP — todas las sesiones</a>
+      <a href="https://www.notion.so/32d1b4e444eb810785c3dd0e7b2ad64a" class="pill pill-notion" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#191919"/><path d="M4.5 4v8M4.5 4L11.5 12M11.5 4v8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Notion — Patrones confirmados</a>
+    </div>
+  </div>
+  <div class="connector"></div>
+</div>
+
+<!-- Step 9 -->
+<div class="step s-blue">
+  <div class="step-header">
+    <div class="step-num">9</div>
+    <div class="step-info">
+      <div class="step-title">Notificación → Notion + Pipeline Summary</div>
+      <div class="step-desc">notify-summary.py + generate-pipeline-summary.py consolidan TODOS los artefactos del día en un resumen para Fernando: acciones tomadas, learnings nuevos, métricas clave, próximos pasos.</div>
+    </div>
+    <div class="step-badge">script: notify-summary.py</div>
+  </div>
+  <div class="step-detail">
+    <strong>Consolida:</strong> AC ejecutadas, PL creados/actualizados, EX del día, alertas de quality-report.json, thresholds ajustados<br>
+    <strong>Output:</strong> pipeline-summary.json → página Notion actualizada automáticamente → Fernando ve TODO sin pedir<br>
+    <strong>generate-pipeline-summary.py:</strong> Genera vista ejecutiva diaria con estado del sistema completo
+    <div class="platforms">
+      <a href="https://claude.ai/claude-code" class="pill pill-claude" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#c96442"/><path d="M4 5l3.5 3L4 11" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 11h3.5" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Claude Code — pipeline final</a>
+      <a href="https://www.notion.so/32d1b4e444eb810785c3dd0e7b2ad64a" class="pill pill-notion" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#191919"/><path d="M4.5 4v8M4.5 4L11.5 12M11.5 4v8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Notion — Resumen diario</a>
+      <a href="https://chat.claude.ai" class="pill pill-claude" target="_blank"><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0"><rect width="16" height="16" rx="3" fill="#7c3aed"/><rect x="2.5" y="3" width="11" height="7.5" rx="2" fill="white" opacity=".9"/><path d="M5 10.5L3.5 13l3-2.5H5z" fill="white" opacity=".9"/><circle cx="8" cy="6.75" r="1.2" fill="#7c3aed" opacity=".7"/></svg>Claude Chat / Cowork</a>
+    </div>
+  </div>
+</div>
+
+<!-- Many to Many -->
+<div class="m2m">
+  <h2>🔗 Relación many-to-many</h2>
+  <p style="font-size:13px;color:#888;margin-bottom:16px">Una acción resuelve varios insights. Un insight puede requerir varias acciones.</p>
+  <div class="m2m-grid">
+    <div class="m2m-ac">AC-5<br>Cambiar TOFU a LPV</div>
+    <div class="m2m-arrow">→<br>→</div>
+    <div>
+      <div class="m2m-pl">PL-1 TOFU mismos públicos que BOFU<span>+ también vinculado a AC-9</span></div>
+      <div class="m2m-pl" style="margin-top:6px">PL-11 TOFU optimiza por Visitas Perfil<span>insight exclusivo de AC-5</span></div>
+    </div>
+  </div>
+  <div class="m2m-grid" style="margin-top:12px">
+    <div class="m2m-ac">AC-3<br>Rotar creativos BOFU</div>
+    <div class="m2m-arrow">→<br>→</div>
+    <div>
+      <div class="m2m-pl">PL-2 BOFU freq 9.6x saturada<span>+ también vinculado a AC-7</span></div>
+      <div class="m2m-pl" style="margin-top:6px">PL-9 Creativo top Foto 4<span>+ también vinculado a AC-7</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- DBs -->
+<div class="dbs">
+  <a href="https://www.notion.so/32d1b4e444eb810785c3dd0e7b2ad64a" target="_blank" class="db-card db-pl" style="text-decoration:none;cursor:pointer;transition:transform .2s" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+    <div class="db-icon">🧠</div>
+    <div class="db-name">Performance Learnings</div>
+    <div class="db-id">PL-1 a PL-13</div>
+    <div style="font-size:10px;color:#8b5cf6;margin-top:6px">Abrir en Notion →</div>
+  </a>
+  <a href="https://www.notion.so/32d1b4e444eb817d805fc4ff4f994475" target="_blank" class="db-card db-ac" style="text-decoration:none;cursor:pointer;transition:transform .2s" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+    <div class="db-icon">⚡</div>
+    <div class="db-name">Acciones del Día</div>
+    <div class="db-id">AC-1 a AC-9</div>
+    <div style="font-size:10px;color:#f59e0b;margin-top:6px">Abrir en Notion →</div>
+  </a>
+  <a href="https://www.notion.so/32d1b4e444eb81a79f12de38bdc62fbf" target="_blank" class="db-card db-ex" style="text-decoration:none;cursor:pointer;transition:transform .2s" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+    <div class="db-icon">📋</div>
+    <div class="db-name">Execution Log</div>
+    <div class="db-id">EX-1, EX-2...</div>
+    <div style="font-size:10px;color:#ef4444;margin-top:6px">Abrir en Notion →</div>
+  </a>
+  <div class="db-card db-kb" style="cursor:default">
+    <div class="db-icon">📚</div>
+    <div class="db-name">Knowledge Bases</div>
+    <div class="db-id">KB + Playbook + Research</div>
+    <div style="font-size:10px;color:#ef4444;margin-top:6px">Local + Notion sync semanal</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

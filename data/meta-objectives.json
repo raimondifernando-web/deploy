@@ -1,0 +1,181 @@
+{
+  "updated": "2026-03-27",
+  "objectives": {
+    "2026 - 03 - Switch Sale - 4 BOFU (Retargeting)": {
+      "objective": "OUTCOME_SALES",
+      "status": "ACTIVE",
+      "daily_budget": 360000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 190591.16
+    },
+    "2026 - 03 - Switch Sale - 3 BOFU (Conversi\u00f3n)": {
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "daily_budget": 150000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 150000.0
+    },
+    "2026 - 03 - Switch Sale - 1 TOFU": {
+      "objective": "OUTCOME_TRAFFIC",
+      "status": "ACTIVE",
+      "daily_budget": 100000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 62946.35
+    },
+    "2026 - 01 - Summer Sale - 3 BOFU (Conversi\u00f3n)": {
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "daily_budget": 345000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 345000.0
+    },
+    "2026 - 01 - Summer Sale - 1 TOFU": {
+      "objective": "OUTCOME_TRAFFIC",
+      "status": "PAUSED",
+      "daily_budget": 50000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 50000.0
+    },
+    "2026 - 01 - TOFU - Stores - Joaquina": {
+      "objective": "OUTCOME_TRAFFIC",
+      "status": "PAUSED",
+      "daily_budget": 0.0,
+      "lifetime_budget": 61242.0,
+      "budget_remaining": 35961.49
+    },
+    "2025 - 12 - Fiestas - 2 MOFU": {
+      "objective": "OUTCOME_TRAFFIC",
+      "status": "PAUSED",
+      "daily_budget": 80000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 80000.0
+    },
+    "2025 - 12 - 1 TOFU": {
+      "objective": "OUTCOME_AWARENESS",
+      "status": "PAUSED",
+      "daily_budget": 80000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 80000.0
+    },
+    "2025 - 11 - Navidad - 3 BOFU (Conversi\u00f3n)": {
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "daily_budget": 650000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 650000.0
+    },
+    "2025 - 11 - Black friday - 4 RETARGETING (Conversi\u00f3n)": {
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "daily_budget": 1445000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 1445000.0
+    },
+    "2025 - 11 - Black friday - 2 MOFU": {
+      "objective": "OUTCOME_TRAFFIC",
+      "status": "PAUSED",
+      "daily_budget": 100000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 100000.0
+    },
+    "2025 - 11 - Black friday - 3 BOFU (Conversi\u00f3n)": {
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "daily_budget": 2066000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 2066000.0
+    },
+    "2025 - 11 - Black Friday - 1 TOFU": {
+      "objective": "OUTCOME_AWARENESS",
+      "status": "PAUSED",
+      "daily_budget": 100000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 100000.0
+    },
+    "2025 - 10 - Cyber Monday - 4 Retargueting - No compradores": {
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "daily_budget": 300000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 300000.0
+    },
+    "2025 - 10 - Cyber Monday - 3 MOFU (Conversi\u00f3n) 2": {
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "daily_budget": 300000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 300000.0
+    },
+    "2025 - 10 - Cyber Monday - 2 MOFU": {
+      "objective": "OUTCOME_LEADS",
+      "status": "PAUSED",
+      "daily_budget": 0.0,
+      "lifetime_budget": 1100000.0,
+      "budget_remaining": 180690.69
+    },
+    "2025 - 10 - Cyber Monday - 1 TOFU": {
+      "objective": "OUTCOME_AWARENESS",
+      "status": "PAUSED",
+      "daily_budget": 100000.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 100000.0
+    },
+    "Publicaci\u00f3n de Instagram: Imposible elegir una...": {
+      "objective": "LINK_CLICKS",
+      "status": "PAUSED",
+      "daily_budget": 2600.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 2600.0
+    },
+    "2025 (Sep) - Nuevos": {
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "daily_budget": 0.0,
+      "lifetime_budget": 1500000.0,
+      "budget_remaining": 1.53
+    },
+    "2025 ( Sep) - Sale": {
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "daily_budget": 0.0,
+      "lifetime_budget": 601901.22,
+      "budget_remaining": 0.0
+    },
+    "2025 - 08 - Winter Sale": {
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "daily_budget": 0.0,
+      "lifetime_budget": 10800000.0,
+      "budget_remaining": 7873352.62
+    },
+    "Conversiones - Prospecting - Junio": {
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "daily_budget": 0.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 0.0
+    },
+    "Conversiones | RMKT | Junio": {
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "daily_budget": 0.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 0.0
+    },
+    "Advantage - Conversiones - D\u00eda del padre": {
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "daily_budget": 0.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 0.0
+    },
+    "RMKT  - Conversiones - Hot Sale - Mayo": {
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "daily_budget": 0.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 0.0
+    }
+  },
+  "total_daily_budget_active": 460000.0
+}

@@ -1,0 +1,9 @@
+{
+  "scoring": {
+    "tofu_weights": {"ctr": 35, "cpm": 20, "reach": 20, "freq": 15, "video": 10},
+    "bofu_weights": {"profit": 30, "roas": 25, "purchases": 20, "ctr": 15, "atc": 10},
+    "freq_veto": {"TOFU": 4, "MOFU": 6, "BOFU": 7, "RETARG": 8}
+  },
+  "mer_thresholds": {"green": 8, "yellow": 4, "red": 2},
+  "pixel_confidence_threshold": 0.85
+}

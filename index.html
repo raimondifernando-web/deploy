@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>THIS IS BP — Performance v3</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+:root{--bg:#fafafa;--s:#fff;--sa:#f5f5f7;--b:#e5e5e7;--bl:#f0f0f2;--t:#1d1d1f;--t2:#6e6e73;--t3:#86868b;--blue:#0071e3;--green:#34c759;--red:#ff3b30;--orange:#ff9500;--purple:#af52de;--r:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased;font-size:13px}
+.w{max-width:1100px;margin:0 auto;padding:0 36px}
+.header{padding:36px 0 6px}.header h1{font-size:26px;font-weight:700;letter-spacing:-.5px}
+.header .sub{color:var(--t3);font-size:12px;margin-top:3px;display:flex;justify-content:space-between;align-items:center}
+.db{font-size:10px;background:var(--sa);padding:3px 10px;border-radius:16px;font-weight:500;color:var(--t3)}
+.sema{border-radius:12px;padding:14px 20px;margin:16px 0;display:flex;align-items:center;gap:12px;font-size:13px;font-weight:500}
+.sema-g{background:#d4f5e0;color:#15803d;border:1px solid #86efac}
+.sema-y{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+.sema-r{background:#fde0de;color:#991b1b;border:1px solid #fca5a5}
+.sema .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.kg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.kpi{background:var(--s);border:1px solid var(--b);border-radius:var(--r);padding:16px;display:flex;flex-direction:column}
+.kpi .ch-row{margin-top:auto;padding-top:6px}
+.kpi .l{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--t3);font-weight:600;margin-bottom:5px}
+.kpi .v{font-size:24px;font-weight:700;letter-spacing:-1px;line-height:1}
+.kpi .s{font-size:10px;color:var(--t3);margin-top:4px;line-height:1.4}
+.ch{display:inline-flex;font-size:10px;font-weight:600;padding:1px 6px;border-radius:4px}
+.chu{color:#15803d;background:#d4f5e0}.chd{color:#991b1b;background:#fde0de}
+.act{background:var(--s);border:1px solid var(--b);border-radius:var(--r);padding:16px 20px;margin:16px 0}
+.act h2{font-size:15px;font-weight:600;margin-bottom:10px}
+.act-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bl);font-size:12px;line-height:1.5}
+.act-item:last-child{border:none}
+.act-i{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.sec{margin:24px 0}.sec-t{font-size:16px;font-weight:600;letter-spacing:-.2px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
+.cbtn{font-size:11px;color:var(--blue);cursor:pointer;font-weight:500}
+.card{background:var(--s);border:1px solid var(--b);border-radius:var(--r);padding:20px;margin-bottom:14px}
+.cf{padding:0;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:8px 12px;text-align:right;font-weight:600;color:var(--t3);font-size:9px;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--b);background:var(--sa)}
+th:first-child{text-align:left}
+td{padding:8px 12px;text-align:right;border-bottom:1px solid var(--bl)}
+td:first-child{text-align:left;font-weight:500}
+tr:last-child td{border:none}
+.rw{background:#f0faf4}.rl{background:#fef5f5}
+.b{display:inline-block;padding:2px 7px;border-radius:5px;font-weight:600;font-size:10px}
+.bg{background:#d4f5e0;color:#15803d}.by{background:#fef3c7;color:#7a6200}.br{background:#fde0de;color:#991b1b}.bb{background:#dbeafe;color:#1d4ed8}.bp{background:#ede9fe;color:#6d28d9}.bgr{background:#f3f4f6;color:#6b7280}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.coll{max-height:0;overflow:hidden;transition:max-height .3s ease}.coll.open{max-height:5000px}
+.sep{font-size:10px;font-weight:600;color:var(--t3);padding:6px 12px;background:var(--sa);text-transform:uppercase;letter-spacing:.5px}
+.footer{text-align:center;padding:28px 0;color:var(--t3);font-size:10px}
+.pixel-warn{font-size:10px;color:var(--orange);font-weight:500;margin-top:2px}
+.qr{display:inline-block;padding:1px 5px;border-radius:3px;font-size:9px;font-weight:600}
+.qr-above{background:#d4f5e0;color:#15803d}.qr-average{background:#fef3c7;color:#7a6200}.qr-below{background:#fde0de;color:#991b1b}
+.stage-label{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;margin-right:4px}
+.stage-tofu{background:#dbeafe;color:#1d4ed8}.stage-mofu{background:#ede9fe;color:#6d28d9}.stage-bofu{background:#fef3c7;color:#7a6200}.stage-retarg{background:#fde0de;color:#991b1b}
+.tip{cursor:help;border-bottom:1px dotted var(--t3)}
+#tooltip{position:fixed;z-index:9999;background:#1d1d1f;color:#fff;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:400;white-space:nowrap;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,.15);display:none;max-width:320px;white-space:normal;line-height:1.4}
+#tooltip.show{display:block}
+.cf{padding:0;overflow:hidden}
+.tabs{display:flex;gap:4px}.tab{display:inline-block;padding:5px 14px;border-radius:8px;font-size:11px;font-weight:600;color:var(--t3);text-decoration:none;transition:all .2s;border:1px solid transparent}.tab:hover{background:var(--sa);color:var(--t)}.tab-active{background:var(--t);color:#fff;border-color:var(--t)}.tab-active:hover{background:var(--t);color:#fff}
+@media(max-width:900px){.kg{grid-template-columns:repeat(2,1fr)}.g2,.g3{grid-template-columns:1fr}.w{padding:0 16px}.tabs{flex-wrap:wrap}#funnelWrapper>div>div{grid-template-columns:1fr!important}#funnelWrapper>div>div>div:last-child{border-left:none!important;border-top:1px solid var(--b)}#funnelWrapper>div>div>div:first-child{border-right:none!important}}
+</style>
+</head>
+<body>
+<div class="w">
+<div class="header">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <h1>Performance — Mes Corriente</h1>
+    <nav class="tabs">
+      <a href="performance-report.html" class="tab tab-active">Dashboard</a>
+      <a href="performance-flow.html" class="tab">Proceso</a>
+      <a href="https://www.notion.so/32d1b4e444eb817d805fc4ff4f994475" target="_blank" class="tab">Acciones <span style="font-size:9px">↗</span></a>
+      <a href="https://www.notion.so/32d1b4e444eb810785c3dd0e7b2ad64a" target="_blank" class="tab">Learnings <span style="font-size:9px">↗</span></a>
+    </nav>
+  </div>
+  <div class="sub"><span>THIS IS BP · Meta Ads × Odoo · v3</span><span class="db" id="ts">...</span></div>
+</div>
+<div id="sema"></div>
+<div class="kg" id="kpis"></div>
+<!-- 0. MER TRENDS — Evolución mensual -->
+<div class="sec" id="trendsSection" style="display:none">
+  <div class="sec-t">Revenue, Profit y ROAS · Últimos meses</div>
+  <div class="card" style="padding:8px 12px"><canvas id="combinedTrendChart" height="200"></canvas></div>
+  <div id="trendInsight" style="margin-top:8px"></div>
+</div>
+<!-- 1. TENDENCIA DIARIA — ¿Qué pasó los últimos días? -->
+<div class="sec">
+  <div class="sec-t">Últimos 7 días — Tendencia diaria</div>
+  <div class="g2">
+    <div class="card" style="padding:8px 12px"><canvas id="dailyChart" height="160"></canvas></div>
+    <div class="card cf"><table id="dailyT"></table></div>
+  </div>
+  <div id="dailyAlert" style="margin-top:8px"></div>
+</div>
+
+<!-- 2. QUÉ HACER HOY — Desde Notion -->
+<div class="act" id="act"><div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="const c=document.getElementById('actL');const a=document.getElementById('actArrow');if(c.style.display==='none'){c.style.display='';a.textContent='▾'}else{c.style.display='none';a.textContent='▸'}"><h2 style="margin:0"><span id="actArrow" style="font-size:14px;margin-right:6px;color:var(--t3)">▸</span>Qué hacer hoy</h2><a href="https://www.notion.so/32d1b4e444eb817d805fc4ff4f994475" target="_blank" style="font-size:10px;color:var(--blue);text-decoration:none;font-weight:500" onclick="event.stopPropagation()">Gestionar en Notion ↗</a></div><div id="actL" style="display:none"></div></div>
+
+<!-- 3. CAMPAÑAS SALES — ¿Dónde va la plata? -->
+<div class="sec">
+  <div class="sec-t">Campañas — Ventas (SALES) · Mes corriente</div>
+  <div id="campsSales"></div>
+</div>
+
+<!-- 4. CAMPAÑAS TRAFFIC — ¿TOFU alimenta el funnel? -->
+<div class="sec">
+  <div class="sec-t">Campañas — Tráfico / Awareness · Mes corriente</div>
+  <div id="campsTraffic"></div>
+</div>
+
+<!-- 5. FUNNEL — ¿Dónde se pierde gente? + Estructura campañas Meta -->
+<div class="sec">
+  <div class="sec-t">Funnel de Conversión + Estructura de Campañas Meta</div>
+  <div id="funnelWrapper" class="card cf" style="padding:0;overflow:hidden">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch">
+      <div style="display:flex;flex-direction:column">
+        <div style="font-size:10px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.6px;padding:10px 16px;border-bottom:1px solid var(--b);background:var(--bg2)">ESTRUCTURA DE CAMPAÑAS META</div>
+        <div id="funnelMeta" style="padding:8px 0 8px"></div>
+      </div>
+      <div style="border-left:1px solid var(--b);display:flex;flex-direction:column">
+        <div style="font-size:10px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.6px;padding:10px 16px;border-bottom:1px solid var(--b);background:var(--bg2)">JOURNEY DEL CLIENTE</div>
+        <div id="funnel" style="padding:16px 8px 0;flex:1;display:flex;flex-direction:column;min-height:0"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. CREATIVE ANALYTICS — ¿Qué creativos escalar/pausar? -->
+<div class="sec">
+  <div class="sec-t">Creative Analytics</div>
+  <div id="creativeSection"></div>
+</div>
+
+<!-- 7. PÚBLICOS GANADORES — ¿Qué audiencias rinden? -->
+<div class="sec">
+  <div class="sec-t">Públicos ganadores (por conversión)</div>
+  <div id="audienceWinners"></div>
+</div>
+
+<!-- 8. PLACEMENTS — IG Feed vs Stories vs Reels -->
+<div class="sec">
+  <div class="sec-t">Placements</div>
+  <div class="card cf"><table id="plT"></table></div>
+</div>
+
+<!-- 9. REGIONES -->
+<div class="sec">
+  <div class="sec-t">Distribución geográfica</div>
+  <div class="card cf"><table id="regT"></table></div>
+</div>
+
+<!-- 10. TENDENCIA MENSUAL — eliminada, insight integrado al gráfico principal arriba -->
+
+<!-- 11. DEMOGRAFÍA -->
+<div class="sec">
+  <div class="sec-t">Demografía <span class="cbtn" onclick="tog('demC')">Mostrar ▾</span></div>
+  <div class="coll" id="demC"><div class="card cf"><table id="demT"></table></div></div>
+</div>
+
+<!-- 12. ANÁLISIS DE PÚBLICOS -->
+<div class="sec">
+  <div class="sec-t">Análisis de públicos — Mes corriente</div>
+  <div id="targeting"></div>
+</div>
+
+<!-- NOTAS TÉCNICAS -->
+<div class="sec">
+  <div class="sec-t">Notas técnicas <span class="cbtn" onclick="tog('notC')">Mostrar ▾</span></div>
+  <div class="coll" id="notC"><div class="card" id="notes"></div></div>
+</div>
+</div>
+<div class="footer">Claude Code × Meta Graph API × Odoo ERP · v3</div>
+<div id="tooltip"></div>
+
+<script>
+Chart.defaults.font.family="'Inter',-apple-system,sans-serif";Chart.defaults.font.size=11;
+// Tooltip global — se posiciona con JS para evitar overflow:hidden
+const tipEl=document.getElementById('tooltip');
+document.addEventListener('mouseover',e=>{
+  const t=e.target.closest('.tip');
+  if(t&&t.dataset.tip){
+    tipEl.textContent=t.dataset.tip;
+    tipEl.classList.add('show');
+    const r=t.getBoundingClientRect();
+    let left=r.left+r.width/2-tipEl.offsetWidth/2;
+    let top=r.top-tipEl.offsetHeight-8;
+    if(top<4){top=r.bottom+8;}
+    if(left<4)left=4;
+    if(left+tipEl.offsetWidth>window.innerWidth-4)left=window.innerWidth-tipEl.offsetWidth-4;
+    tipEl.style.left=left+'px';
+    tipEl.style.top=top+'px';
+  }
+});
+document.addEventListener('mouseout',e=>{
+  if(e.target.closest('.tip'))tipEl.classList.remove('show');
+});
+function tog(id){const e=document.getElementById(id);e.classList.toggle('open');const b=e.previousElementSibling?.querySelector('.cbtn');if(b)b.textContent=e.classList.contains('open')?'Ocultar ▴':'Mostrar ▾';}
+function fm(n){if(n===0)return'$0';return n>=1e6?'$'+(n/1e6).toFixed(1)+'M':n>=1e3?'$'+(n/1e3).toFixed(0)+'K':n<0?'-'+fm(-n):'$'+n.toFixed(0)}
+// Tooltip helper: tt('CPA','Costo por Adquisición') → <span class="tip" data-tip="...">CPA</span>
+const glossary={
+  'ROAS':'ROAS Real (Odoo) — Revenue real de Odoo ÷ Inversión Meta. No depende del pixel.',
+  'ROAS Pixel':'Return on Ad Spend del Pixel — Revenue atribuido por Meta ÷ Inversión. Puede sobreestimar.',
+  'CPA':'Costo por Adquisición — Inversión ÷ Compras',
+  'CPC':'Costo por Click',
+  'CPM':'Costo por Mil impresiones',
+  'CTR':'Click-Through Rate — Clicks ÷ Impresiones × 100',
+  'ATC':'Add to Cart — Agregados al carrito',
+  'LPV':'Landing Page Views — Visitas a la página de destino',
+  'Freq':'Frecuencia — Promedio de veces que cada persona vio el anuncio',
+  'Conv. Rate':'Tasa de Conversión — Compras ÷ Outbound Clicks × 100',
+  'Outbound':'Clicks que salen de Meta hacia tu sitio',
+  'Outbound CTR':'Clicks salientes ÷ Impresiones × 100',
+  'Clicks Out':'Clicks que salen de Meta hacia tu sitio web',
+  'Hook Rate':'% de personas que vieron los primeros 3 seg del video',
+  'Hold Rate':'% que completó el video después de ver los primeros 3 seg',
+  'ThruPlay':'Reproducciones completas del video (o al menos 15 seg)',
+  '$/ThruPlay':'Costo por cada reproducción completa del video',
+  'Quality':'Ranking de calidad, engagement y conversión vs competencia',
+  'CTR':'Click-Through Rate — % de personas que hicieron click al ver el anuncio',
+  'ATC Rate':'Add to Cart Rate — % de clicks que terminaron agregando al carrito',
+  'P25':'Personas que vieron al menos el 25% del video',
+  'P50':'Personas que vieron al menos el 50% del video',
+  'P75':'Personas que vieron al menos el 75% del video',
+  'P100':'Personas que vieron el 100% del video',
+  'ROAS Pix':'ROAS según el Pixel de Meta (puede estar inflado)',
+  'Profit est.':'Profit estimado = Revenue Pixel × Confianza − Inversión',
+  'Revenue Pixel':'Revenue atribuido por el Pixel de Meta',
+  'Confianza Pixel':'Pedidos Odoo ÷ Pedidos Pixel — mide cuánto infla el pixel',
+  'TOFU':'Top of Funnel — Parte alta del embudo, awareness',
+  'MOFU':'Middle of Funnel — Parte media, consideración',
+  'BOFU':'Bottom of Funnel — Parte baja, conversión',
+  'RETARG':'Retargeting — Remarketing a personas que ya visitaron',
+  'Reach':'Personas únicas alcanzadas',
+  'COMPRAS':'Compras atribuidas por el Pixel (7d click + 1d view). Es un evento de atribución, no secuencial: puede diferir de Checkouts porque la compra se atribuyó a este anuncio aunque el checkout fue por otro camino.',
+  'CHECKOUTS':'Inicios de checkout (pagos iniciados) atribuidos a este anuncio. Puede ser mayor o menor que Compras porque son eventos atribuidos independientemente, no pasos secuenciales de las mismas personas.',
+  'Compras Pixel':'Compras que reporta el Pixel de Meta (puede estar inflado vs Odoo real)',
+  'Valor':'Meta optimiza para maximizar el valor total de las compras',
+  'Conversiones':'Meta optimiza para maximizar la cantidad de compras',
+  'Landing Views':'Meta optimiza para maximizar visitas a la landing page',
+  'Visitas perfil':'Meta optimiza para llevar gente al perfil de Instagram',
+  'Link Clicks':'Meta optimiza para maximizar clicks al link',
+};
+function tt(label){const tip=glossary[label];return tip?`<span class="tip" data-tip="${tip}">${label}</span>`:label;}
+function pc(a,b){return b>0?((a/b-1)*100):0}
+function qrBadge(v){if(!v||v==='')return'';const cls=v.includes('above')?'qr-above':v.includes('below')?'qr-below':'qr-average';const label=v.includes('above')?'▲':v.includes('below')?'▼':'●';return`<span class="qr ${cls}">${label}</span>`}
+function stageBadge(name){const n=name.toLowerCase();if(n.includes('retarg'))return'<span class="stage-label stage-retarg tip" data-tip="Retargeting — Remarketing a personas que ya visitaron">RETARG</span>';if(n.includes('bofu'))return'<span class="stage-label stage-bofu tip" data-tip="Bottom of Funnel — Conversión directa">BOFU</span>';if(n.includes('mofu'))return'<span class="stage-label stage-mofu tip" data-tip="Middle of Funnel — Consideración">MOFU</span>';if(n.includes('tofu'))return'<span class="stage-label stage-tofu tip" data-tip="Top of Funnel — Awareness, llenar el funnel">TOFU</span>';return'';}
+function freqBadge(freq, stage){
+  // Thresholds vary by funnel stage
+  const n=(stage||'').toLowerCase();
+  let warn,crit;
+  if(n.includes('retarg')){warn=6;crit=8;}
+  else if(n.includes('bofu')){warn=5;crit=7;}
+  else if(n.includes('mofu')){warn=4;crit=6;}
+  else{warn=2.5;crit=4;} // TOFU
+  if(freq>=crit)return`<span class="b br">${freq}x</span>`;
+  if(freq>=warn)return`<span class="b by">${freq}x</span>`;
+  return freq>0?freq+'x':'—';
+}
+
+async function load(){
+  try{
+    const cb='?v='+Date.now(); // cache buster
+    const[mo,ca,ad,de,pl,pla,as,ob,tg,rg,dy,act,acct,cfg,odooData,overrides]=await Promise.all([
+      fetch('data/meta-monthly.json'+cb).then(r=>r.json()),
+      fetch('data/meta-campaigns.json'+cb).then(r=>r.json()),
+      fetch('data/meta-ads.json'+cb).then(r=>r.json()),
+      fetch('data/meta-demographics.json'+cb).then(r=>r.json()),
+      fetch('data/meta-platforms.json'+cb).then(r=>r.json()),
+      fetch('data/meta-placements.json'+cb).then(r=>r.json()).catch(()=>({placements:[]})),
+      fetch('data/meta-adsets.json'+cb).then(r=>r.json()).catch(()=>({adsets:[]})),
+      fetch('data/meta-objectives.json'+cb).then(r=>r.json()).catch(()=>({objectives:{}})),
+      fetch('data/meta-targeting.json'+cb).then(r=>r.json()).catch(()=>({targeting:[]})),
+      fetch('data/meta-regions.json'+cb).then(r=>r.json()).catch(()=>({regions:[]})),
+      fetch('data/meta-daily.json'+cb).then(r=>r.json()).catch(()=>({days:[]})),
+      fetch('data/actions.json'+cb).then(r=>r.json()).catch(()=>({actions:[],learnings:[]})),
+      fetch('data/meta-account.json'+cb).then(r=>r.json()).catch(()=>null),
+      fetch('data/dashboard-config.json'+cb).then(r=>r.json()).catch(()=>null),
+      fetch('data/odoo-revenue.json'+cb).then(r=>r.json()).catch(()=>null),
+      fetch('data/scoring-overrides.json'+cb).then(r=>r.json()).catch(()=>null)
+    ]);
+    render(mo,ca,ad,de,pl,pla,as,ob,tg,rg,dy,act,acct,cfg,odooData,overrides);
+  }catch(e){document.getElementById('sema').innerHTML='<div class="sema sema-y"><div class="dot" style="background:#92400e"></div>No se pudieron cargar los datos. Ejecutá update-and-deploy.sh</div>';console.error(e);}
+}
+
+function render(mo,ca,ad,de,pl,pla,adsets,objectives,targeting,regions,daily,notionActions,account,dashConfig,odooFile,scoringOverrides){
+  const mm=mo.months,ci=mm.length-1,pi=ci-1,cur=mm[ci],prev=mm[pi];
+
+  // Dashboard config (externalized thresholds)
+  const CFG=dashConfig||{scoring:{freq_veto:{TOFU:4,MOFU:6,BOFU:7,RETARG:8}},mer_thresholds:{green:8,yellow:4,red:2}};
+  const MER_T=CFG.mer_thresholds||{green:8,yellow:4,red:2};
+
+  // Odoo revenue data (from file or fallback)
+  const odooFallback=[
+    {m:'2025-08',rev:29679132,ord:250},{m:'2025-09',rev:15174413,ord:165},
+    {m:'2025-10',rev:14633551,ord:154},{m:'2025-11',rev:69580040,ord:653},
+    {m:'2025-12',rev:71635793,ord:662},{m:'2026-01',rev:17622230,ord:166},
+    {m:'2026-02',rev:15064797,ord:145},{m:'2026-03',rev:74644797,ord:625}
+  ];
+  const odoo=odooFile&&odooFile.months?odooFile.months.map(m=>({m:m.month,rev:m.revenue,ord:m.orders})):odooFallback;
+  const co=odoo.find(o=>o.m===cur.month)||odoo[odoo.length-1];
+  const po=odoo.find(o=>o.m===prev.month)||odoo[odoo.length-2];
+
+  const sp=cur.spend, rv=co.rev, ord=co.ord, pf=rv-sp, ppf=po.rev-prev.spend;
+  const mer=rv/sp; // MER = Revenue Odoo / Gasto Meta (métrica norte)
+  const rr=mer; // ROAS Real = MER when single channel
+  const cpa=sp/ord, tk=rv/ord;
+  const d=new Date(cur.date_stop).getDate()||23, dm=31, proj=rv/d*dm;
+
+  // Factor de Confianza del Pixel
+  const pixelPurchases=cur.purchases;
+  const pixelConfidence=ord>0&&pixelPurchases>0?Math.min(ord/pixelPurchases,1):1;
+  const overcount=pixelPurchases>0?((pixelPurchases/ord-1)*100):0;
+
+  // Meta-reported revenue vs Odoo
+  const metaRev=cur.meta_revenue||0;
+
+  const now=new Date();
+  const timeStr=now.toLocaleString('es-AR',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  const tsEl=document.getElementById('ts');
+  tsEl.textContent=timeStr+' · Datos: '+mo.updated;
+  // Freshness check
+  const hoursOld=mo.updated?(Date.now()-new Date(mo.updated).getTime())/3600000:999;
+  if(hoursOld>26) tsEl.innerHTML+=` · <span style="color:var(--red);font-weight:700">⚠️ Datos de hace ${Math.round(hoursOld)}h</span>`;
+  if(!odooFile) tsEl.innerHTML+=` · <span style="color:var(--orange);font-weight:600">Odoo: datos fallback</span>`;
+
+  // Variables globales del reporte
+  const avgDailySpend=sp/d; // gasto real promedio diario
+  const dailyBudget=objectives.total_daily_budget_active||0;
+
+  // ─── SEMÁFORO ───
+  // No juzgar TOFU por conversiones. Evaluar MER como indicador principal.
+  let sc,st;
+  if(mer>MER_T.green&&pf>0){
+    sc='sema-g';
+    st=`ROAS ${mer.toFixed(1)}x — ${cur.month} va muy bien. Profit ${fm(pf)}, ${ord} pedidos Odoo.`;
+  } else if(mer>MER_T.yellow){
+    sc='sema-y';
+    st=`ROAS ${mer.toFixed(1)}x — Revisar eficiencia. Profit ${fm(pf)}. Posibles optimizaciones.`;
+  } else{
+    sc='sema-r';
+    st=`ROAS ${mer.toFixed(1)}x — Alerta. El gasto no está generando retorno suficiente.`;
+  }
+  const pixColor=pixelConfidence>(CFG.pixel_confidence_threshold||0.85)?'var(--green)':pixelConfidence>0.7?'var(--orange)':'var(--red)';
+  document.getElementById('sema').innerHTML=`<div style="display:flex;gap:8px;align-items:stretch;margin:16px 0"><div class="sema ${sc}" style="flex:1;margin:0"><div class="dot" style="background:${sc.includes('g')?'#15803d':sc.includes('y')?'#92400e':'#991b1b'}"></div>${st}</div><div style="background:var(--s);border:1px solid var(--b);border-radius:12px;padding:10px 16px;display:flex;flex-direction:column;justify-content:center;min-width:148px;flex-shrink:0"><div style="font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--t3);font-weight:600;margin-bottom:3px">Confianza Pixel</div><div style="font-size:20px;font-weight:700;letter-spacing:-.5px;color:${pixColor}">${(pixelConfidence*100).toFixed(0)}%</div><div style="font-size:10px;color:var(--t3);margin-top:2px">${ord} Odoo · ${pixelPurchases} Pixel${overcount>10?' · ⚠️ +'+overcount.toFixed(0)+'%':''}</div></div></div>`;
+
+  // ─── KPIs (8 cards, 4 cols) ───
+  const pfCh=pc(pf,ppf),rvCh=pc(rv,po.rev);
+  const tkPrev=po.rev/po.ord;
+  const tkCh=pc(tk,tkPrev);
+  const merPrev=prev.spend>0?po.rev/prev.spend:0;
+  const merCh=pc(mer,merPrev);
+  const spCh=pc(sp,prev.spend);
+  const cpaPrev=po.ord>0?prev.spend/po.ord:0;
+  const cpaCh=pc(cpa,cpaPrev);
+  const pixPrevConf=prev.purchases>0&&po.ord>0?Math.min(po.ord/prev.purchases,1):null;
+  const pixCh=pixPrevConf!==null?pc(pixelConfidence,pixPrevConf):null;
+  const avgDailyPrev=prev.spend/30;
+  const avgDailyCh=pc(avgDailySpend,avgDailyPrev);
+  const ordCh=pc(ord,po.ord);
+  document.getElementById('kpis').innerHTML=`
+    <div class="kpi"><div class="l">ROAS · Mes</div><div class="v" style="color:${mer>MER_T.green?'var(--green)':mer>MER_T.yellow?'var(--orange)':'var(--red)'}">${mer.toFixed(1)}x</div><div class="s">Por cada $1 invertido facturás $${mer.toFixed(1)}<br>Objetivo: ≥${MER_T.green}x</div><div class="ch-row"><span class="ch ${merCh>0?'chu':'chd'}">${merCh>0?'↑':'↓'}${Math.abs(merCh).toFixed(0)}% vs mes ant.</span></div></div>
+    <div class="kpi"><div class="l">Profit · Mes</div><div class="v" style="color:${pf>0?'var(--green)':'var(--red)'}">${fm(pf)}</div><div class="s">Revenue − Inversión</div><div class="ch-row"><span class="ch ${pfCh>0?'chu':'chd'}">${pfCh>0?'↑':'↓'}${Math.abs(pfCh).toFixed(0)}% vs mes ant.</span></div></div>
+    <div class="kpi"><div class="l">Revenue Odoo · Mes</div><div class="v">${fm(rv)}</div><div class="s">${ord} pedidos · Proy: ~${fm(proj)}</div><div class="ch-row"><span class="ch ${rvCh>0?'chu':'chd'}">${rvCh>0?'↑':'↓'}${Math.abs(rvCh).toFixed(0)}% vs mes ant.</span></div></div>
+    <div class="kpi"><div class="l">Ticket Promedio · Mes</div><div class="v">${fm(tk)}</div><div class="s">${ord} pedidos</div><div class="ch-row"><span class="ch ${tkCh>0?'chu':'chd'}">${tkCh>0?'↑':'↓'}${Math.abs(tkCh).toFixed(0)}% vs mes ant.</span></div></div>
+    <div class="kpi"><div class="l">Budget Diario · Hoy</div><div class="v">${dailyBudget>0?fm(dailyBudget):fm(avgDailySpend)}</div><div class="s">${dailyBudget>0?'Config. Meta · Gasto real: '+fm(avgDailySpend)+'/día':'Prom. real diario'}</div><div class="ch-row"><span class="ch ${avgDailyCh<0?'chu':'chd'}">${avgDailyCh>0?'↑':'↓'}${Math.abs(avgDailyCh).toFixed(0)}% vs mes ant.</span></div></div>
+    <div class="kpi"><div class="l">Inversión Meta · Mes</div><div class="v">${fm(sp)}</div><div class="s">Día ${d}/${dm} · ${(d/dm*100).toFixed(0)}% del mes</div><div class="ch-row"><span class="ch ${spCh<0?'chu':'chd'}">${spCh>0?'↑':'↓'}${Math.abs(spCh).toFixed(0)}% vs mes ant.</span></div></div>
+    <div class="kpi"><div class="l">${tt('CPA')} · Mes</div><div class="v">${fm(cpa)}</div><div class="s">${fm(sp)} ÷ ${ord} pedidos</div><div class="ch-row"><span class="ch ${cpaCh<0?'chu':'chd'}">${cpaCh<0?'↓':'↑'}${Math.abs(cpaCh).toFixed(0)}% vs mes ant.</span></div></div>
+    <div class="kpi"><div class="l">Pedidos · Mes</div><div class="v">${ord}</div><div class="s">Odoo · Revenue ${fm(rv)}</div><div class="ch-row"><span class="ch ${ordCh>0?'chu':'chd'}">${ordCh>0?'↑':'↓'}${Math.abs(ordCh).toFixed(0)}% vs mes ant.</span></div></div>`;
+
+  // ─── MER TRENDS (evolución mensual) ───
+  if(odoo.length>=3){
+    document.getElementById('trendsSection').style.display='';
+    const trendMonths=mm.slice(-8).map((m,i)=>{
+      const o=odoo.find(x=>x.m===m.month);
+      return{label:m.month.substring(5),spend:m.spend,rev:o?o.rev:0,profit:o?o.rev-m.spend:0,mer:o&&m.spend>0?o.rev/m.spend:0};
+    });
+    const tL=trendMonths.map(t=>t.label);
+    new Chart(document.getElementById('combinedTrendChart'),{type:'bar',data:{labels:tL,datasets:[
+      {label:'Revenue Odoo',data:trendMonths.map(t=>t.rev/1e6),backgroundColor:'rgba(0,113,227,.12)',borderColor:'rgba(0,113,227,.25)',borderWidth:1,borderRadius:8,barPercentage:.75,order:3,yAxisID:'y'},
+      {label:'Profit',data:trendMonths.map(t=>t.profit/1e6),backgroundColor:trendMonths.map(t=>t.profit>0?'rgba(52,199,89,.6)':'rgba(255,59,48,.5)'),borderColor:trendMonths.map(t=>t.profit>0?'#34c759':'#ff3b30'),borderWidth:1.5,borderRadius:6,barPercentage:.75,order:2,yAxisID:'y'},
+      {label:'Inversión Meta',data:trendMonths.map(t=>t.spend/1e6),type:'line',borderColor:'#ff9500',backgroundColor:'rgba(255,149,0,.05)',fill:false,borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#ff9500',tension:.3,order:1,yAxisID:'y'},
+      {label:'ROAS',data:trendMonths.map(t=>t.mer),type:'line',borderColor:'#0071e3',backgroundColor:'rgba(0,113,227,.05)',fill:false,borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#0071e3',tension:.3,order:1,yAxisID:'y1'},
+      {label:'Objetivo ROAS ('+MER_T.green+'x)',data:trendMonths.map(()=>MER_T.green),type:'line',borderColor:'rgba(0,113,227,.4)',borderWidth:1,borderDash:[4,3],pointRadius:0,order:0,yAxisID:'y1'},
+      {label:'Prom. ROAS',data:trendMonths.map(()=>(trendMonths.reduce((a,t)=>a+t.mer,0)/trendMonths.length)),type:'line',borderColor:'#0071e3',borderWidth:1.5,borderDash:[6,4],pointRadius:0,order:0,yAxisID:'y1'}
+    ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#86868b',padding:10,font:{size:10},usePointStyle:true,generateLabels:function(chart){const orig=Chart.defaults.plugins.legend.labels.generateLabels(chart);chart.data.datasets.forEach((d,i)=>{if(!d.type||d.type==='bar'){orig[i].pointStyle='circle';}else{orig[i].pointStyle='line';if(d.borderDash)orig[i].lineDash=d.borderDash;}});return orig;}}},tooltip:{callbacks:{label:function(ctx){if(ctx.dataset.label==='ROAS')return 'ROAS: '+ctx.raw.toFixed(1)+'x';if(ctx.dataset.label==='Prom. ROAS')return 'Prom. ROAS: '+ctx.raw.toFixed(1)+'x';if(ctx.dataset.label.startsWith('Objetivo'))return 'Objetivo ROAS: '+ctx.raw+'x';return ctx.dataset.label+': $'+ctx.raw.toFixed(1)+'M'},afterBody:function(items){const rev=items.find(i=>i.dataset.label==='Revenue Odoo');const prof=items.find(i=>i.dataset.label==='Profit');if(rev&&prof){const margin=rev.raw>0?((prof.raw/rev.raw)*100).toFixed(0):'0';return 'Margen: '+margin+'%'}return ''}}}},scales:{y:{position:'left',grid:{color:'#f0f0f2'},border:{display:false},stacked:false,ticks:{color:'#86868b',callback:v=>'$'+v.toFixed(0)+'M'}},y1:{position:'right',grid:{drawOnChartArea:false},border:{display:false},ticks:{color:'#0071e3',callback:v=>v.toFixed(0)+'x'},min:0},x:{grid:{display:false},border:{display:false},stacked:true,ticks:{color:'#86868b'}}}}});
+  }
+
+  // ─── SALDO DE CUENTA (bloque separado después del semáforo) ───
+  const fundsTotal=account?account.funds_total:0;
+  const fundsAvailable=account?account.available:0;
+  const balancePending=account?account.balance_api:0;
+  const fundingDisplay=account?account.funding_display:'';
+  const acctDaysLeft=(fundsAvailable>0&&avgDailySpend>0)?Math.floor(fundsAvailable/avgDailySpend):null;
+  const acctColor=acctDaysLeft===null?'var(--t3)':acctDaysLeft>14?'#22c55e':acctDaysLeft>5?'#b45309':'#dc2626';
+  if(fundsTotal>0||balancePending>0){
+    const semaEl=document.getElementById('sema');
+    const balDiv=document.createElement('div');
+    balDiv.style.cssText='display:flex;justify-content:space-between;align-items:center;padding:10px 20px;margin:-8px 0 16px;background:var(--sa);border:1px solid var(--b);border-radius:10px;font-size:12px';
+    let balDetail;
+    if(fundsTotal>0){
+      const daysText=acctDaysLeft!==null?' · <span style="color:'+acctColor+';font-weight:600">~'+acctDaysLeft+(acctDaysLeft===1?' día':' días')+'</span> al ritmo actual':'';
+      balDetail=`<span style="color:var(--t3)">Fondos:</span> <span style="font-weight:700;color:var(--t2)">${fm(fundsTotal)}</span> <span style="color:var(--t3)">· Disponible:</span> <span style="font-weight:700;color:${acctColor}">${fm(fundsAvailable)}</span> <span style="color:var(--t3)">· Pendiente:</span> <span style="font-weight:600;color:var(--t2)">${fm(balancePending)}</span>${daysText}`;
+    } else {
+      balDetail=`<span style="font-weight:700;color:var(--t2)">${fm(balancePending)} pendiente</span> <span style="color:var(--t3)">· ${fundingDisplay} · Gasto diario ~${fm(avgDailySpend)}</span>`;
+    }
+    balDiv.innerHTML=`<span style="color:var(--t3)">Saldo Meta</span> ${balDetail}`;
+    semaEl.parentNode.insertBefore(balDiv,semaEl.nextSibling);
+  }
+
+  // ─── TENDENCIA DIARIA (últimos 7 días) ───
+  const dayData=(daily&&daily.days||[]);
+  if(dayData.length>0){
+    const dayNames=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+    const dLabels=dayData.map(d=>{const dt=new Date(d.date+'T12:00:00');return dayNames[dt.getDay()]+' '+dt.getDate();});
+    const dPurchases=dayData.map(d=>d.purchases);
+    const dSpend=dayData.map(d=>d.spend);
+    const dATC=dayData.map(d=>d.add_to_cart);
+
+    // Odoo daily data — check if ANY day has Odoo data (not just the first)
+    const hasOdoo=dayData.some(d=>d.odoo_orders!==undefined);
+
+    const avgRevDay=dayData.reduce((a,d)=>a+(d.odoo_revenue||0)/1e6,0)/dayData.length;
+    const avgSpendDay=dSpend.reduce((a,s)=>a+s/1e6,0)/dSpend.length;
+    const chartDatasets=hasOdoo?[
+      {label:'Revenue Odoo',data:dayData.map(d=>(d.odoo_revenue||0)/1e6),backgroundColor:'rgba(52,199,89,.25)',borderColor:'#34c759',borderWidth:2,borderRadius:6,barPercentage:.65,yAxisID:'y'},
+      {label:'Inversión Meta',data:dSpend.map(s=>s/1e6),type:'line',borderColor:'#ff9500',borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#ff9500',tension:.3,yAxisID:'y'},
+      {label:'Prom. Revenue',data:Array(dayData.length).fill(avgRevDay),type:'line',borderColor:'rgba(52,199,89,.5)',borderWidth:1.5,borderDash:[6,4],pointRadius:0,yAxisID:'y'},
+      {label:'Prom. Inversión',data:Array(dayData.length).fill(avgSpendDay),type:'line',borderColor:'rgba(255,149,0,.4)',borderWidth:1.5,borderDash:[6,4],pointRadius:0,yAxisID:'y'}
+    ]:[
+      {label:'Compras Pixel',data:dPurchases,backgroundColor:'rgba(52,199,89,.3)',borderColor:'#34c759',borderWidth:2,borderRadius:4,barPercentage:.6,yAxisID:'y'},
+      {label:'Gasto',data:dSpend.map(s=>s/1e6),type:'line',borderColor:'#ff9500',borderWidth:2,pointRadius:3,pointBackgroundColor:'#ff9500',borderDash:[4,3],tension:.3,yAxisID:'y1'}
+    ];
+    new Chart(document.getElementById('dailyChart'),{type:'bar',data:{labels:dLabels,datasets:chartDatasets},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},layout:{padding:{top:4,bottom:0,left:0,right:0}},plugins:{legend:{labels:{color:'#86868b',usePointStyle:true,pointStyle:'circle',padding:10,font:{size:10}}}},scales:{y:{grid:{color:'#f0f0f2'},border:{display:false},ticks:{color:'#86868b',callback:v=>'$'+v.toFixed(1)+'M'}},x:{grid:{display:false},border:{display:false},ticks:{color:'#86868b'}}}}});
+
+    // Tabla diaria
+    let dtH;
+    if(hasOdoo){
+      dtH=`<thead><tr><th style="text-align:left">Día</th><th>Pedidos Odoo</th><th>Revenue Odoo</th><th>Inversión</th><th>${tt('ROAS')}</th><th class="tip" data-tip="ROAS Pixel = Revenue atribuido por Meta (pixel) ÷ Inversión. Lo que Meta dice que generó. Comparar con ROAS real (Odoo) para ver cuánto sobreestima el pixel.">ROAS Pixel</th><th>${tt('ATC')}</th><th class="tip" data-tip="Click-Through Rate — % de personas que ven el anuncio y hacen click para salir hacia el sitio (Outbound Clicks ÷ Impresiones)">CTR</th></tr></thead><tbody>`;
+      [...dayData].reverse().forEach(d=>{
+        const dt=new Date(d.date+'T12:00:00');
+        const dn=dayNames[dt.getDay()]+' '+dt.getDate();
+        const hasOdooDay=d.odoo_orders!==undefined;
+        const purch=hasOdooDay?d.odoo_orders:null;
+        const rev=d.odoo_revenue||0;
+        const merDay=(d.spend>0&&rev>0)?rev/d.spend:0;
+        const prevIdx=dayData.indexOf(d)-1;
+        const prev=prevIdx>=0?dayData[prevIdx]:null;
+        const prevPurch=(prev&&prev.odoo_orders!==undefined)?prev.odoo_orders:null;
+        const trend=(purch!==null&&prevPurch!==null&&prevPurch>0)?((purch/prevPurch-1)*100):null;
+        const trendBadge=trend!==null?`<span class="ch ${trend>=0?'chu':'chd'}" style="margin-left:4px">${trend>=0?'↑':'↓'}${Math.abs(trend).toFixed(0)}%</span>`:'';
+        const merObj=MER_T.green||8;const merClass=merDay>=merObj?'bg':merDay>=6?'by':'br';
+        const purchDisplay=purch!==null?purch:'<span style="color:var(--t3);font-size:10px">—</span>';
+        const revDisplay=rev>0?fm(rev):'<span style="color:var(--t3)">—</span>';
+        const merDisplay=merDay>0?`<span class="b ${merClass}">${merDay.toFixed(1)}x</span>`:'<span style="color:var(--t3)">—</span>';
+        const roasPixel=d.roas_pixel||0;
+        const roasRealDisplay=roasPixel>0?roasPixel.toFixed(1)+'x':'<span style="color:var(--t3)">—</span>';
+        const ctrDay=d.impressions>0?(d.outbound_clicks/d.impressions*100):0;
+        const ctrDisplay=ctrDay>0?ctrDay.toFixed(2)+'%':'—';
+        dtH+=`<tr><td style="padding:6px 10px;font-weight:600">${dn}</td><td style="font-weight:700">${purchDisplay}${trendBadge}</td><td>${revDisplay}</td><td>${fm(d.spend)}</td><td>${merDisplay}</td><td>${roasRealDisplay}</td><td>${d.add_to_cart}</td><td>${ctrDisplay}</td></tr>`;
+      });
+    } else {
+      dtH=`<thead><tr><th style="text-align:left">Día</th><th>${tt('Compras Pixel')}</th><th>${tt('ATC')}</th><th>Gasto</th><th>${tt('Clicks Out')}</th><th>${tt('CPC')}</th><th>${tt('ROAS Pix')}</th></tr></thead><tbody>`;
+      [...dayData].reverse().forEach(d=>{
+        const dt=new Date(d.date+'T12:00:00');
+        const dn=dayNames[dt.getDay()]+' '+dt.getDate();
+        const purch=d.purchases;
+        const prevIdx=dayData.indexOf(d)-1;
+        const prev=prevIdx>=0?dayData[prevIdx]:null;
+        const prevPurch=prev?prev.purchases:null;
+        const trend=prevPurch!==null&&prevPurch>0?((purch/prevPurch-1)*100):null;
+        const trendBadge=trend!==null?`<span class="ch ${trend>=0?'chu':'chd'}" style="margin-left:4px">${trend>=0?'↑':'↓'}${Math.abs(trend).toFixed(0)}%</span>`:'';
+        dtH+=`<tr><td style="padding:6px 10px;font-weight:600">${dn}</td><td style="font-weight:700">${purch}${trendBadge}</td><td>${d.add_to_cart}</td><td>${fm(d.spend)}</td><td>${d.outbound_clicks.toLocaleString()}</td><td>${d.cpc>0?fm(d.cpc):'—'}</td><td>${d.roas_pixel>0?d.roas_pixel.toFixed(1)+'x':'—'}</td></tr>`;
+      });
+    }
+    dtH+='</tbody>';
+    document.getElementById('dailyT').innerHTML=dtH;
+
+    // ─── INSIGHT INTELIGENTE (analiza patrones reales) ───
+    const src=hasOdoo?dayData.map(d=>d.odoo_orders!==undefined?d.odoo_orders:d.purchases):dPurchases;
+    const revSrc=hasOdoo?dayData.map(d=>d.odoo_revenue||d.meta_revenue||0):dayData.map(d=>d.meta_revenue||0);
+    const spendSrc=dayData.map(d=>d.spend);
+    const atcSrc=dayData.map(d=>d.add_to_cart);
+    // Excluir día parcial (hoy) del análisis
+    const full=dayData.length>1?dayData.slice(0,-1):dayData;
+    const fullSrc=hasOdoo?full.map(d=>d.odoo_orders):full.map(d=>d.purchases);
+    const fullRev=hasOdoo?full.map(d=>d.odoo_revenue||0):full.map(d=>d.meta_revenue||0);
+    const fullSpend=full.map(d=>d.spend);
+    const fullAtc=full.map(d=>d.add_to_cart);
+
+    // Métricas de los últimos 3 días completos vs 3 anteriores
+    const r3=fullSrc.slice(-3), p3=fullSrc.slice(-6,-3);
+    const avg3=r3.reduce((a,b)=>a+b,0)/r3.length;
+    const avgP3=p3.length>0?p3.reduce((a,b)=>a+b,0)/p3.length:avg3;
+    const trendPct=avgP3>0?((avg3/avgP3-1)*100):0;
+
+    // Ticket promedio últimos 3 vs anteriores
+    const rev3=fullRev.slice(-3).reduce((a,b)=>a+b,0);
+    const ord3=r3.reduce((a,b)=>a+b,0);
+    const tk3=ord3>0?rev3/ord3:0;
+    const revP3=fullRev.slice(-6,-3).reduce((a,b)=>a+b,0);
+    const ordP3=p3.reduce((a,b)=>a+b,0);
+    const tkP3=ordP3>0?revP3/ordP3:0;
+    const tkTrend=tkP3>0?((tk3/tkP3-1)*100):0;
+
+    // Gasto últimos 3 vs anteriores
+    const sp3=fullSpend.slice(-3).reduce((a,b)=>a+b,0)/3;
+    const spP3=fullSpend.slice(-6,-3);
+    const avgSpP3=spP3.length>0?spP3.reduce((a,b)=>a+b,0)/spP3.length:sp3;
+    const spTrend=avgSpP3>0?((sp3/avgSpP3-1)*100):0;
+
+    // ATC→Compra ratio (proxy de conversión del sitio)
+    const atc3=fullAtc.slice(-3).reduce((a,b)=>a+b,0);
+    const atcP=fullAtc.slice(-6,-3).reduce((a,b)=>a+b,0);
+    const convR3=atc3>0?(ord3/atc3*100):0;
+    const convRP3=atcP>0?(ordP3/atcP*100):0;
+
+    // Mejor y peor día
+    const bestDay=full.reduce((b,d,i)=>(hasOdoo?d.odoo_orders:d.purchases)>(hasOdoo?b.odoo_orders:b.purchases)?d:b,full[0]);
+    const worstDay=full.reduce((w,d,i)=>(hasOdoo?d.odoo_orders:d.purchases)<(hasOdoo?w.odoo_orders:w.purchases)?d:w,full[0]);
+    const bestDn=dayNames[new Date(bestDay.date+'T12:00:00').getDay()]+' '+new Date(bestDay.date+'T12:00:00').getDate();
+    const worstDn=dayNames[new Date(worstDay.date+'T12:00:00').getDay()]+' '+new Date(worstDay.date+'T12:00:00').getDate();
+
+    // MER promedio últimos 3
+    const merR3=fullSpend.slice(-3).reduce((a,b)=>a+b,0);
+    const mer3=merR3>0?rev3/merR3:0;
+
+    // Construir insight
+    let insights=[];
+    // 1. Tendencia de pedidos
+    if(trendPct<-20){
+      if(spTrend>10) insights.push(`📉 <strong>Pedidos caen ${Math.abs(trendPct).toFixed(0)}% mientras el gasto sube ${spTrend.toFixed(0)}%</strong> → La eficiencia está bajando. Los creativos pueden estar fatigados o la audiencia saturada.`);
+      else if(tkTrend>15) insights.push(`📉 <strong>Menos pedidos (${Math.abs(trendPct).toFixed(0)}%) pero ticket subiendo ${tkTrend.toFixed(0)}%</strong> → Menos volumen pero mayor valor por compra. Puede ser un shift natural de fin de semana a lunes.`);
+      else insights.push(`📉 <strong>Pedidos caen ${Math.abs(trendPct).toFixed(0)}%</strong> (${avg3.toFixed(0)}/día vs ${avgP3.toFixed(0)}/día). Evaluar si corresponde a un patrón semanal o si hay fatiga real.`);
+    } else if(trendPct<-10){
+      insights.push(`📊 <strong>Pedidos bajan leve ${Math.abs(trendPct).toFixed(0)}%</strong> — monitorear mañana antes de actuar.`);
+    } else if(trendPct>15){
+      insights.push(`🚀 <strong>Pedidos subiendo ${trendPct.toFixed(0)}%</strong> (${avg3.toFixed(0)}/día vs ${avgP3.toFixed(0)}/día). Buen momento para escalar budget en campañas BOFU top.`);
+    } else {
+      insights.push(`✅ <strong>Pedidos estables</strong> (${avg3.toFixed(0)}/día). Ritmo consistente, no requiere ajustes urgentes.`);
+    }
+    // 2. Ticket
+    if(Math.abs(tkTrend)>10){
+      insights.push(`🎫 Ticket promedio ${tkTrend>0?'subió':'bajó'} <strong>${Math.abs(tkTrend).toFixed(0)}%</strong> → ${fm(tk3)} vs ${fm(tkP3)} anterior.`);
+    }
+    // 3. Conversión ATC→Compra
+    if(convR3>0&&convRP3>0&&Math.abs(convR3-convRP3)>2){
+      insights.push(`🛒 Conversión ATC→Compra: <strong>${convR3.toFixed(1)}%</strong> vs ${convRP3.toFixed(1)}% anterior${convR3<convRP3?' — puede haber fricción en checkout':' — mejorando'}.`);
+    }
+    // 4. Mejor/peor día
+    insights.push(`📅 Mejor día: <strong>${bestDn}</strong> (${hasOdoo?bestDay.odoo_orders:bestDay.purchases} pedidos) · Peor: <strong>${worstDn}</strong> (${hasOdoo?worstDay.odoo_orders:worstDay.purchases} pedidos). ROAS promedio 3 días: <strong>${mer3.toFixed(1)}x</strong>`);
+
+    const alertClass=trendPct<-20?'sema-r':trendPct<-10?'sema-y':trendPct>15?'sema-g':'sema-g';
+    const dotColor=trendPct<-20?'#991b1b':trendPct<-10?'#92400e':'#15803d';
+    let alertH=`<div class="sema ${alertClass}" style="padding:12px 18px;font-size:12px;line-height:1.7;flex-direction:column;align-items:flex-start;gap:4px"><div style="display:flex;align-items:center;gap:10px"><div class="dot" style="background:${dotColor}"></div><strong>Análisis últimos 7 días</strong></div><div style="padding-left:22px">${insights.join('<br>')}</div></div>`;
+    if(!hasOdoo) alertH+=`<div style="font-size:10px;color:var(--orange);margin-top:4px;padding:0 4px">⚠️ Ventas = Pixel (proxy). Conectar Odoo para datos reales.</div>`;
+    document.getElementById('dailyAlert').innerHTML=alertH;
+  }
+
+  // ─── QUÉ HACER HOY ───
+  // Build campData first (needed for active status filtering)
+  const objMap=objectives.objectives||{};
+  const campData=ca.campaigns.map(c=>{
+    let obj=objMap[c.name];
+    if(!obj){const prefix=c.name.substring(0,30);const key=Object.keys(objMap).find(k=>k.substring(0,30)===prefix);if(key)obj=objMap[key];}
+    if(!obj){const n=c.name.toLowerCase();if(n.includes('retarg'))obj={objective:'OUTCOME_SALES'};else if(n.includes('bofu'))obj={objective:'OUTCOME_SALES'};else if(n.includes('mofu'))obj={objective:'OUTCOME_TRAFFIC'};else if(n.includes('tofu'))obj={objective:'OUTCOME_TRAFFIC'};else obj={objective:'OTHER'};}
+    const type=obj.objective==='OUTCOME_SALES'?'SALES':obj.objective==='OUTCOME_TRAFFIC'?'TRAFFIC':obj.objective==='OUTCOME_AWARENESS'?'AWARENESS':obj.objective==='OUTCOME_LEADS'?'LEADS':'OTHER';
+    return{...c,objective:type,status:obj.status||''};
+  });
+
+  // Set of active campaign names for filtering adsets/ads
+  const activeCampNames=new Set(campData.filter(c=>c.status==='ACTIVE').map(c=>c.name));
+
+  const ads=ad.ads.map(a=>({...a}));ads.forEach(a=>{a.cpa=a.purchases>0?a.spend/a.purchases:Infinity});
+
+  // ─── QUÉ HACER HOY — Desde Notion (actions.json) ───
+  const atcDrop=cur.add_to_cart>0?((1-cur.initiate_checkout/cur.add_to_cart)*100):0;
+  // Filtrar acciones: excluir rechazadas, ejecutadas, expiradas, y pendientes >3 días
+  const _3daysAgo=new Date();_3daysAgo.setDate(_3daysAgo.getDate()-3);
+  const _3dStr=_3daysAgo.toISOString().slice(0,10);
+  const nActions=(notionActions&&notionActions.actions||[]).filter(a=>{
+    if(a.decision==='❌ Rechazada'||a.decision==='🚀 Ejecutada'||a.decision==='⏸ Expirada')return false;
+    if(a.decision==='✅ Aprobada')return true; // aprobadas siempre visibles hasta ejecutarse
+    // Pendientes: solo mostrar si fecha <= 3 días atrás
+    return !a.date||a.date>=_3dStr;
+  });
+
+  // Category styling
+  const catIcons={Revenue:'🚨',Budget:'💰',Audiencia:'🎯',Creativo:'🎨',Conversión:'🛒',Tracking:'🔍'};
+  const catBg={Revenue:'#fde0de',Budget:'#d4f5e0',Audiencia:'#dbeafe',Creativo:'#ede9fe',Conversión:'#fef3c7',Tracking:'#fde0de'};
+  const catColors={Revenue:'#991b1b',Budget:'#15803d',Audiencia:'#1d4ed8',Creativo:'#6d28d9',Conversión:'#7a6200',Tracking:'#92400e'};
+  const decBadge={'⏳ Pendiente':'by','✅ Aprobada':'bg','⏸ Pospuesta':'bgr','🚀 Ejecutada':'bb'};
+
+  let ah='';
+  if(nActions.length>0){
+    nActions.sort((a,b)=>(a.priority||99)-(b.priority||99));
+    nActions.forEach(a=>{
+      const cat=a.category||'Revenue';
+      const icon=catIcons[cat]||'📋';
+      const bg=catBg[cat]||'#f3f4f6';
+      const cc=catColors[cat]||'#6b7280';
+      const dec=a.decision||'⏳ Pendiente';
+      const canClaude=a.claude_can==='SI';
+      const method=a.method||'Manual';
+      const notionUrl=a.url||'#';
+      ah+=`<div class="act-item" style="align-items:flex-start">
+        <div class="act-i" style="background:${bg}">${icon}</div>
+        <div style="flex:1">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;flex-wrap:wrap">
+            <span style="font-size:9px;font-weight:700;color:var(--t3);font-family:monospace">${a.id}</span>
+            <span class="b" style="background:${cc}18;color:${cc};font-size:9px">${cat}</span>
+            <span class="b ${decBadge[dec]||'bgr'}" style="font-size:9px">${dec}</span>
+            ${canClaude?'<span class="b bb" style="font-size:8px" title="Claude puede ejecutar esta acción via '+method+'">⚡ Claude · '+method+'</span>':'<span class="b bgr" style="font-size:8px">Manual</span>'}
+          </div>
+          <strong>${a.action}</strong>
+          ${a.impact?'<div style="color:var(--t2);margin-top:2px;font-size:11px">'+a.impact.substring(0,200)+'</div>':''}
+          <div style="margin-top:4px"><a href="${notionUrl}" target="_blank" style="font-size:10px;color:var(--blue);text-decoration:none">Ver detalle en Notion ↗</a></div>
+        </div>
+      </div>`;
+    });
+  } else {
+    ah='<div style="color:var(--t3);padding:8px 0">No hay acciones pendientes en Notion. Ejecutá el análisis para generar nuevas.</div>';
+  }
+
+  document.getElementById('actL').innerHTML=ah;
+
+  // ─── CAMPAÑAS SALES ───
+  // Find matching adsets and targeting
+  const campAdsets={};adsets.adsets.forEach(a=>{if(!campAdsets[a.campaign])campAdsets[a.campaign]=[];campAdsets[a.campaign].push(a);});
+  const tgtMap={};targeting.targeting.forEach(t=>{tgtMap[t.name]=t;});
+  function findTgt(n){let t=tgtMap[n];if(t)return t;const p=n.substring(0,25);const k=Object.keys(tgtMap).find(x=>x.substring(0,25)===p);return k?tgtMap[k]:{};}
+
+  // All SALES camps for the table (includes paused for historical view)
+  const salesCamps=campData.filter(c=>c.objective==='SALES').sort((a,b)=>b.profit-a.profit);
+  if(salesCamps.length>0){
+    let h=`<div class="card cf"><div class="sep">🎯 Métricas: Profit (Revenue Pixel × Confianza − Inversión), ROAS Pixel, CPA, Compras, Frecuencia</div>
+    <div class="pixel-warn" style="padding:4px 12px">⚠️ Revenue por creativo basado en ROAS Pixel (Factor de Confianza: ${(pixelConfidence*100).toFixed(0)}%). Para profit real usá Revenue Odoo.</div>
+    <table><thead><tr><th style="text-align:left">Campaña</th><th>Etapa</th><th>Optimización</th><th>Budget/día</th><th>Inversión</th><th>${tt('Revenue Pixel')}</th><th>${tt('Profit est.')}</th><th>Compras</th><th>${tt('CPA')}</th><th>${tt('ROAS')}</th><th>${tt('Freq')}</th></tr></thead><tbody>`;
+    salesCamps.forEach(c=>{
+      const as=adsets.adsets.find(a=>a.campaign===c.name);
+      const freq=as?as.frequency:c.frequency||0;
+      const bc=c.roas>5?'bg':c.roas>2?'by':'br';
+      const pcl=c.profit>0?'var(--green)':'var(--red)';
+      const cp=c.purchases>0?c.spend/c.purchases:0;
+      const tgt=findTgt(c.name);
+      const optGoal=tgt.optimization_goal||'';
+      const optLabel=optGoal==='VALUE'?'Valor':optGoal==='OFFSITE_CONVERSIONS'?'Conversiones':optGoal==='LANDING_PAGE_VIEWS'?'Landing Views':optGoal||'—';
+      const optClass=optGoal==='VALUE'?'bg':optGoal==='OFFSITE_CONVERSIONS'?'bb':'by';
+      const objData=objMap[c.name]||{};
+      const db=objData.daily_budget||0;
+      const optTip=glossary[optLabel]||'';
+      h+=`<tr><td style="padding:8px 12px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${c.name.substring(0,42)}</td><td>${stageBadge(c.name)}</td><td><span class="b ${optClass} tip" data-tip="${optTip}">${optLabel}</span></td><td>${db>0?fm(db):'—'}</td><td>${fm(c.spend)}</td><td>${fm(c.revenue)}</td><td style="font-weight:600;color:${pcl}">${c.profit>0?'+':''}${fm(c.profit)}</td><td>${c.purchases}</td><td>${cp>0?fm(cp):'—'}</td><td><span class="b ${bc}">${c.roas.toFixed(1)}x</span></td><td>${freqBadge(freq,c.name)}</td></tr>`;
+    });
+    h+='</tbody></table></div>';
+    document.getElementById('campsSales').innerHTML=h;
+  } else{document.getElementById('campsSales').innerHTML='<div class="card"><span style="color:var(--t3)">Sin campañas SALES activas</span></div>';}
+
+  // ─── CAMPAÑAS TRAFFIC/AWARENESS ───
+  // Correct metrics: Reach, CPM, CPC, Outbound CTR, Engagement, Freq — NOT ROAS/Profit
+  const trafficCamps=campData.filter(c=>c.objective==='TRAFFIC'||c.objective==='AWARENESS').sort((a,b)=>b.spend-a.spend);
+  if(trafficCamps.length>0){
+    let h=`<div class="card cf"><div class="sep">📣 Métricas correctas para TOFU/MOFU: Alcance, CPM, CPC, Outbound CTR, Frecuencia — NO se evalúan por ROAS</div><table><thead><tr><th style="text-align:left">Campaña</th><th>Etapa</th><th>Optimización</th><th>Budget/día</th><th>Inversión</th><th>${tt('Reach')}</th><th>${tt('CPM')}</th><th>${tt('CPC')}</th><th>${tt('Outbound CTR')}</th><th>${tt('Clicks Out')}</th><th>${tt('Freq')}</th></tr></thead><tbody>`;
+    trafficCamps.forEach(c=>{
+      const as=adsets.adsets.find(a=>a.campaign===c.name);
+      const freq=as?as.frequency:c.frequency||0;
+      const reach=c.reach||0;
+      const cpm_v=c.cpm||0;
+      const cpc_v=c.cpc||0;
+      const outCtr=c.impressions>0&&c.outbound_clicks>0?(c.outbound_clicks/c.impressions*100):0;
+      const tgt=findTgt(c.name);
+      const optGoal=tgt.optimization_goal||'';
+      const optLabel=optGoal==='PROFILE_VISIT'?'Visitas perfil':optGoal==='LANDING_PAGE_VIEWS'?'Landing Views':optGoal==='LINK_CLICKS'?'Link Clicks':optGoal==='REACH'?'Alcance':optGoal==='IMPRESSIONS'?'Impresiones':optGoal||'—';
+      const optClass=optGoal==='LANDING_PAGE_VIEWS'?'bb':optGoal==='PROFILE_VISIT'?'bp':optGoal==='LINK_CLICKS'?'bb':'by';
+      const objData=objMap[c.name]||{};
+      const db=objData.daily_budget||0;
+      const optTipT=glossary[optLabel]||'';
+      h+=`<tr><td style="padding:8px 12px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${c.name.substring(0,42)}</td><td>${stageBadge(c.name)}</td><td><span class="b ${optClass} tip" data-tip="${optTipT}">${optLabel}</span></td><td>${db>0?fm(db):'—'}</td><td>${fm(c.spend)}</td><td>${reach>0?(reach/1000).toFixed(0)+'K':'—'}</td><td>${cpm_v>0?fm(cpm_v):'—'}</td><td>${cpc_v>0?fm(cpc_v):'—'}</td><td>${outCtr>0?outCtr.toFixed(2)+'%':'—'}</td><td>${c.outbound_clicks>0?(c.outbound_clicks/1000).toFixed(1)+'K':'—'}</td><td>${freqBadge(freq,c.name)}</td></tr>`;
+    });
+    h+='</tbody></table></div>';
+    document.getElementById('campsTraffic').innerHTML=h;
+  } else{document.getElementById('campsTraffic').innerHTML='<div class="card"><span style="color:var(--t3)">Sin campañas TRAFFIC/AWARENESS activas</span></div>';}
+
+  // ─── CREATIVE ANALYTICS ───
+  ads.forEach(a=>{a.cpa=a.purchases>0?a.spend/a.purchases:Infinity});
+  // Detect funnel stage from ad name
+  function adStage(name){const n=name.toLowerCase();if(n.includes('retarg'))return'RETARG';if(n.includes('bofu'))return'BOFU';if(n.includes('mofu'))return'MOFU';if(n.includes('tofu'))return'TOFU';return'OTHER';}
+  // Detect format from name (fallback si el JSON no trae campo format)
+  function detectFormat(a){
+    if(a.format)return a.format;
+    const n=a.name.toLowerCase();
+    if(n.includes('video'))return'Video';
+    if(n.includes('imagen'))return'Imagen';
+    if(n.includes('secuencia')||n.includes('carrusel')||n.includes('carousel'))return'Carrusel';
+    if(n.includes('foto')&&!n.includes('secuencia'))return'Imagen';
+    if(a.video_p25>500)return'Video';
+    if(a.video_p25>0)return'Carrusel';
+    return'Imagen';
+  }
+  ads.forEach(a=>{
+    a.stage=adStage(a.name);
+    a.format=detectFormat(a);
+    // Determinar entrega: cruzar nombre del ad con campaña en objMap
+    // El nombre del ad empieza con el nombre de la campaña
+    const campKeys=Object.keys(objMap);
+    const matchKey=campKeys.find(k=>a.name.startsWith(k))||campKeys.find(k=>{
+      const prefix=k.substring(0,Math.min(k.length,35));
+      return a.name.substring(0,prefix.length)===prefix;
+    });
+    const campStatus=matchKey?objMap[matchKey].status:'UNKNOWN';
+    // "Entrega" = el ad individual está ACTIVE (effective_status del ad, no de la campaña)
+    // a.status viene de meta-ads.json (merge de meta-ads-status-raw.json en parse-meta-data.py)
+    a.delivering=(a.status==='ACTIVE');
+    a.campaign_status=campStatus;
+  });
+
+  // ─── CREATIVE ANALYTICS — Lista unificada con clasificación ───
+  // ─── SISTEMA DE SCORING MULTI-VARIABLE (4 capas: Gates → Vetoes → Scoring → Clasificación) ───
+  // Benchmarks: KB Meta + Fernando (2026-03-24) + agente Performance Marketing
+
+  // Contexto del grupo para scoring relativo
+  function buildScoringContext(allAds){
+    const valid=allAds.filter(a=>a.spend>=10000&&a.impressions>=500);
+    const sales=valid.filter(a=>a.stage==='BOFU'||a.stage==='RETARG');
+    const tofu=valid.filter(a=>a.stage==='TOFU');
+    const rSorted=sales.map(a=>a.roas).sort((a,b)=>a-b);
+    const pSorted=sales.map(a=>a.profit).sort((a,b)=>a-b);
+    const cpmAll=valid.map(a=>a.impressions>0?a.spend/a.impressions*1000:0).sort((a,b)=>a-b);
+    return {
+      medianRoas:rSorted.length?rSorted[Math.floor(rSorted.length/2)]:3,
+      medianProfit:pSorted.length?pSorted[Math.floor(pSorted.length/2)]:0,
+      maxProfit:sales.reduce((m,a)=>Math.max(m,a.profit),0),
+      totalSpend:sales.reduce((s,a)=>s+a.spend,0),
+      medianCpm:cpmAll.length?cpmAll[Math.floor(cpmAll.length/2)]:5000
+    };
+  }
+  const scoringCtx=buildScoringContext(ads);
+
+  // Sorting: por etapa luego por profit
+  const allSorted=[...ads].sort((a,b)=>{
+    const stageOrd={TOFU:0,MOFU:1,BOFU:2,RETARG:3,OTHER:4};
+    if(stageOrd[a.stage]!==stageOrd[b.stage]) return stageOrd[a.stage]-stageOrd[b.stage];
+    return b.profit-a.profit;
+  });
+
+  function creativeClass(a){
+    const stage=a.stage;
+    const ctr=a.impressions>0?(a.clicks/a.impressions*100):0;
+    const adFreq=a.frequency||(a.reach>0?(a.impressions/a.reach):0);
+    const atcRate=a.outbound_clicks>0?(a.add_to_cart/a.outbound_clicks*100):0;
+    const cpm=a.impressions>0?(a.spend/a.impressions*1000):0;
+    const isTofu=stage==='TOFU'||stage==='MOFU';
+
+    // ── CAPA 1: GATES ──
+    if(a.spend<10000||a.impressions<500) return {cls:'normal',label:'—',color:'var(--t3)',action:'',reasons:[],score:null};
+    if(!isTofu&&a.purchases<5&&a.spend<30000) return {cls:'normal',label:'Aprendiendo',color:'#b45309',action:'',reasons:[{bad:false,txt:`${a.purchases} compras — en aprendizaje`}],score:null};
+
+    // ── CAPA 2: VETOES ──
+    const cfgVeto=(CFG.scoring||{}).freq_veto||{};
+    const freqVeto={TOFU:cfgVeto.TOFU||4,MOFU:cfgVeto.MOFU||6,BOFU:cfgVeto.BOFU||7,RETARG:cfgVeto.RETARG||8,OTHER:5};
+    let vetoes=[];
+    if(adFreq>0&&adFreq>(freqVeto[stage]||5)) vetoes.push({txt:`Freq ${adFreq.toFixed(1)}x > ${freqVeto[stage]}x — audiencia quemada`});
+    if(!isTofu&&a.profit<0&&a.spend>50000) vetoes.push({txt:`Profit ${fm(a.profit)} con ${fm(a.spend)} invertido`});
+    if(ctr<0.3&&a.impressions>5000) vetoes.push({txt:`CTR ${ctr.toFixed(2)}% — invisible`});
+    if(!isTofu&&a.roas<0.8&&a.purchases>5&&a.spend>100000) vetoes.push({txt:`ROAS ${a.roas.toFixed(1)}x — destruye caja`});
+
+    // ── CAPA 3: SCORING ──
+    let score=0;
+    let signals=[];
+
+    if(isTofu){
+      // CTR (35 pts)
+      if(ctr>=2){score+=35;signals.push({g:true,t:`CTR ${ctr.toFixed(2)}% — excelente`})}
+      else if(ctr>=1.5){score+=28;signals.push({g:true,t:`CTR ${ctr.toFixed(2)}% — bueno`})}
+      else if(ctr>=1){score+=18;signals.push({g:null,t:`CTR ${ctr.toFixed(2)}% — aceptable`})}
+      else if(ctr>=0.5){score+=8;signals.push({g:false,t:`CTR ${ctr.toFixed(2)}% — bajo`})}
+      else{score+=0;signals.push({g:false,t:`CTR ${ctr.toFixed(2)}% — crítico`})}
+      // CPM (20 pts)
+      const mc=scoringCtx.medianCpm||5000;
+      if(cpm<=mc*0.7){score+=20;signals.push({g:true,t:`CPM ${fm(cpm)} — eficiente`})}
+      else if(cpm<=mc){score+=15;signals.push({g:null,t:`CPM ${fm(cpm)} — normal`})}
+      else if(cpm<=mc*1.3){score+=8;signals.push({g:false,t:`CPM ${fm(cpm)} — caro`})}
+      else{signals.push({g:false,t:`CPM ${fm(cpm)} — muy caro`})}
+      // Reach eficiencia (20 pts)
+      const rPM=a.reach>0?(a.reach/a.spend*1e6):a.impressions>0?(a.impressions/a.spend*1e6):0;
+      if(rPM>=400){score+=20;signals.push({g:true,t:`${Math.round(rPM)} personas/$M`})}
+      else if(rPM>=200){score+=13}else if(rPM>=100){score+=6}else{score+=0}
+      // Frecuencia (15 pts)
+      if(adFreq===0){score+=10}
+      else if(adFreq<=1.5){score+=15;signals.push({g:true,t:`Freq ${adFreq.toFixed(1)}x — fresca`})}
+      else if(adFreq<=2.5){score+=10}
+      else if(adFreq<=3.5){score+=4;signals.push({g:false,t:`Freq ${adFreq.toFixed(1)}x — saturándose`})}
+      else{signals.push({g:false,t:`Freq ${adFreq.toFixed(1)}x — quemada`})}
+      // Video bonus (10 pts) o neutral para no-video
+      if(a.is_video&&a.hook_rate>0){
+        if(a.hook_rate>=30){score+=10;signals.push({g:true,t:`Hook ${a.hook_rate}% — excelente`})}
+        else if(a.hook_rate>=20){score+=6;signals.push({g:null,t:`Hook ${a.hook_rate}%`})}
+        else if(a.hook_rate>=10){score+=2;signals.push({g:false,t:`Hook ${a.hook_rate}% — bajo`})}
+        else{signals.push({g:false,t:`Hook ${a.hook_rate}% — no engancha`})}
+        if(a.hold_rate>=50) signals.push({g:true,t:`Retención ${a.hold_rate}%`});
+        else if(a.hold_rate>0&&a.hold_rate<5) signals.push({g:false,t:`Retención ${a.hold_rate}% — abandonan`});
+      } else {score+=7}
+    } else {
+      // ── SALES SCORING (BOFU/RETARG) ──
+      // Profit (30 pts)
+      const mx=scoringCtx.maxProfit||1;
+      if(a.profit<=0){score+=0;signals.push({g:false,t:`Profit ${fm(a.profit)} — sin retorno`})}
+      else{
+        const ps=a.profit/mx;
+        if(ps>=0.8){score+=30;signals.push({g:true,t:`Profit ${fm(a.profit)} — top del grupo`})}
+        else if(ps>=0.5){score+=22;signals.push({g:true,t:`Profit ${fm(a.profit)} — sobre mediana`})}
+        else if(ps>=0.25){score+=13;signals.push({g:null,t:`Profit ${fm(a.profit)}`})}
+        else if(ps>=0.1){score+=6;signals.push({g:false,t:`Profit ${fm(a.profit)} — bajo`})}
+        else{score+=2}
+      }
+      // ROAS (25 pts)
+      const rv=scoringCtx.medianRoas>0?a.roas/scoringCtx.medianRoas:1;
+      if(a.roas>=10){score+=25;signals.push({g:true,t:`ROAS ${a.roas.toFixed(1)}x — excepcional`})}
+      else if(a.roas>=6||rv>=1.4){score+=20;signals.push({g:true,t:`ROAS ${a.roas.toFixed(1)}x — fuerte`})}
+      else if(a.roas>=4||rv>=1){score+=14;signals.push({g:null,t:`ROAS ${a.roas.toFixed(1)}x`})}
+      else if(a.roas>=2||rv>=0.6){score+=7;signals.push({g:false,t:`ROAS ${a.roas.toFixed(1)}x — bajo objetivo`})}
+      else{score+=0;signals.push({g:false,t:`ROAS ${a.roas.toFixed(1)}x — no rentable`})}
+      // Compras (20 pts)
+      if(a.purchases>=150){score+=20;signals.push({g:true,t:`${a.purchases} compras — alto volumen`})}
+      else if(a.purchases>=80){score+=15;signals.push({g:true,t:`${a.purchases} compras`})}
+      else if(a.purchases>=30){score+=10;signals.push({g:null,t:`${a.purchases} compras`})}
+      else if(a.purchases>=10){score+=5;signals.push({g:false,t:`${a.purchases} compras — poco volumen`})}
+      else{score+=1}
+      // CTR (15 pts)
+      if(ctr>=2.5){score+=15;signals.push({g:true,t:`CTR ${ctr.toFixed(2)}%`})}
+      else if(ctr>=1.5){score+=11;signals.push({g:true,t:`CTR ${ctr.toFixed(2)}%`})}
+      else if(ctr>=1){score+=8;signals.push({g:null,t:`CTR ${ctr.toFixed(2)}%`})}
+      else if(ctr>=0.5){score+=4;signals.push({g:false,t:`CTR ${ctr.toFixed(2)}% — bajo`})}
+      else{signals.push({g:false,t:`CTR ${ctr.toFixed(2)}% — crítico`})}
+      // ATC Rate (10 pts)
+      if(atcRate===0){score+=5}
+      else if(atcRate>=20){score+=10;signals.push({g:true,t:`ATC ${atcRate.toFixed(0)}% — alta intención`})}
+      else if(atcRate>=10){score+=7;signals.push({g:null,t:`ATC ${atcRate.toFixed(0)}%`})}
+      else if(atcRate>=5){score+=4}
+      else{score+=1;signals.push({g:false,t:`ATC ${atcRate.toFixed(0)}% — bajo`})}
+      // Frecuencia bonus/penalty
+      if(adFreq>0){
+        const fw={BOFU:5,RETARG:6,OTHER:3}[stage]||3;
+        if(adFreq>fw) signals.push({g:false,t:`Freq ${adFreq.toFixed(1)}x — alta para ${stage}`});
+        else if(adFreq<=2) signals.push({g:true,t:`Freq ${adFreq.toFixed(1)}x — fresca`});
+      }
+      // Video metrics si aplica
+      if(a.is_video&&a.hook_rate>0){
+        if(a.hook_rate>=30) signals.push({g:true,t:`Hook ${a.hook_rate}%`});
+        else if(a.hook_rate<5) signals.push({g:false,t:`Hook ${a.hook_rate}% — no engancha`});
+        if(a.hold_rate>0&&a.hold_rate<5) signals.push({g:false,t:`Retención ${a.hold_rate}%`});
+      }
+    }
+
+    // ── CAPA 4: CLASIFICACIÓN (escala 1-10) ──
+    score=Math.round(score);
+    const score10=Math.max(1,Math.min(10,parseFloat((score/10).toFixed(1))));
+    const vetoed=vetoes.length>0;
+    const cls=vetoed?'low':score>=65?'top':score>=35?'normal':'low';
+    const label=vetoed?'Bajo':cls==='top'?'Destacado':cls==='low'?'Bajo':'Normal';
+    const color=cls==='top'?'#22c55e':cls==='low'?'#dc2626':'var(--t3)';
+
+    // Acción diferenciada
+    let action='';
+    if(vetoed){
+      action=vetoes.some(v=>v.txt.includes('quemada'))?'Rotar':'Pausar';
+    } else if(cls==='top'){
+      const spShare=scoringCtx.totalSpend>0?a.spend/scoringCtx.totalSpend:0;
+      if(!isTofu&&a.roas>=10&&spShare<0.05) action='Testar con más presupuesto';
+      else if(!isTofu&&a.profit>scoringCtx.medianProfit*1.5&&spShare>=0.1) action='Escalar +20-30%';
+      else if(isTofu) action='Escalar — buen alcance';
+      else action='Escalar / Duplicar';
+    } else if(cls==='low'){
+      action=isTofu?'Pausar o revisar copy':'Pausar';
+    }
+
+    // Razones para UI (max 3 buenas + 3 malas + vetoes)
+    const vetoReasons=vetoes.map(v=>({bad:true,txt:v.txt}));
+    const goodR=signals.filter(s=>s.g===true).slice(0,3).map(s=>({bad:false,txt:s.t}));
+    const badR=signals.filter(s=>s.g===false).slice(0,3).map(s=>({bad:true,txt:s.t}));
+    const reasons=[...vetoReasons,...badR,...goodR];
+
+    return {cls,label,color,action,reasons,score,score10,vetoed};
+  }
+
+  // Clasificar por entrega real (campaña activa = entregando)
+  const activeAds=allSorted.filter(a=>a.delivering);
+  const inactiveAds=allSorted.filter(a=>!a.delivering);
+
+  // Precalcular scores para resumen
+  const adScores=new Map();
+  [...activeAds,...inactiveAds].forEach(a=>{const cc=creativeClass(a);adScores.set(a,cc)});
+  const allAdsForCount=[...adScores.values()];
+  const topCount=allAdsForCount.filter(c=>c.cls==='top').length;
+  const lowCount=allAdsForCount.filter(c=>c.cls==='low').length;
+  const normalCount=allAdsForCount.length-topCount-lowCount;
+  const inactiveTopCount=inactiveAds.filter(a=>adScores.get(a)?.cls==='top').length;
+
+  // Promedios de scoring
+  const activeScored=activeAds.map(a=>adScores.get(a)).filter(c=>c.score10>0);
+  const inactiveScored=inactiveAds.map(a=>adScores.get(a)).filter(c=>c.score10>0);
+  const avgActive=activeScored.length>0?(activeScored.reduce((s,c)=>s+c.score10,0)/activeScored.length):0;
+  const avgInactive=inactiveScored.length>0?(inactiveScored.reduce((s,c)=>s+c.score10,0)/inactiveScored.length):0;
+  const avgActiveColor=avgActive>=7?'#22c55e':avgActive>=4?'#b45309':'#dc2626';
+  const avgInactiveColor=avgInactive>=7?'#22c55e':avgInactive>=4?'#b45309':'#dc2626';
+
+  // Todos los ads con su score y metadata para filtrado compuesto
+  const allAdsWithMeta=[...activeAds,...inactiveAds].map(a=>({ad:a,cc:adScores.get(a)||creativeClass(a),delivering:a.delivering}));
+
+  let crH=`<div style="margin-bottom:14px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <div style="display:flex;align-items:center;gap:16px">
+        <div style="display:flex;gap:4px" id="crFilterStatus">
+          <span class="tab" data-v="all" onclick="window._crF(this,'status')">Todos (${allAdsWithMeta.length})</span>
+          <span class="tab tab-active" data-v="active" onclick="window._crF(this,'status')">Activos (${activeAds.length})</span>
+          <span class="tab" data-v="inactive" onclick="window._crF(this,'status')">Inactivos (${inactiveAds.length})</span>
+        </div>
+        <div style="width:1px;height:20px;background:var(--b)"></div>
+        <div style="display:flex;gap:4px" id="crFilterScore">
+          <span class="tab tab-active" data-v="all" onclick="window._crF(this,'score')">Todos</span>
+          <span class="tab" data-v="top" onclick="window._crF(this,'score')">Destacados (${topCount})</span>
+          <span class="tab" data-v="normal" onclick="window._crF(this,'score')">Normales (${normalCount})</span>
+          <span class="tab" data-v="low" onclick="window._crF(this,'score')">Bajo (${lowCount})</span>
+        </div>
+      </div>
+      <span style="font-size:11px;color:var(--t3)">Avg: <strong style="color:${avgActiveColor}">${avgActive.toFixed(1)}</strong> act · <strong style="color:${avgInactiveColor}">${avgInactive.toFixed(1)}</strong> inact</span>
+    </div>
+    <div id="crFilteredCount" style="font-size:11px;color:var(--t3);margin-bottom:8px"></div>
+    <div style="font-size:10px;color:var(--t3);padding:6px 10px;background:var(--sa);border-radius:6px;line-height:1.5">
+      Datos: ${mo.updated} · Atribución: 7d click + 1d view (default Meta API) · Las compras aquí pueden diferir de Ads Manager si tu columna usa otra ventana de atribución o muestra "Resultados" en vez de "Compras".
+    </div>
+  </div>`;
+
+  // Estado de filtros
+  window._crState={status:'active',score:'all'};
+  window._crF=function(el,group){
+    // Actualizar tab activo en su grupo
+    const container=group==='status'?document.getElementById('crFilterStatus'):document.getElementById('crFilterScore');
+    container.querySelectorAll('.tab').forEach(t=>{t.classList.remove('tab-active')});
+    el.classList.add('tab-active');
+    window._crState[group]=el.dataset.v;
+    // Aplicar filtro compuesto
+    const cards=document.querySelectorAll('#crAllAds > .card');
+    let shown=0;
+    cards.forEach(c=>{
+      const st=c.dataset.status;
+      const sc=c.dataset.score;
+      const matchStatus=window._crState.status==='all'||st===window._crState.status;
+      const matchScore=window._crState.score==='all'||sc===window._crState.score;
+      const show=matchStatus&&matchScore;
+      c.style.display=show?'':'none';
+      if(show) shown++;
+    });
+    document.getElementById('crFilteredCount').textContent=shown<allAdsWithMeta.length?shown+' de '+allAdsWithMeta.length+' creativos':'';
+  };
+
+  function renderCreativeRow(a){
+    const cc=adScores.get(a)||creativeClass(a);
+    const ctr_a=a.impressions>0?(a.clicks/a.impressions*100):0;
+    const atcR=a.outbound_clicks>0?(a.add_to_cart/a.outbound_clicks*100):0;
+    const fmt=(a.format||'')=='Video'?'Video':(a.format||'')=='Carrusel'?'Carrusel':'Imagen';
+    const isTofu=a.stage==='TOFU';
+    const th='';
+    // Nombre limpio: quitar prefijo de campaña (ej: "2026 - 03 - Switch Sale - 3 BOFU (Conversión) - ")
+    const cleanName=(()=>{
+      const n=a.name;
+      // Quitar "YYYY - MM - Campaign Name - " dejando solo la parte creativa
+      const m=n.match(/^[\d\s-]+(?:Switch Sale|Summer Sale|[^-]+)\s*-\s*\d?\s*(?:TOFU|BOFU|MOFU|RETARG)[^-]*-\s*/i);
+      return m?n.substring(m[0].length):n.replace(/^\d{4}\s*-\s*\d{2}\s*-\s*/,'');
+    })();
+
+    // Borde izquierdo según clasificación
+    const borderL=cc.cls==='top'?'border-left:3px solid #22c55e':cc.cls==='low'?'border-left:3px solid #dc2626':'border-left:3px solid transparent';
+
+    // Métricas principales según etapa
+    let metrics='';
+    const adFreq=a.frequency||(a.reach>0?(a.impressions/a.reach):0);
+    const freqColor=adFreq>3?'#dc2626':adFreq>2?'#b45309':'var(--t1)';
+    if(isTofu){
+      const cpm=a.impressions>0?(a.spend/a.impressions*1000):0;
+      metrics=`<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px;font-size:11px">
+        <div><span style="color:var(--t3);font-size:9px">INVERSIÓN</span><br><strong>${fm(a.spend)}</strong></div>
+        <div><span style="color:var(--t3);font-size:9px">${tt('REACH')}</span><br><strong>${(a.impressions/1000).toFixed(0)}K</strong></div>
+        <div><span style="color:var(--t3);font-size:9px">${tt('CPM')}</span><br><strong>${fm(cpm)}</strong></div>
+        <div><span style="color:var(--t3);font-size:9px">${tt('CTR')}</span><br><strong>${ctr_a.toFixed(2)}%</strong></div>
+        <div><span style="color:var(--t3);font-size:9px">${tt('HOOK')}</span><br><strong>${a.hook_rate>0?a.hook_rate+'%':'—'}</strong></div>
+        <div><span style="color:var(--t3);font-size:9px">${tt('FREQ')}</span><br><strong style="color:${freqColor}">${adFreq>0?adFreq.toFixed(1)+'x':'—'}</strong></div>
+      </div>`;
+    } else {
+      const ic=a.initiate_checkout||0;
+      metrics=`<div style="display:grid;grid-template-columns:repeat(8,1fr);gap:6px;font-size:11px">
+        <div><span style="color:var(--t3);font-size:9px">${tt('COMPRAS')}</span><br><strong style="font-size:14px">${a.purchases}</strong></div>
+        <div><span style="color:var(--t3);font-size:9px">${tt('CHECKOUTS')}</span><br><strong style="font-size:14px;color:var(--t3)">${ic}</strong></div>
+        <div><span style="color:var(--t3);font-size:9px">${tt('ROAS')}</span><br><strong style="color:${a.roas>5?'#22c55e':a.roas>2?'var(--t1)':'#dc2626'}">${a.roas.toFixed(1)}x</strong></div>
+        <div><span style="color:var(--t3);font-size:9px">PROFIT</span><br><strong style="color:${a.profit>=0?'#22c55e':'#dc2626'}">${a.profit>=0?'+':''}${fm(a.profit)}</strong></div>
+        <div><span style="color:var(--t3);font-size:9px">INVERSIÓN</span><br><strong>${fm(a.spend)}</strong></div>
+        <div><span style="color:var(--t3);font-size:9px">${tt('CTR')}</span><br><strong>${ctr_a.toFixed(2)}%</strong></div>
+        <div><span style="color:var(--t3);font-size:9px">${tt('FREQ')}</span><br><strong style="color:${freqColor}">${adFreq>0?adFreq.toFixed(1)+'x':'—'}</strong></div>
+        <div><span style="color:var(--t3);font-size:9px">${tt('ATC')} Rate</span><br><strong>${atcR>0?atcR.toFixed(1)+'%':'—'}</strong></div>
+      </div>`;
+    }
+
+    return `<div class="card" style="padding:12px 14px;margin-bottom:6px;${borderL}">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <div style="flex-shrink:0">${th}</div>
+        <div style="flex:1;min-width:0">
+          <a href="https://www.facebook.com/adsmanager/manage/ads?act=32288055&selected_ad_ids=${a.ad_id}" target="_blank" style="font-size:11px;font-weight:600;color:var(--t1);text-decoration:none;display:block" onmouseover="this.style.color='#0866ff'" onmouseout="this.style.color='var(--t1)'">${a.name}</a>
+          <div style="font-size:10px;color:var(--t3)">${stageBadge(a.name)} · ${fmt}${!a.delivering?' · <span style="color:#b45309">campaña pausada</span>':''}${isTofu?' · <span style="font-size:9px;color:var(--t3)">TOFU no se evalúa por ROAS</span>':''}</div>
+        </div>
+        <div style="flex-shrink:0;text-align:right;max-width:200px">
+          <div style="display:flex;align-items:center;justify-content:flex-end;gap:6px">
+            ${cc.score10?`<span style="font-size:12px;font-weight:700;color:${cc.score10>=7?'#22c55e':cc.score10>=4?'#b45309':'#dc2626'}">${cc.score10.toFixed(1)}</span>`:''}
+            <span style="font-size:11px;font-weight:700;color:${cc.color}">${cc.label}</span>
+          </div>
+          ${cc.action?`<div style="font-size:9px;color:${cc.color}">${cc.action}</div>`:''}
+          ${cc.reasons&&cc.reasons.length>0?`<div style="font-size:9px;margin-top:2px;line-height:1.4">${cc.reasons.slice(0,3).map(r=>`<span style="color:${r.bad?'#dc2626':'#22c55e'}">${r.txt}</span>`).join(' · ')}</div>`:''}
+        </div>
+      </div>
+      ${metrics}
+    </div>`;
+  }
+
+  // Un solo contenedor, cada card tiene data-status y data-score para filtro compuesto
+  crH+='<div id="crAllAds">';
+  allAdsWithMeta.forEach(({ad,cc,delivering})=>{
+    const status=delivering?'active':'inactive';
+    const score=cc.cls; // top, normal, low
+    // Wrap renderCreativeRow output with data attributes
+    const row=renderCreativeRow(ad);
+    // Inject data attributes into the first div
+    crH+=row.replace('<div class="card"','<div class="card" data-status="'+status+'" data-score="'+score+'"');
+  });
+  crH+='</div>';
+
+  document.getElementById('creativeSection').innerHTML=crH;
+  // Aplicar filtro inicial (Activos)
+  window._crF(document.querySelector('#crFilterStatus [data-v="active"]'),'status');
+
+  // ─── PLACEMENTS ───
+  const plData=pla.placements.filter(p=>p.spend>1000).sort((a,b)=>b.spend-a.spend);
+  let pt=`<thead><tr><th style="text-align:left">Ubicación</th><th>Inversión</th><th>Compras</th><th>${tt('ROAS')}</th><th>${tt('CPC')}</th><th>${tt('CPM')}</th><th>${tt('Outbound')}</th><th>% Gasto</th></tr></thead><tbody>`;
+  const totalPlSpend=plData.reduce((s,p)=>s+p.spend,0);
+  plData.forEach(p=>{
+    const name=p.platform==='instagram'?'IG ':p.platform==='facebook'?'FB ':'';
+    const pos=p.position.replace('facebook_','').replace('instagram_','').replace(/_/g,' ');
+    const bc=p.roas>3?'bg':p.roas>1.5?'by':p.purchases>0?'br':'';
+    pt+=`<tr><td style="padding:8px 12px;font-weight:500">${name}${pos}</td><td>${fm(p.spend)}</td><td>${p.purchases}</td><td>${p.roas>0?`<span class="b ${bc}">${p.roas.toFixed(1)}x</span>`:'—'}</td><td>${p.cpc>0?fm(p.cpc):'—'}</td><td>${fm(p.cpm)}</td><td>${p.outbound_clicks>0?p.outbound_clicks.toLocaleString():'—'}</td><td>${(p.spend/totalPlSpend*100).toFixed(1)}%</td></tr>`;
+  });
+  pt+='</tbody>';document.getElementById('plT').innerHTML=pt;
+
+  // ─── FUNNEL DE CONVERSIÓN (colores de temperatura) ───
+  const outClicks=cur.outbound_clicks||cur.clicks;
+  const steps=[
+    {n:'Personas Alcanzadas',v:cur.reach||0,w:100},
+    {n:'Outbound Clicks',v:outClicks,w:82},
+    {n:'Landing Page',v:cur.landing_page_views,w:66},
+    {n:'Add to Cart',v:cur.add_to_cart,w:50},
+    {n:'Checkout',v:cur.initiate_checkout,w:34},
+    {n:'Compra Real (Odoo)',v:ord,w:22}
+  ];
+  // Temperatura del funnel: azul frío → amarillo oscuro → naranja oscuro → rojo → verde (venta)
+  const stepColors=['#3b82f6','#6366f1','#b8860b','#c2410c','#dc2626','#22c55e'];
+  // Funnel rediseñado: barras horizontales proporcionales (estilo Mixpanel/GA4)
+  // Sin SVG = sin distorsión · coherente con el resto del dashboard
+  let stepsHtml=`<div style="display:flex;flex-direction:column;width:100%;height:100%;padding:10px 0">
+  <div style="display:flex;align-items:center;padding:0 16px 6px;flex-shrink:0">
+    <div style="width:110px;flex-shrink:0;font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px"><span class="tip" data-tip="Cada paso del journey del cliente, desde que ve el anuncio hasta que compra">Etapa</span></div>
+    <div style="flex:1;font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;text-align:center"><span class="tip" data-tip="% acumulado desde Impresiones — cuántas personas de las que vieron el anuncio llegaron a esta etapa">% conversión acumulada</span></div>
+    <div style="width:64px;flex-shrink:0;padding-left:10px;font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px"><span class="tip" data-tip="% de personas que se pierden entre esta etapa y la siguiente — rojo &gt;80%, naranja &gt;50%">Drop</span></div>
+  </div>`;
+  steps.forEach((s,i)=>{
+    const nx=i<steps.length-1?steps[i+1]:null;
+    const dr=nx&&s.v>0?((1-nx.v/s.v)*100):null;
+    const c=stepColors[i]||'#22c55e';
+    const pct=(s.v/steps[0].v*100).toFixed(s.v/steps[0].v<.01?2:1);
+    const isLast=i===steps.length-1;
+    // Barra proporcional centrada: se estrecha hacia abajo como un funnel
+    stepsHtml+=`
+    <div style="flex:1;display:flex;align-items:center;gap:0;padding:3px 16px;min-height:0">
+      <div style="width:110px;flex-shrink:0;padding-right:10px">
+        <div style="font-size:10px;font-weight:600;color:var(--t2);line-height:1.35">${s.n}</div>
+        <div style="font-size:9px;color:var(--t3);margin-top:1px">${s.v.toLocaleString()}</div>
+      </div>
+      <div style="flex:1;display:flex;justify-content:center;align-items:center;height:100%">
+        <div style="width:${s.w}%;height:100%;min-height:26px;max-height:52px;background:${c}14;border:1.5px solid ${c}30;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 10px;">
+          <span style="font-size:${isLast?'15':'13'}px;font-weight:700;color:${c};letter-spacing:-.3px">${pct}%</span>
+        </div>
+      </div>
+      <div style="width:64px;flex-shrink:0;padding-left:10px;text-align:left">
+        ${dr!==null
+          ?`<span style="font-size:11px;font-weight:600;color:${dr>80?'#ef4444':dr>50?'#f97316':'var(--t3)'}">↓${dr.toFixed(0)}%</span>`
+          :`<span style="font-size:11px;font-weight:600;color:#22c55e">✓</span>`
+        }
+      </div>
+    </div>
+    ${!isLast?`<div style="flex-shrink:0;display:flex;padding:0 16px;height:6px">
+      <div style="width:88px;flex-shrink:0"></div>
+      <div style="flex:1;display:flex;justify-content:center">
+        <div style="width:${s.w}%;display:flex;justify-content:center">
+          <div style="width:1px;height:100%;background:${c}40"></div>
+        </div>
+      </div>
+      <div style="width:72px;flex-shrink:0"></div>
+    </div>`:''}`;
+  });
+  stepsHtml+='</div>';
+  // Bottleneck callout — fuera del flex que estira el embudo
+  let calloutHtml='';
+  if(atcDrop>80){
+    calloutHtml=`<div style="margin:0 16px 10px;padding:8px 12px;background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;font-size:11px;color:#9a3412;flex-shrink:0;display:flex;gap:8px;align-items:flex-start">
+      <span style="flex-shrink:0;margin-top:1px">⚠</span>
+      <div><strong>ATC → Checkout: ${atcDrop.toFixed(0)}% abandono</strong> — benchmark 72–80%<br><span style="color:#c2410c">${(cur.add_to_cart-cur.initiate_checkout).toLocaleString()} personas perdidas. Revisar flujo de checkout.</span></div>
+    </div>`;
+  }
+  document.getElementById('funnel').innerHTML=stepsHtml+calloutHtml;
+
+  // ─── FUNNEL META: estructura de campañas por etapa ───
+  const camps=(ca&&ca.campaigns)||[];
+  const totalCampSpend=camps.reduce((s,c)=>s+c.spend,0);
+  const totalCampReach=camps.reduce((s,c)=>s+(c.reach||0),0);
+  function campStage(name){const n=name.toLowerCase();if(n.includes('retarg'))return'RETARG';if(n.includes('bofu'))return'BOFU';if(n.includes('mofu'))return'MOFU';if(n.includes('tofu'))return'TOFU';return'OTHER';}
+  const stageColors={TOFU:'#3b82f6',MOFU:'#eab308',BOFU:'#f97316',RETARG:'#ef4444'};
+  const stageLabels={TOFU:'TOFU — Público frío',MOFU:'MOFU — Calentamiento',BOFU:'BOFU — Conversión',RETARG:'Retargeting — Hot'};
+  const byStage={};
+  camps.forEach(c=>{const st=campStage(c.name);if(!byStage[st])byStage[st]=[];byStage[st].push(c);});
+
+  // ─── Panel: cards por etapa con % alcance como métrica principal ───
+  const totalCampPurchases=camps.reduce((s,c)=>s+c.purchases,0);
+
+  // Datos agregados por etapa
+  const stageData={};
+  ['TOFU','MOFU','BOFU','RETARG'].forEach(stage=>{
+    const sc=byStage[stage]||[];
+    const spend=sc.reduce((s,c)=>s+c.spend,0);
+    const reach=sc.reduce((s,c)=>s+(c.reach||0),0);
+    const purchases=sc.reduce((s,c)=>s+c.purchases,0);
+    const impressions=sc.reduce((s,c)=>s+c.impressions,0);
+    const freq=reach>0?(impressions/reach):0;
+    const roas=spend>0?sc.reduce((s,c)=>s+(c.meta_revenue||0),0)/spend:0;
+    const ctr=impressions>0?sc.reduce((s,c)=>s+(c.outbound_clicks||0),0)/impressions*100:0;
+    const spendPct=totalCampSpend>0?(spend/totalCampSpend*100):0;
+    const reachPct=totalCampReach>0?(reach/totalCampReach*100):0;
+    const purchPct=totalCampPurchases>0?(purchases/totalCampPurchases*100):0;
+    stageData[stage]={spend,reach,purchases,freq,roas,ctr,spendPct,reachPct,purchPct,impressions,camps:sc};
+  });
+
+  let mfh='';
+  ['TOFU','MOFU','BOFU','RETARG'].forEach(stage=>{
+    const sc=stageColors[stage];
+    const sl=stageLabels[stage];
+    const d=stageData[stage];
+    const active=d.camps.length>0;
+    const reachK=d.reach>=1000?((d.reach/1000).toFixed(0)+'K'):(d.reach.toLocaleString());
+    const barW=active?Math.max(d.reachPct,2):0;
+
+    if(!active){
+      mfh+=`<div style="padding:7px 12px;margin:3px 8px;border-radius:8px;background:${sc}06;border:1px dashed ${sc}30;opacity:.45">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px">
+          <div style="font-size:9px;font-weight:700;color:${sc};text-transform:uppercase;letter-spacing:.5px">${sl}</div>
+          <div style="font-size:9px;color:var(--t3)">Sin inversión</div>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:0">
+          <div style="flex:1"><span style="font-size:14px;font-weight:700;color:${sc};opacity:.5">0%</span> <span style="font-size:8px;color:var(--t3)">alcance</span></div>
+          <div style="width:1px;height:16px;background:${sc}20;flex-shrink:0;margin:0 10px"></div>
+          <div style="flex:1"><span style="font-size:14px;font-weight:700;color:${sc};opacity:.5">0%</span> <span style="font-size:8px;color:var(--t3)">presupuesto</span></div>
+        </div>
+      </div>`;
+      return;
+    }
+
+    // Métrica secundaria según rol de la etapa
+    let secondaryMetric='';
+    if(stage==='TOFU'){
+      const freqOk=d.freq<3;
+      secondaryMetric=`<span class="tip" data-tip="Frecuencia: veces promedio que cada persona vio el anuncio. Ideal &lt;3x en TOFU." style="color:${freqOk?'var(--t3)':'#ef4444'}">Freq ${d.freq.toFixed(1)}x${!freqOk?' ⚠':''}</span>`;
+    } else if(stage==='MOFU'){
+      secondaryMetric=`<span class="tip" data-tip="Click-Through Rate saliente — % de personas que hicieron click hacia el sitio">CTR ${d.ctr.toFixed(1)}%</span>`;
+    } else if(stage==='BOFU'){
+      const freqOk=d.freq<6;
+      secondaryMetric=`<span class="tip" data-tip="Frecuencia: veces promedio que cada persona vio el anuncio. Ideal &lt;6x en BOFU." style="color:${freqOk?'var(--t3)':'#ef4444'}">Freq ${d.freq.toFixed(1)}x${!freqOk?' ⚠':''}</span> · <span class="tip" data-tip="% de las compras pixel totales generadas por esta etapa">${d.purchPct.toFixed(0)}% compras</span>`;
+    } else {
+      const freqOk=d.freq<6;
+      secondaryMetric=`<span class="tip" data-tip="Frecuencia de impacto. Si supera 6x hay riesgo de saturación de audiencia." style="color:${freqOk?'var(--t3)':'#ef4444'}">Freq ${d.freq.toFixed(1)}x${!freqOk?' ⚠':''}</span>`;
+    }
+
+    mfh+=`<div style="padding:7px 12px;margin:3px 8px;border-radius:8px;background:${sc}0d;border:1px solid ${sc}2a">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+        <div style="font-size:9px;font-weight:700;color:${sc};text-transform:uppercase;letter-spacing:.5px">${sl}</div>
+        <div style="font-size:9px;color:var(--t3)">${secondaryMetric}</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:0;margin-bottom:4px">
+        <div style="flex:1">
+          <div style="font-size:8px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.3px">Alcance</div>
+          <span style="font-size:16px;font-weight:700;color:${sc};letter-spacing:-.4px;line-height:1">${d.reachPct.toFixed(0)}%</span>
+          <span style="font-size:9px;color:var(--t2);margin-left:3px">${reachK}</span>
+        </div>
+        <div style="width:1px;height:22px;background:${sc}25;flex-shrink:0;margin:0 10px"></div>
+        <div style="flex:1">
+          <div style="font-size:8px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.3px">Presupuesto</div>
+          <span style="font-size:16px;font-weight:700;color:${sc};letter-spacing:-.4px;line-height:1">${d.spendPct.toFixed(0)}%</span>
+          <span style="font-size:9px;color:var(--t2);margin-left:3px">${fm(d.spend)}</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:3px;height:4px">
+        <div style="flex:${Math.max(d.reachPct,1)};height:4px;background:${sc};border-radius:2px;opacity:.7" title="Alcance ${d.reachPct.toFixed(0)}%"></div>
+        <div style="flex:${Math.max(d.spendPct,1)};height:4px;background:${sc};border-radius:2px;opacity:.3" title="Presupuesto ${d.spendPct.toFixed(0)}%"></div>
+      </div>
+    </div>`;
+  });
+
+  // ─── Card CONVERSIÓN: personas que compraron ───
+  // Usar cur.reach (account-level, deduplicated) — NO totalCampReach (suma con duplicados)
+  const accountReach=cur.reach||0;
+  const convPct=accountReach>0?(ord/accountReach*100):0;
+  const convColor='#22c55e';
+
+  mfh+=`<div style="padding:10px 12px;margin:4px 8px;border-radius:9px;background:${convColor}0d;border:1px solid ${convColor}2a">
+    <div style="font-size:9px;font-weight:700;color:${convColor};text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Conversión — Resultado</div>
+    <div style="display:flex;align-items:flex-end;gap:0;margin-bottom:6px">
+      <div style="flex:1">
+        <div style="font-size:8px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:1px">Personas que compraron</div>
+        <div style="display:flex;align-items:baseline;gap:4px">
+          <span style="font-size:20px;font-weight:700;color:${convColor};letter-spacing:-.5px;line-height:1">${ord.toLocaleString()}</span>
+          <span style="font-size:10px;color:var(--t2);font-weight:500">órdenes Odoo</span>
+        </div>
+      </div>
+      <div style="width:1px;height:28px;background:${convColor}30;flex-shrink:0;margin:0 12px"></div>
+      <div style="flex:1">
+        <div style="font-size:8px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:1px">Tasa de conversión</div>
+        <div style="display:flex;align-items:baseline;gap:4px">
+          <span style="font-size:20px;font-weight:700;color:${convColor};letter-spacing:-.5px;line-height:1">${convPct.toFixed(2)}%</span>
+          <span style="font-size:10px;color:var(--t2);font-weight:500">del alcance</span>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:3px;margin-bottom:5px">
+      <div style="display:flex;align-items:center;gap:5px">
+        <div style="font-size:8px;color:var(--t3);width:72px;flex-shrink:0;text-align:right">Conversión</div>
+        <div style="flex:1;height:5px;background:${convColor}18;border-radius:3px">
+          <div style="height:5px;border-radius:3px;background:${convColor};width:${Math.min(convPct*10,100)}%"></div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:9px;color:var(--t3)">${totalCampPurchases.toLocaleString()} compras Pixel · ${accountReach.toLocaleString()} personas alcanzadas (únicas)</div>
+  </div>`;
+
+  // ─── Card DISTRIBUCIÓN DE PRESUPUESTO ───
+  const tofuPct=stageData.TOFU.spendPct;
+  const bofuRetPct=stageData.BOFU.spendPct+stageData.RETARG.spendPct;
+  const budgetBalanced=tofuPct>=10&&tofuPct<=40;
+  const budgetColor=budgetBalanced?'#166534':'#b45309';
+  const budgetBorder=budgetBalanced?'#86efac':'#fbbf24';
+  const budgetBg=budgetBalanced?'#166534':'#b45309';
+  let healthMsg='';
+  if(tofuPct<10) healthMsg=`⚠ TOFU sub-financiado. Renovar audiencias. Benchmark: 15–25%.`;
+  else if(tofuPct>40) healthMsg=`⚠ Demasiado TOFU. Mover budget a BOFU para maximizar conversiones.`;
+  else healthMsg=`✓ Distribución balanceada para el funnel actual.`;
+
+  mfh+=`<div style="padding:10px 12px;margin:4px 8px 8px;border-radius:9px;background:${budgetBg}0d;border:1px solid ${budgetBorder}55">
+    <div style="font-size:9px;font-weight:700;color:${budgetColor};text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Distribución de presupuesto</div>
+    <div style="display:flex;align-items:flex-end;gap:0;margin-bottom:6px">
+      <div style="flex:1">
+        <div style="font-size:8px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:1px">TOFU</div>
+        <div style="display:flex;align-items:baseline;gap:4px">
+          <span style="font-size:20px;font-weight:700;color:#3b82f6;letter-spacing:-.5px;line-height:1">${tofuPct.toFixed(0)}%</span>
+          <span style="font-size:10px;color:var(--t2);font-weight:500">${fm(stageData.TOFU.spend)}</span>
+        </div>
+      </div>
+      <div style="width:1px;height:28px;background:var(--b);flex-shrink:0;margin:0 12px"></div>
+      <div style="flex:1">
+        <div style="font-size:8px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:1px">BOFU + Retarg</div>
+        <div style="display:flex;align-items:baseline;gap:4px">
+          <span style="font-size:20px;font-weight:700;color:#f97316;letter-spacing:-.5px;line-height:1">${bofuRetPct.toFixed(0)}%</span>
+          <span style="font-size:10px;color:var(--t2);font-weight:500">${fm(stageData.BOFU.spend+stageData.RETARG.spend)}</span>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:0;margin-bottom:5px;height:5px;border-radius:3px;overflow:hidden;background:var(--b)">
+      <div style="height:5px;background:#3b82f6;width:${tofuPct}%;border-radius:3px 0 0 3px"></div>
+      <div style="height:5px;background:#f97316;width:${bofuRetPct}%;border-radius:0 3px 3px 0"></div>
+    </div>
+    <div style="font-size:9px;color:${budgetColor}">${healthMsg}</div>
+  </div>`;
+  document.getElementById('funnelMeta').innerHTML=mfh;
+
+  // ─── PÚBLICOS GANADORES (adsets activos rankeados por performance) ───
+  const activeAdsets=adsets.adsets.filter(a=>{
+    const campObj=objMap[a.campaign];
+    return campObj&&campObj.status==='ACTIVE';
+  }).sort((a,b)=>b.purchases-a.purchases);
+
+  let awH='';
+  if(activeAdsets.length>0){
+    awH+=`<div class="card cf"><div class="sep">📊 Públicos activos — Rankeados por compras (solo campañas activas, mes corriente)</div>
+    <table><thead><tr><th style="text-align:left">Adset / Público</th><th>Etapa</th><th>Inversión</th><th>Compras</th><th>${tt('CPA')}</th><th>${tt('ROAS')}</th><th>${tt('Reach')}</th><th>${tt('Freq')}</th><th>${tt('ATC')}</th><th>${tt('Conv. Rate')}</th></tr></thead><tbody>`;
+    activeAdsets.forEach(a=>{
+      const tgt=targeting.targeting.find(t=>t.name===a.name||t.name.substring(0,25)===a.name.substring(0,25));
+      const cpa_a=a.purchases>0?a.spend/a.purchases:0;
+      const convRate=a.outbound_clicks>0?(a.purchases/a.outbound_clicks*100):0;
+      const bc=a.roas>5?'bg':a.roas>2?'by':a.roas>0?'br':'bgr';
+      awH+=`<tr><td style="padding:8px 12px;max-width:240px;font-size:11px"><div style="font-weight:600">${a.name.substring(0,45)}</div>${tgt&&tgt.custom_audiences.length>0?'<div style="margin-top:2px;font-size:9px;color:var(--t3)">'+tgt.custom_audiences.slice(0,3).map(x=>x.substring(0,25)).join(', ')+(tgt.custom_audiences.length>3?' +'+( tgt.custom_audiences.length-3):'')+'</div>':''}</td><td>${stageBadge(a.name)}</td><td>${fm(a.spend)}</td><td style="font-weight:700">${a.purchases}</td><td>${cpa_a>0?fm(cpa_a):'—'}</td><td><span class="b ${bc}">${a.roas.toFixed(1)}x</span></td><td>${(a.reach/1000).toFixed(0)}K</td><td>${freqBadge(a.frequency,a.name)}</td><td>${a.add_to_cart}</td><td>${convRate>0?convRate.toFixed(2)+'%':'—'}</td></tr>`;
+    });
+    awH+='</tbody></table></div>';
+  } else {
+    awH='<div class="card"><span style="color:var(--t3)">Sin adsets activos con datos</span></div>';
+  }
+  document.getElementById('audienceWinners').innerHTML=awH;
+
+  // ─── REGIONES GEOGRÁFICAS ───
+  const regData=(regions&&regions.regions||[]).filter(r=>r.spend>5000).sort((a,b)=>b.spend-a.spend);
+  if(regData.length>0){
+    let rgH='<div class="sep">📍 Distribución geográfica — Mes corriente (compras off-site no disponibles por región en Meta API)</div>';
+    rgH+=`<table><thead><tr><th style="text-align:left">Región</th><th>% Inversión</th><th>Inversión</th><th>${tt('Reach')}</th><th>Clicks</th><th>${tt('Outbound')}</th><th>${tt('CPM')}</th><th>${tt('CPC')}</th><th>${tt('CTR')}</th></tr></thead><tbody>`;
+    regData.slice(0,12).forEach(r=>{
+      const ctrClass=r.ctr>2?'bg':r.ctr>1?'by':'br';
+      rgH+=`<tr><td style="padding:8px 12px;font-weight:600">${r.region}</td><td style="font-weight:700">${r.pct_spend.toFixed(1)}%</td><td>${fm(r.spend)}</td><td>${(r.reach/1000).toFixed(0)}K</td><td>${r.link_clicks.toLocaleString()}</td><td>${r.outbound_clicks.toLocaleString()}</td><td>${fm(r.cpm)}</td><td>${r.cpc>0?fm(r.cpc):'—'}</td><td><span class="b ${ctrClass}">${r.ctr.toFixed(2)}%</span></td></tr>`;
+    });
+    rgH+='</tbody></table>';
+    document.getElementById('regT').innerHTML=rgH;
+  } else {
+    document.getElementById('regT').innerHTML='<tr><td style="padding:12px;color:var(--t3)">Sin datos geográficos. Ejecutá update-and-deploy.sh.</td></tr>';
+  }
+
+  // ─── ANÁLISIS DE PÚBLICOS (ordenado por etapa del funnel, diseño limpio) ───
+  const monthAdsets=adsets.adsets.filter(a=>a.spend>0);
+  const tgStageOrder=['TOFU','MOFU','BOFU','RETARG','OTHER'];
+  const tgStageColors={TOFU:'#3b82f6',MOFU:'#eab308',BOFU:'#c2410c',RETARG:'#dc2626',OTHER:'#64748b'};
+  const tgStageLabels={TOFU:'TOFU — Público frío',MOFU:'MOFU — Calentamiento',BOFU:'BOFU — Conversión',RETARG:'Retargeting — Hot',OTHER:'Otros'};
+
+  // Agrupar adsets por etapa
+  const adsetsByStage={};
+  monthAdsets.forEach(t=>{
+    const n=t.name.toLowerCase();
+    const stage=n.includes('retarg')?'RETARG':n.includes('bofu')?'BOFU':n.includes('mofu')?'MOFU':n.includes('tofu')?'TOFU':'OTHER';
+    if(!adsetsByStage[stage])adsetsByStage[stage]=[];
+    adsetsByStage[stage].push(t);
+  });
+
+  let tgH='';
+  tgStageOrder.forEach(stage=>{
+    const items=adsetsByStage[stage];
+    if(!items||items.length===0) return;
+    const sc=tgStageColors[stage];
+    items.sort((a,b)=>b.purchases-a.purchases);
+
+    tgH+=`<div style="margin-bottom:6px;margin-top:14px;font-size:10px;font-weight:700;color:${sc};text-transform:uppercase;letter-spacing:.5px;padding-left:4px">${tgStageLabels[stage]}</div>`;
+
+    items.forEach(t=>{
+      const tgt=targeting.targeting.find(x=>x.name===t.name||x.name.substring(0,25)===t.name.substring(0,25))||{};
+      const campObj=objMap[t.campaign]||{};
+      const isActive=campObj.status==='ACTIVE';
+      const cpa_t=t.purchases>0?t.spend/t.purchases:0;
+      const convRate=t.outbound_clicks>0?(t.purchases/t.outbound_clicks*100):0;
+      const atcRate=t.outbound_clicks>0?(t.add_to_cart/t.outbound_clicks*100):0;
+      const bc=t.roas>5?'bg':t.roas>2?'by':t.roas>0?'br':'bgr';
+
+      let diag=[];
+      if(t.frequency>7) diag.push('Frecuencia muy alta ('+t.frequency+'x) — audiencia saturada');
+      else if(t.frequency>5) diag.push('Frecuencia alta ('+t.frequency+'x) — monitorear fatiga');
+      if(convRate>0&&convRate<1) diag.push('Conversión baja ('+convRate.toFixed(2)+'%) — revisar landing');
+      if(atcRate>10&&convRate<2) diag.push('Muchos ATC ('+atcRate.toFixed(0)+'%) pero pocas compras');
+      if(t.roas>5&&isActive) diag.push('ROAS excelente — candidato a escalar');
+      if(t.roas<1&&t.spend>200000&&stage!=='TOFU') diag.push('ROAS <1x con gasto alto — evaluar pausar');
+
+      const auds=tgt.custom_audiences||[];
+      const excl=tgt.excluded_audiences||[];
+      const optGoal=tgt.optimization_goal||'';
+      const optLabel=optGoal==='VALUE'?'Valor':optGoal==='OFFSITE_CONVERSIONS'?'Conversiones':optGoal==='PROFILE_VISIT'?'Visitas perfil':optGoal==='LANDING_PAGE_VIEWS'?'Landing Views':optGoal||'—';
+
+      tgH+=`<div class="card" style="padding:14px 16px;margin-bottom:8px;border-left:3px solid ${sc}">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <div style="font-size:12px;font-weight:600;color:var(--t1)">${t.name.substring(0,50)} ${isActive?'<span style="color:#22c55e;font-size:10px;font-weight:400">activa</span>':'<span style="color:var(--t3);font-size:10px;font-weight:400">pausada</span>'}</div>
+          <div style="font-size:10px;color:var(--t3)">${optLabel}</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:8px;font-size:11px">
+          <div><div style="color:var(--t3);font-size:9px">COMPRAS</div><div style="font-weight:700;font-size:15px">${t.purchases}</div></div>
+          <div><div style="color:var(--t3);font-size:9px">${tt('ROAS')}</div><div style="font-weight:700;font-size:15px"><span class="b ${bc}">${t.roas.toFixed(1)}x</span></div></div>
+          <div><div style="color:var(--t3);font-size:9px">${tt('CPA')}</div><div style="font-weight:600">${cpa_t>0?fm(cpa_t):'—'}</div></div>
+          <div><div style="color:var(--t3);font-size:9px">INVERSIÓN</div><div style="font-weight:600">${fm(t.spend)}</div></div>
+          <div><div style="color:var(--t3);font-size:9px">${tt('REACH')}</div><div style="font-weight:600">${(t.reach/1000).toFixed(0)}K</div></div>
+          <div><div style="color:var(--t3);font-size:9px">${tt('FREQ')}</div><div style="font-weight:600">${freqBadge(t.frequency,t.name)}</div></div>
+        </div>
+        <div style="font-size:11px;color:var(--t2);line-height:1.5">
+          <div>Edad: ${tgt.age_min||'?'}-${tgt.age_max||'?'} · Conv: ${convRate>0?convRate.toFixed(2)+'%':'—'} · ATC: ${atcRate>0?atcRate.toFixed(1)+'%':'—'}</div>
+          ${auds.length>0?'<div style="margin-top:4px">Públicos: '+auds.map(a=>'<span style="color:var(--t2);font-size:10px">'+a.substring(0,35)+'</span>').join(' · ')+'</div>':'<div style="margin-top:4px;color:var(--t3)">Sin públicos custom — Broad targeting</div>'}
+          ${excl.length>0?'<div style="margin-top:3px">Exclusiones: '+excl.map(a=>'<span style="color:#dc2626;font-size:10px">'+a.substring(0,35)+'</span>').join(' · ')+'</div>':'<div style="margin-top:3px;color:#b45309;font-size:10px">Sin exclusiones configuradas</div>'}
+        </div>
+        ${diag.length>0?'<div style="margin-top:6px;font-size:10px;color:var(--t3);line-height:1.5">'+diag.map(d=>'→ '+d).join('<br>')+'</div>':''}
+      </div>`;
+    });
+  });
+
+  // 2. Diagnóstico global de públicos
+  const allAuds=new Set();
+  const audByStage={TOFU:[],BOFU:[],RETARG:[]};
+  monthAdsets.forEach(t=>{
+    const tgt=targeting.targeting.find(x=>x.name===t.name||x.name.substring(0,25)===t.name.substring(0,25))||{};
+    const auds=tgt.custom_audiences||[];
+    const stage=t.name.toLowerCase().includes('tofu')?'TOFU':t.name.toLowerCase().includes('retarg')?'RETARG':'BOFU';
+    auds.forEach(a=>{allAuds.add(a);if(!audByStage[stage])audByStage[stage]=[];audByStage[stage].push(a);});
+  });
+
+  const tofuAudsSet=new Set(audByStage.TOFU||[]);
+  const bofuAudsSet=new Set(audByStage.BOFU||[]);
+  const overlap=[...tofuAudsSet].filter(a=>bofuAudsSet.has(a));
+
+  let diagGlobal=[];
+  if(overlap.length>0&&tofuAudsSet.size>0){
+    const overlapPct=(overlap.length/tofuAudsSet.size*100);
+    if(overlapPct>80) diagGlobal.push(`TOFU y BOFU comparten ${overlapPct.toFixed(0)}% de los públicos (${overlap.length} de ${tofuAudsSet.size}). TOFU debería apuntar a audiencias frías.`);
+  }
+
+  const allAudsArr=[...allAuds];
+  const hasLookalike=allAudsArr.some(a=>a.toLowerCase().includes('simil')||a.toLowerCase().includes('lookalike')||a.toLowerCase().includes('lal'));
+  const hasInterest=allAudsArr.some(a=>a.toLowerCase().includes('interest')||a.toLowerCase().includes('interés'));
+
+  if(!hasLookalike) diagGlobal.push('No hay Lookalikes activos. Un LAL 1-2% de compradores 180D sería ideal para TOFU.');
+  if(!hasInterest) diagGlobal.push('No hay targeting por intereses. Probar "outdoor", "action sports", "surf" para TOFU.');
+
+  const oldAuds=allAudsArr.filter(a=>a.includes('2025 (Ago)')||a.includes('2025 (Sep)'));
+  if(oldAuds.length>3) diagGlobal.push(`${oldAuds.length} públicos de hace +6 meses. Considerar actualizar con datos recientes.`);
+
+  if(diagGlobal.length>0){
+    tgH+=`<div style="margin-top:12px;padding:10px 14px;border-radius:8px;border:1px solid var(--bd);font-size:11px;color:var(--t2);line-height:1.6">
+      <div style="font-size:10px;font-weight:600;color:var(--t3);text-transform:uppercase;margin-bottom:4px">Diagnóstico de públicos</div>
+      ${diagGlobal.map(d=>'→ '+d).join('<br>')}
+    </div>`;
+  }
+
+  document.getElementById('targeting').innerHTML=tgH||'<div class="card"><span style="color:var(--t3)">Sin datos de targeting activo</span></div>';
+
+  // ─── TENDENCIA INSIGHTS (para el gráfico combinado de arriba) ───
+  const tL=mm.map(m=>{const[y,mo]=m.month.split('-');const n=['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];return n[+mo]+' '+y.slice(2)});
+  const tP=mm.map((m,i)=>(odoo[i]?odoo[i].rev-m.spend:0)/1e6);
+  const tMER=mm.map((m,i)=>odoo[i]&&m.spend>0?odoo[i].rev/m.spend:0);
+  const tSpend=mm.map(m=>m.spend/1e6);
+
+  // Insight de tendencia mensual
+  const curIdx=mm.length-1, prevIdx=curIdx-1;
+  const curProfit=tP[curIdx], prevProfit=tP[prevIdx];
+  const curMER=tMER[curIdx], prevMER=tMER[prevIdx];
+  const curSpend=mm[curIdx].spend, prevSpend=mm[prevIdx].spend;
+  const curRev=odoo[curIdx].rev, prevRev=odoo[prevIdx].rev;
+  const profitChg=prevProfit!==0?((curProfit/prevProfit-1)*100):0;
+  const merChg=prevMER!==0?((curMER/prevMER-1)*100):0;
+  const spendChg=prevSpend>0?((curSpend/prevSpend-1)*100):0;
+  const revChg=prevRev>0?((curRev/prevRev-1)*100):0;
+
+  // Mejor y peor mes histórico
+  let bestMi=0,worstMi=0;
+  tMER.forEach((m,i)=>{if(m>tMER[bestMi])bestMi=i;if(m<tMER[worstMi]&&m>0)worstMi=i;});
+
+  let tInsights=[];
+  tInsights.push(`<strong>Cómo leer este gráfico:</strong> barras azules claras = Revenue Odoo total · barras verdes = Profit (Revenue − Inversión) · línea azul sólida = ROAS real · línea punteada = objetivo ROAS (${MER_T.green}x). Cuando la línea sólida supera la punteada, el mes alcanzó el objetivo de eficiencia.`);
+
+  // Comparación mes actual vs anterior
+  const curMonth=tL[curIdx], prevMonth=tL[prevIdx];
+  if(curMER>prevMER&&curProfit>prevProfit){
+    tInsights.push(`📈 <strong>${curMonth} vs ${prevMonth}:</strong> Profit <span class="ch chu">↑${profitChg.toFixed(0)}%</span> y ROAS <span class="ch chu">↑${merChg.toFixed(0)}%</span>. Tanto la facturación como la eficiencia están mejorando.`);
+  } else if(curMER>prevMER&&curProfit<prevProfit){
+    tInsights.push(`📊 <strong>${curMonth} vs ${prevMonth}:</strong> ROAS mejora <span class="ch chu">↑${merChg.toFixed(0)}%</span> pero Profit baja <span class="ch chd">↓${Math.abs(profitChg).toFixed(0)}%</span>. Sos más eficiente pero con menos volumen — podrías invertir más.`);
+  } else if(curMER<prevMER&&curProfit>prevProfit){
+    tInsights.push(`📊 <strong>${curMonth} vs ${prevMonth}:</strong> Profit sube <span class="ch chu">↑${profitChg.toFixed(0)}%</span> pero ROAS baja <span class="ch chd">↓${Math.abs(merChg).toFixed(0)}%</span>. Ganás más en valor absoluto pero invertís proporcionalmente más para lograrlo.`);
+  } else {
+    tInsights.push(`📉 <strong>${curMonth} vs ${prevMonth}:</strong> Profit <span class="ch chd">↓${Math.abs(profitChg).toFixed(0)}%</span> y ROAS <span class="ch chd">↓${Math.abs(merChg).toFixed(0)}%</span>. Hay margen para optimizar eficiencia.`);
+  }
+
+  // Contexto de inversión
+  if(Math.abs(spendChg)>20){
+    tInsights.push(`💰 Inversión ${spendChg>0?'subió':'bajó'} <strong>${Math.abs(spendChg).toFixed(0)}%</strong> (${fm(prevSpend)} → ${fm(curSpend)}). ${spendChg>0&&merChg>0?'El aumento de budget está rindiendo.':spendChg>0&&merChg<0?'Más gasto pero menor eficiencia — revisar si hay saturación.':'Menor inversión, revisar si hay oportunidad de escalar.'}`);
+  }
+
+  // Mejor ROAS histórico como referencia
+  tInsights.push(`🏆 Mejor ROAS histórico: <strong>${tL[bestMi]}</strong> con ${tMER[bestMi].toFixed(1)}x. Mes actual: ${curMER.toFixed(1)}x.`);
+
+  document.getElementById('trendInsight').innerHTML=`<div class="card" style="padding:14px 18px;font-size:12px;line-height:1.7;color:var(--t2)">${tInsights.join('<br>')}</div>`;
+
+  // ─── DEMOGRAFÍA ───
+  const demoData=de.demographics.filter(d=>d.purchases>0).map(d=>({...d}));
+  demoData.sort((a,b)=>b.profit-a.profit);
+  let dh=`<thead><tr><th style="text-align:left">Segmento</th><th>Inversión</th><th>Revenue</th><th>Profit</th><th>Compras</th><th>${tt('CPA')}</th><th>${tt('ROAS')}</th></tr></thead><tbody>`;
+  demoData.forEach(d=>{const g=d.gender==='male'?'♂':'♀';const cp=d.spend/d.purchases;dh+=`<tr><td style="padding:8px 12px;font-weight:600">${g} ${d.age}</td><td>${fm(d.spend)}</td><td>${fm(d.revenue)}</td><td style="font-weight:600;color:${d.profit>0?'var(--green)':'var(--red)'}">${d.profit>0?'+':''}${fm(d.profit)}</td><td>${d.purchases}</td><td>${fm(cp)}</td><td><span class="b ${d.roas>3?'bg':d.roas>1.5?'by':'br'}">${d.roas.toFixed(1)}x</span></td></tr>`;});
+  dh+='</tbody>';document.getElementById('demT').innerHTML=dh;
+
+  // ─── NOTAS TÉCNICAS ───
+  const ig=pl.platforms.find(p=>p.platform==='instagram');
+  const fb=pl.platforms.find(p=>p.platform==='facebook');
+  document.getElementById('notes').innerHTML=`<div style="font-size:12px;color:var(--t2);line-height:1.8">
+    <p><strong>🔴 Factor de Confianza del Pixel: ${(pixelConfidence*100).toFixed(0)}%</strong></p>
+    <p style="margin-left:12px">Pixel reporta ${pixelPurchases} compras vs ${ord} reales en Odoo (overcounting +${overcount.toFixed(0)}%).<br>
+    Revenue por creativo usa ROAS Pixel — multiplicar por ${pixelConfidence.toFixed(2)} para estimar revenue real.<br>
+    <strong>Causa probable:</strong> Pixel + CAPI sin deduplicación correcta, o MercadoPago disparando Purchase dos veces.<br>
+    <strong>Acción:</strong> Verificar event_id en Events Manager, revisar redirect post-pago de MercadoPago.</p>
+
+    <p style="margin-top:10px"><strong>📊 ROAS Real (Revenue Odoo ÷ Inversión Meta)</strong></p>
+    <p style="margin-left:12px">ROAS = Revenue real Odoo ÷ Inversión Meta = ${mer.toFixed(1)}x. Es la métrica norte porque no depende del pixel.<br>
+    Objetivo para TIBP (margen bruto ~60%): ROAS ≥ ${MER_T.green}x. Por debajo de 6x revisar urgente.</p>
+
+    <p style="margin-top:10px"><strong>📣 Campañas TOFU — Cómo leerlas</strong></p>
+    <p style="margin-left:12px">Las campañas TOFU NO se evalúan por ROAS ni profit. Se miden por:<br>
+    1. Alcance nuevo (CPM, Reach)<br>
+    2. Hook Rate y Hold Rate (si son video)<br>
+    3. Frecuencia (ideal: 1.5-2.5x, máximo 3x)<br>
+    4. Crecimiento de audiencias de retargeting que alimentan<br>
+    Un TOFU con ROAS 0.1x es normal — su función es llenar el funnel.</p>
+
+    <p style="margin-top:10px"><strong>⚡ Frecuencia por etapa</strong></p>
+    <p style="margin-left:12px">
+    TOFU: ideal 1.5-2.5x, alarma >3x<br>
+    MOFU: ideal 2-4x, alarma >5x<br>
+    BOFU: ideal 2-4x, alarma >5x<br>
+    Retargeting: ideal 3-6x, alarma >7x</p>
+
+    <p style="margin-top:10px"><strong>🔗 Outbound Clicks vs Link Clicks</strong></p>
+    <p style="margin-left:12px">Outbound clicks = clicks que salen de Meta hacia tu sitio.<br>
+    Link clicks incluye clicks internos (Instant Experience, perfil, etc.).<br>
+    Para ecommerce, siempre mirar outbound_clicks como KPI real.</p>
+
+    <p style="margin-top:10px"><strong>📐 Quality Ranking</strong></p>
+    <p style="margin-left:12px">▲ = Above average · ● = Average · ▼ = Below average<br>
+    Tres indicadores: calidad del ad, engagement, conversión.<br>
+    Si calidad y engagement son altos pero conversión es baja → problema en la landing/precio, no en el ad.</p>
+
+    <p style="margin-top:10px"><strong>🏷️ Plataformas:</strong> IG ${ig?fm(ig.spend):'-'} (${ig?ig.purchases:0}) · FB ${fb?fm(fb.spend):'-'} (${fb?fb.purchases:0})</p>
+    <p><strong>👁️ Alcance:</strong> ${cur.reach.toLocaleString()} personas · <strong>Actualizado:</strong> ${mo.updated}</p>
+    <p><strong>🔄 Attribution:</strong> 7D Click / 1D View (default Meta). Especificar en API para consistencia.</p>
+  </div>`;
+}
+load();
+</script>
+</body>
+</html>
