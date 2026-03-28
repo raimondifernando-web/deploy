@@ -158,6 +158,19 @@
           "hook_rate": 0,
           "ctr": 2.34,
           "status": "ACTIVE"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 1318839.9,
+          "impressions": 1244951,
+          "frequency": 2.3,
+          "clicks": 30605,
+          "link_clicks": 29127,
+          "purchases": 17,
+          "roas": 0.183016,
+          "hook_rate": 0,
+          "ctr": 2.34,
+          "status": "ACTIVE"
         }
       ],
       "fatigue": {
@@ -165,7 +178,7 @@
         "ctr_change_pct": 3.1,
         "avg_frequency": 2.2,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     },
     "6916015541891": {
@@ -326,6 +339,19 @@
           "hook_rate": 0,
           "ctr": 2.09,
           "status": "CAMPAIGN_PAUSED"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 651364.07,
+          "impressions": 326438,
+          "frequency": 4.5,
+          "clicks": 7748,
+          "link_clicks": 6831,
+          "purchases": 104,
+          "roas": 6.164553,
+          "hook_rate": 0,
+          "ctr": 2.09,
+          "status": "CAMPAIGN_PAUSED"
         }
       ],
       "fatigue": {
@@ -333,7 +359,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 4.5,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     },
     "6914696985691": {
@@ -494,6 +520,19 @@
           "hook_rate": 0,
           "ctr": 2.24,
           "status": "PAUSED"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 640133.52,
+          "impressions": 312910,
+          "frequency": 3.9,
+          "clicks": 7986,
+          "link_clicks": 6995,
+          "purchases": 197,
+          "roas": 7.153001,
+          "hook_rate": 0,
+          "ctr": 2.24,
+          "status": "PAUSED"
         }
       ],
       "fatigue": {
@@ -501,7 +540,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 3.9,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     },
     "6918734952291": {
@@ -662,6 +701,19 @@
           "hook_rate": 0,
           "ctr": 1.04,
           "status": "ACTIVE"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 937097.8,
+          "impressions": 768768,
+          "frequency": 3.4,
+          "clicks": 9742,
+          "link_clicks": 7999,
+          "purchases": 113,
+          "roas": 4.131944,
+          "hook_rate": 0,
+          "ctr": 1.04,
+          "status": "ACTIVE"
         }
       ],
       "fatigue": {
@@ -669,7 +721,7 @@
         "ctr_change_pct": 8.3,
         "avg_frequency": 3.1,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     },
     "6915080250091": {
@@ -830,6 +882,19 @@
           "hook_rate": 0,
           "ctr": 2.36,
           "status": "PAUSED"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 574966.62,
+          "impressions": 251077,
+          "frequency": 3.8,
+          "clicks": 6873,
+          "link_clicks": 5933,
+          "purchases": 192,
+          "roas": 8.608537,
+          "hook_rate": 0,
+          "ctr": 2.36,
+          "status": "PAUSED"
         }
       ],
       "fatigue": {
@@ -837,7 +902,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 3.8,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     },
     "6916017209491": {
@@ -998,6 +1063,19 @@
           "hook_rate": 0,
           "ctr": 1.83,
           "status": "PAUSED"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 507731.02,
+          "impressions": 292801,
+          "frequency": 3.9,
+          "clicks": 6180,
+          "link_clicks": 5351,
+          "purchases": 137,
+          "roas": 8.380893,
+          "hook_rate": 0,
+          "ctr": 1.83,
+          "status": "PAUSED"
         }
       ],
       "fatigue": {
@@ -1005,7 +1083,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 3.9,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     },
     "6918736648291": {
@@ -1166,6 +1244,19 @@
           "hook_rate": 0,
           "ctr": 1.26,
           "status": "PAUSED"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 476420.06,
+          "impressions": 340871,
+          "frequency": 2.9,
+          "clicks": 5516,
+          "link_clicks": 4278,
+          "purchases": 34,
+          "roas": 1.623188,
+          "hook_rate": 0,
+          "ctr": 1.26,
+          "status": "PAUSED"
         }
       ],
       "fatigue": {
@@ -1173,7 +1264,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 2.9,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     },
     "6916018677291": {
@@ -1334,6 +1425,19 @@
           "hook_rate": 0,
           "ctr": 2.97,
           "status": "CAMPAIGN_PAUSED"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 455688.01,
+          "impressions": 210004,
+          "frequency": 3.4,
+          "clicks": 6927,
+          "link_clicks": 6238,
+          "purchases": 95,
+          "roas": 2.692297,
+          "hook_rate": 0,
+          "ctr": 2.97,
+          "status": "CAMPAIGN_PAUSED"
         }
       ],
       "fatigue": {
@@ -1341,7 +1445,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 3.4,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     },
     "6915100337691": {
@@ -1502,6 +1606,19 @@
           "hook_rate": 0,
           "ctr": 0.97,
           "status": "CAMPAIGN_PAUSED"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 164121.76,
+          "impressions": 82036,
+          "frequency": 3.0,
+          "clicks": 1086,
+          "link_clicks": 797,
+          "purchases": 43,
+          "roas": 14.450736,
+          "hook_rate": 0,
+          "ctr": 0.97,
+          "status": "CAMPAIGN_PAUSED"
         }
       ],
       "fatigue": {
@@ -1509,7 +1626,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 3.0,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     },
     "6916018925091": {
@@ -1670,6 +1787,19 @@
           "hook_rate": 0,
           "ctr": 2.43,
           "status": "PAUSED"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 156595.66,
+          "impressions": 65196,
+          "frequency": 2.4,
+          "clicks": 1792,
+          "link_clicks": 1584,
+          "purchases": 30,
+          "roas": 3.007339,
+          "hook_rate": 0,
+          "ctr": 2.43,
+          "status": "PAUSED"
         }
       ],
       "fatigue": {
@@ -1677,7 +1807,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 2.4,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     },
     "6918743124291": {
@@ -1838,6 +1968,19 @@
           "hook_rate": 0,
           "ctr": 1.96,
           "status": "ACTIVE"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 482564.26,
+          "impressions": 266711,
+          "frequency": 3.2,
+          "clicks": 6178,
+          "link_clicks": 5215,
+          "purchases": 86,
+          "roas": 3.357052,
+          "hook_rate": 0,
+          "ctr": 1.96,
+          "status": "ACTIVE"
         }
       ],
       "fatigue": {
@@ -1845,7 +1988,7 @@
         "ctr_change_pct": -12.5,
         "avg_frequency": 2.6,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     },
     "6918714002691": {
@@ -2006,14 +2149,27 @@
           "hook_rate": 0,
           "ctr": 1.78,
           "status": "ACTIVE"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 363900.8,
+          "impressions": 182133,
+          "frequency": 3.3,
+          "clicks": 3779,
+          "link_clicks": 3231,
+          "purchases": 61,
+          "roas": 4.307538,
+          "hook_rate": 0,
+          "ctr": 1.77,
+          "status": "ACTIVE"
         }
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": 14.1,
-        "avg_frequency": 2.7,
+        "ctr_change_pct": 13.5,
+        "avg_frequency": 2.8,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     },
     "6918721160091": {
@@ -2174,14 +2330,27 @@
           "hook_rate": 0,
           "ctr": 1.77,
           "status": "ACTIVE"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 318202.36,
+          "impressions": 154855,
+          "frequency": 3.0,
+          "clicks": 3221,
+          "link_clicks": 2745,
+          "purchases": 57,
+          "roas": 6.251437,
+          "hook_rate": 0,
+          "ctr": 1.77,
+          "status": "ACTIVE"
         }
       ],
       "fatigue": {
         "is_fatigued": false,
         "ctr_change_pct": 5.4,
-        "avg_frequency": 2.7,
+        "avg_frequency": 2.8,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     },
     "6918701542491": {
@@ -2342,6 +2511,19 @@
           "hook_rate": 0,
           "ctr": 3.03,
           "status": "PAUSED"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 84044.49,
+          "impressions": 38771,
+          "frequency": 2.3,
+          "clicks": 1332,
+          "link_clicks": 1176,
+          "purchases": 26,
+          "roas": 0.917688,
+          "hook_rate": 0,
+          "ctr": 3.03,
+          "status": "PAUSED"
         }
       ],
       "fatigue": {
@@ -2349,7 +2531,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 2.3,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     },
     "6918636245291": {
@@ -2510,14 +2692,27 @@
           "hook_rate": 0,
           "ctr": 2.03,
           "status": "ACTIVE"
+        },
+        {
+          "date": "2026-03-28",
+          "spend": 185077.35,
+          "impressions": 83522,
+          "frequency": 4.1,
+          "clicks": 1912,
+          "link_clicks": 1696,
+          "purchases": 8,
+          "roas": 2.231203,
+          "hook_rate": 0,
+          "ctr": 2.03,
+          "status": "PAUSED"
         }
       ],
       "fatigue": {
         "is_fatigued": false,
         "ctr_change_pct": -17.8,
-        "avg_frequency": 3.0,
+        "avg_frequency": 3.1,
         "reason": "ok",
-        "data_points": 12
+        "data_points": 13
       }
     }
   },

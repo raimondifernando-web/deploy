@@ -306,6 +306,23 @@
       "result": "",
       "learning_ids": "",
       "url": "https://www.notion.so/Recargar-cuenta-Meta-2-d-as-de-saldo-3311b4e444eb81cab7b9f64a86fec649"
+    },
+    {
+      "id": "AC-35",
+      "page_id": "3311b4e4-44eb-818f-82e1-e83238c96d78",
+      "action": "Freq alta en 2026 - 03 - Switch Sale - 3 BOFU (C: 9.6x > veto 7x",
+      "date": "2026-03-28",
+      "priority": 2,
+      "category": "Budget",
+      "decision": "⏳ Pendiente",
+      "impact": "Frecuencia 9.6x supera veto de 7x para BOFU",
+      "how": "Rotar creativos o expandir audiencia",
+      "claude_can": "SI",
+      "method": "Script",
+      "execute_with_claude": false,
+      "result": "",
+      "learning_ids": "",
+      "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3311b4e444eb818f82e1e83238c96d78"
     }
   ],
   "learnings": [
