@@ -1,23 +1,23 @@
 {
-  "updated": "2026-03-27",
+  "updated": "2026-03-28",
   "platforms": [
     {
       "platform": "facebook",
-      "spend": 1288343.568083,
-      "purchases": 205,
-      "link_clicks": 16905
+      "spend": 1362178.674267,
+      "purchases": 215,
+      "link_clicks": 17726
     },
     {
       "platform": "instagram",
-      "spend": 5516308.639032,
-      "purchases": 933,
-      "link_clicks": 65985
+      "spend": 5941998.016063,
+      "purchases": 983,
+      "link_clicks": 71274
     },
     {
       "platform": "threads",
-      "spend": 4563.382884,
+      "spend": 5071.35967,
       "purchases": 2,
-      "link_clicks": 97
+      "link_clicks": 113
     },
     {
       "platform": "unknown",

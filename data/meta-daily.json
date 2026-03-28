@@ -1,25 +1,6 @@
 {
-  "updated": "2026-03-27",
+  "updated": "2026-03-28",
   "days": [
-    {
-      "date": "2026-03-20",
-      "day_name": "",
-      "spend": 438434.3,
-      "impressions": 271706,
-      "reach": 136751,
-      "clicks": 5482,
-      "link_clicks": 4622,
-      "outbound_clicks": 3383,
-      "add_to_cart": 441,
-      "initiate_checkout": 40,
-      "purchases": 46,
-      "roas_pixel": 5.314476,
-      "meta_revenue": 2330048.67,
-      "cpc": 79.97707,
-      "cpm": 1613.634958,
-      "odoo_orders": 33,
-      "odoo_revenue": 3887501.3
-    },
     {
       "date": "2026-03-21",
       "day_name": "",
@@ -37,7 +18,7 @@
       "cpc": 66.155362,
       "cpm": 1490.00053,
       "odoo_orders": 28,
-      "odoo_revenue": 2950378.07
+      "odoo_revenue": 2994112.07
     },
     {
       "date": "2026-03-22",
@@ -56,7 +37,7 @@
       "cpc": 68.209549,
       "cpm": 1393.624166,
       "odoo_orders": 27,
-      "odoo_revenue": 4039986.15
+      "odoo_revenue": 4108368.15
     },
     {
       "date": "2026-03-23",
@@ -75,7 +56,7 @@
       "cpc": 71.577948,
       "cpm": 1395.755346,
       "odoo_orders": 30,
-      "odoo_revenue": 3311353.31
+      "odoo_revenue": 3491203.31
     },
     {
       "date": "2026-03-24",
@@ -83,7 +64,7 @@
       "spend": 457908.47,
       "impressions": 353741,
       "reach": 210931,
-      "clicks": 7322,
+      "clicks": 7323,
       "link_clicks": 6489,
       "outbound_clicks": 3341,
       "add_to_cart": 391,
@@ -91,7 +72,7 @@
       "purchases": 48,
       "roas_pixel": 2.752231,
       "meta_revenue": 1260269.85,
-      "cpc": 62.538715,
+      "cpc": 62.530175,
       "cpm": 1294.473838,
       "odoo_orders": 29,
       "odoo_revenue": 3257031.54
@@ -102,7 +83,7 @@
       "spend": 414093.09,
       "impressions": 280159,
       "reach": 152886,
-      "clicks": 6115,
+      "clicks": 6116,
       "link_clicks": 5453,
       "outbound_clicks": 3108,
       "add_to_cart": 412,
@@ -110,16 +91,16 @@
       "purchases": 70,
       "roas_pixel": 4.090869,
       "meta_revenue": 1694000.74,
-      "cpc": 67.717594,
+      "cpc": 67.706522,
       "cpm": 1478.064563,
       "odoo_orders": 37,
-      "odoo_revenue": 4202630.37
+      "odoo_revenue": 4199324.37
     },
     {
       "date": "2026-03-26",
       "day_name": "",
-      "spend": 440760.9,
-      "impressions": 260680,
+      "spend": 440808.29,
+      "impressions": 260705,
       "reach": 133893,
       "clicks": 5743,
       "link_clicks": 5131,
@@ -127,31 +108,50 @@
       "add_to_cart": 333,
       "initiate_checkout": 61,
       "purchases": 54,
-      "roas_pixel": 2.816707,
+      "roas_pixel": 2.816404,
       "meta_revenue": 1241494.13,
-      "cpc": 76.747501,
-      "cpm": 1690.812107,
+      "cpc": 76.755753,
+      "cpm": 1690.831745,
       "odoo_orders": 39,
       "odoo_revenue": 3508953.72
     },
     {
       "date": "2026-03-27",
       "day_name": "",
-      "spend": 206462.49,
-      "impressions": 120272,
-      "reach": 74126,
-      "clicks": 2689,
-      "link_clicks": 2351,
-      "outbound_clicks": 1470,
-      "add_to_cart": 160,
+      "spend": 395523.05,
+      "impressions": 236264,
+      "reach": 129327,
+      "clicks": 5253,
+      "link_clicks": 4648,
+      "outbound_clicks": 2867,
+      "add_to_cart": 341,
+      "initiate_checkout": 57,
+      "purchases": 60,
+      "roas_pixel": 3.411642,
+      "meta_revenue": 1349382.88,
+      "cpc": 75.294698,
+      "cpm": 1674.072436,
+      "odoo_orders": 30,
+      "odoo_revenue": 3421549.45
+    },
+    {
+      "date": "2026-03-28",
+      "day_name": "",
+      "spend": 310924.51,
+      "impressions": 208079,
+      "reach": 122005,
+      "clicks": 4304,
+      "link_clicks": 3796,
+      "outbound_clicks": 2343,
+      "add_to_cart": 204,
       "initiate_checkout": 19,
       "purchases": 26,
-      "roas_pixel": 3.980256,
-      "meta_revenue": 821773.56,
-      "cpc": 76.780398,
-      "cpm": 1716.629723,
-      "odoo_orders": 21,
-      "odoo_revenue": 2211361.21
+      "roas_pixel": 2.666582,
+      "meta_revenue": 829105.58,
+      "cpc": 72.240825,
+      "cpm": 1494.261843,
+      "odoo_orders": 20,
+      "odoo_revenue": 1974424.25
     }
   ]
 }

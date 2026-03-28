@@ -1,37 +1,32 @@
 {
-  "updated": "2026-03-27",
+  "updated": "2026-03-28",
   "source": "odoo_api",
   "currency": "ARS",
   "days": [
     {
-      "date": "2026-03-18",
-      "orders": 28,
-      "revenue": 3122436.22
-    },
-    {
       "date": "2026-03-19",
       "orders": 45,
-      "revenue": 5362388.95
+      "revenue": 5490644.95
     },
     {
       "date": "2026-03-20",
       "orders": 33,
-      "revenue": 3887501.3
+      "revenue": 3933635.3
     },
     {
       "date": "2026-03-21",
       "orders": 28,
-      "revenue": 2950378.07
+      "revenue": 2994112.07
     },
     {
       "date": "2026-03-22",
       "orders": 27,
-      "revenue": 4039986.15
+      "revenue": 4108368.15
     },
     {
       "date": "2026-03-23",
       "orders": 30,
-      "revenue": 3311353.31
+      "revenue": 3491203.31
     },
     {
       "date": "2026-03-24",
@@ -41,7 +36,7 @@
     {
       "date": "2026-03-25",
       "orders": 37,
-      "revenue": 4202630.37
+      "revenue": 4199324.37
     },
     {
       "date": "2026-03-26",
@@ -50,8 +45,13 @@
     },
     {
       "date": "2026-03-27",
-      "orders": 21,
-      "revenue": 2211361.21
+      "orders": 30,
+      "revenue": 3421549.45
+    },
+    {
+      "date": "2026-03-28",
+      "orders": 20,
+      "revenue": 1974424.25
     }
   ]
 }
