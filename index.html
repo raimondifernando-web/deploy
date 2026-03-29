@@ -10,9 +10,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 :root{--bg:#fafafa;--s:#fff;--sa:#f5f5f7;--b:#e5e5e7;--bl:#f0f0f2;--t:#1d1d1f;--t2:#6e6e73;--t3:#86868b;--blue:#0071e3;--green:#34c759;--red:#ff3b30;--orange:#ff9500;--purple:#af52de;--r:16px}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased;font-size:13px}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased;font-size:13px;touch-action:pan-y}
+table{min-width:480px}
 .w{max-width:1100px;margin:0 auto;padding:0 36px}
-.header{padding:36px 0 6px}.header h1{font-size:26px;font-weight:700;letter-spacing:-.5px}
+.header{padding:16px 36px 8px;position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--b);margin:0 -36px}.header h1{font-size:26px;font-weight:700;letter-spacing:-.5px}
 .header .sub{color:var(--t3);font-size:12px;margin-top:3px;display:flex;justify-content:space-between;align-items:center}
 .db{font-size:10px;background:var(--sa);padding:3px 10px;border-radius:16px;font-weight:500;color:var(--t3)}
 .sema{border-radius:12px;padding:14px 20px;margin:16px 0;display:flex;align-items:center;gap:12px;font-size:13px;font-weight:500}
@@ -61,7 +62,74 @@ tr:last-child td{border:none}
 #tooltip.show{display:block}
 .cf{padding:0;overflow:hidden}
 .tabs{display:flex;gap:4px}.tab{display:inline-block;padding:5px 14px;border-radius:8px;font-size:11px;font-weight:600;color:var(--t3);text-decoration:none;transition:all .2s;border:1px solid transparent}.tab:hover{background:var(--sa);color:var(--t)}.tab-active{background:var(--t);color:#fff;border-color:var(--t)}.tab-active:hover{background:var(--t);color:#fff}
-@media(max-width:900px){.kg{grid-template-columns:repeat(2,1fr)}.g2,.g3{grid-template-columns:1fr}.w{padding:0 16px}.tabs{flex-wrap:wrap}#funnelWrapper>div>div{grid-template-columns:1fr!important}#funnelWrapper>div>div>div:last-child{border-left:none!important;border-top:1px solid var(--b)}#funnelWrapper>div>div>div:first-child{border-right:none!important}}
+/* ── TABLET ≤900px ── */
+@media(max-width:900px){
+  .w{padding:0 16px}
+  .header{margin:0 -16px;padding:12px 16px 8px}
+  .kg{grid-template-columns:repeat(2,1fr)}
+  .g2,.g3{grid-template-columns:1fr}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{white-space:nowrap;flex-shrink:0}
+  .card.cf{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  #funnelWrapper>div>div{grid-template-columns:1fr!important}
+  #funnelWrapper>div>div>div:last-child{border-left:none!important;border-top:1px solid var(--b)}
+  #funnelWrapper>div>div>div:first-child{border-right:none!important}
+}
+/* ── MOBILE ≤640px ── */
+@media(max-width:640px){
+  body{font-size:12px;-webkit-text-size-adjust:100%}
+  .w{padding:0 12px}
+  .header{margin:0 -12px;padding:10px 12px 8px}
+  .header h1{font-size:19px;letter-spacing:-.3px}
+  .header .sub{flex-direction:column;align-items:flex-start;gap:5px}
+  .db{font-size:9px}
+  #conn-status{gap:6px!important}
+  .kg{grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}
+  .kpi{padding:12px}
+  .kpi .v{font-size:20px;letter-spacing:-.5px}
+  .kpi .l{font-size:8px}
+  .kpi .s{font-size:9px}
+  .ch{font-size:9px}
+  .sema{padding:10px 14px;font-size:12px;gap:8px}
+  .sec{margin:16px 0}
+  .sec-t{font-size:14px}
+  .card{padding:14px;border-radius:12px}
+  .act{padding:10px 14px}
+  .act-item{font-size:11px}
+  th{padding:6px 8px;font-size:8px}
+  td{padding:6px 8px;font-size:11px}
+  .b{font-size:9px;padding:1px 5px}
+  .stage-label{font-size:9px;padding:1px 6px}
+  .sep{font-size:9px;padding:5px 10px}
+  #combinedTrendChart{max-height:180px!important}
+  #dailyChart{max-height:150px!important}
+  #saldo-bar{display:block!important;padding:10px 14px;line-height:1.8}
+  /* Semáforo: stack vertical */
+  #sema>div{flex-direction:column!important}
+  #sema>div>div.sema{flex:none!important;width:100%}
+  #sema>div>div:last-child{min-width:0!important;width:100%;flex-direction:row;align-items:center;padding:8px 14px}
+  /* Filtros creativos: scroll horizontal */
+  #crFilterStatus,#crFilterScore{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-wrap:nowrap!important}
+  #crFilterStatus::-webkit-scrollbar,#crFilterScore::-webkit-scrollbar{display:none}
+  /* Filtros creativos: wrapper en columna */
+  #crFilterStatus{margin-bottom:4px}
+  /* Avg score: ocultar en mobile para ganar espacio */
+  #creativeSection>div>div>span[style*="color:var(--t3)"]{display:none}
+  /* Creative card: métricas adaptadas */
+  .metrics-tofu{grid-template-columns:repeat(3,1fr)!important;gap:6px!important}
+  .metrics-bofu{grid-template-columns:repeat(4,1fr)!important;gap:6px!important}
+  /* Creative card: right section más compacto */
+  #crAllAds .card>div>div:last-child{max-width:140px!important}
+  /* Titles más chicos */
+  .sec-t{font-size:13px}
+  /* Tabla: primera col truncada */
+  table td:first-child{max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  /* Funnel: stack vertical */
+  #funnelWrapper>div{grid-template-columns:1fr!important}
+  #funnelWrapper>div>div:last-child{border-left:none!important;border-top:1px solid var(--b)}
+  .g2{gap:10px}
+}
 </style>
 </head>
 <body>
@@ -76,7 +144,7 @@ tr:last-child td{border:none}
       <a href="https://www.notion.so/32d1b4e444eb810785c3dd0e7b2ad64a" target="_blank" class="tab">Learnings <span style="font-size:9px">↗</span></a>
     </nav>
   </div>
-  <div class="sub"><span>THIS IS BP · Meta Ads × Odoo · v3</span><span class="db" id="ts">...</span></div>
+  <div class="sub"><span>THIS IS BP · Meta Ads × Odoo · v3</span><span style="display:flex;align-items:center;gap:12px"><span id="conn-status" style="display:flex;gap:8px;align-items:center"></span><span class="db" id="ts">...</span></span></div>
 </div>
 <div id="sema"></div>
 <div class="kg" id="kpis"></div>
@@ -282,6 +350,17 @@ async function load(){
       fetch('data/scoring-overrides.json'+cb).then(r=>r.json()).catch(()=>null)
     ]);
     render(mo,ca,ad,de,pl,pla,as,ob,tg,rg,dy,act,acct,cfg,odooData,overrides);
+    // Connection status indicators
+    fetch('data/pipeline-summary.json'+cb).then(r=>r.json()).then(ps=>{
+      const connMap={meta_api:'Meta',history:'Odoo',deploy:'Deploy'};
+      const html=Object.entries(connMap).map(([key,label])=>{
+        const s=ps?.steps?.[key]?.status;
+        const c=s==='ok'?'#22c55e':s==='warning'?'#f59e0b':'#ef4444';
+        const tip=s==='ok'?`${label}: OK`:`${label}: ${s||'sin datos'}`;
+        return `<span title="${tip}" style="display:flex;align-items:center;gap:3px;font-size:10px;color:var(--t3)"><span style="width:7px;height:7px;border-radius:50%;background:${c};flex-shrink:0;display:inline-block"></span>${label}</span>`;
+      }).join('');
+      document.getElementById('conn-status').innerHTML=html;
+    }).catch(()=>{});
   }catch(e){document.getElementById('sema').innerHTML='<div class="sema sema-y"><div class="dot" style="background:#92400e"></div>No se pudieron cargar los datos. Ejecutá update-and-deploy.sh</div>';console.error(e);}
 }
 
@@ -375,7 +454,7 @@ function render(mo,ca,ad,de,pl,pla,adsets,objectives,targeting,regions,daily,not
     document.getElementById('trendsSection').style.display='';
     const trendMonths=mm.slice(-8).map((m,i)=>{
       const o=odoo.find(x=>x.m===m.month);
-      return{label:m.month.substring(5),spend:m.spend,rev:o?o.rev:0,profit:o?o.rev-m.spend:0,mer:o&&m.spend>0?o.rev/m.spend:0};
+      return{label:m.month.substring(5),spend:m.spend,rev:o?o.rev:0,orders:o?o.ord:0,profit:o?o.rev-m.spend:0,mer:o&&m.spend>0?o.rev/m.spend:0};
     });
     const tL=trendMonths.map(t=>t.label);
     new Chart(document.getElementById('combinedTrendChart'),{type:'bar',data:{labels:tL,datasets:[
@@ -384,8 +463,9 @@ function render(mo,ca,ad,de,pl,pla,adsets,objectives,targeting,regions,daily,not
       {label:'Inversión Meta',data:trendMonths.map(t=>t.spend/1e6),type:'line',borderColor:'#ff9500',backgroundColor:'rgba(255,149,0,.05)',fill:false,borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#ff9500',tension:.3,order:1,yAxisID:'y'},
       {label:'ROAS',data:trendMonths.map(t=>t.mer),type:'line',borderColor:'#0071e3',backgroundColor:'rgba(0,113,227,.05)',fill:false,borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#0071e3',tension:.3,order:1,yAxisID:'y1'},
       {label:'Objetivo ROAS ('+MER_T.green+'x)',data:trendMonths.map(()=>MER_T.green),type:'line',borderColor:'rgba(0,113,227,.4)',borderWidth:1,borderDash:[4,3],pointRadius:0,order:0,yAxisID:'y1'},
-      {label:'Prom. ROAS',data:trendMonths.map(()=>(trendMonths.reduce((a,t)=>a+t.mer,0)/trendMonths.length)),type:'line',borderColor:'#0071e3',borderWidth:1.5,borderDash:[6,4],pointRadius:0,order:0,yAxisID:'y1'}
-    ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#86868b',padding:10,font:{size:10},usePointStyle:true,generateLabels:function(chart){const orig=Chart.defaults.plugins.legend.labels.generateLabels(chart);chart.data.datasets.forEach((d,i)=>{if(!d.type||d.type==='bar'){orig[i].pointStyle='circle';}else{orig[i].pointStyle='line';if(d.borderDash)orig[i].lineDash=d.borderDash;}});return orig;}}},tooltip:{callbacks:{label:function(ctx){if(ctx.dataset.label==='ROAS')return 'ROAS: '+ctx.raw.toFixed(1)+'x';if(ctx.dataset.label==='Prom. ROAS')return 'Prom. ROAS: '+ctx.raw.toFixed(1)+'x';if(ctx.dataset.label.startsWith('Objetivo'))return 'Objetivo ROAS: '+ctx.raw+'x';return ctx.dataset.label+': $'+ctx.raw.toFixed(1)+'M'},afterBody:function(items){const rev=items.find(i=>i.dataset.label==='Revenue Odoo');const prof=items.find(i=>i.dataset.label==='Profit');if(rev&&prof){const margin=rev.raw>0?((prof.raw/rev.raw)*100).toFixed(0):'0';return 'Margen: '+margin+'%'}return ''}}}},scales:{y:{position:'left',grid:{color:'#f0f0f2'},border:{display:false},stacked:false,ticks:{color:'#86868b',callback:v=>'$'+v.toFixed(0)+'M'}},y1:{position:'right',grid:{drawOnChartArea:false},border:{display:false},ticks:{color:'#0071e3',callback:v=>v.toFixed(0)+'x'},min:0},x:{grid:{display:false},border:{display:false},stacked:true,ticks:{color:'#86868b'}}}}});
+      {label:'Prom. ROAS',data:trendMonths.map(()=>(trendMonths.reduce((a,t)=>a+t.mer,0)/trendMonths.length)),type:'line',borderColor:'#0071e3',borderWidth:1.5,borderDash:[6,4],pointRadius:0,order:0,yAxisID:'y1'},
+      {label:'Pedidos',data:trendMonths.map(t=>t.orders),type:'line',borderColor:'#1d1d1f',backgroundColor:'transparent',fill:false,borderWidth:1.5,pointRadius:4,pointBackgroundColor:'#1d1d1f',tension:.3,order:1,yAxisID:'y2',pointStyle:'circle'}
+    ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#86868b',padding:10,font:{size:10},usePointStyle:true,generateLabels:function(chart){const orig=Chart.defaults.plugins.legend.labels.generateLabels(chart);orig.forEach(item=>{const d=chart.data.datasets[item.datasetIndex];if(!d.type||d.type==='bar'){item.pointStyle='rect';}else if(d.borderDash){item.pointStyle='line';item.lineDash=d.borderDash;}else{item.pointStyle='circle';}});return orig;}}},tooltip:{callbacks:{label:function(ctx){if(ctx.dataset.label==='ROAS')return 'ROAS: '+ctx.raw.toFixed(1)+'x';if(ctx.dataset.label==='Prom. ROAS')return 'Prom. ROAS: '+ctx.raw.toFixed(1)+'x';if(ctx.dataset.label.startsWith('Objetivo'))return 'Objetivo ROAS: '+ctx.raw+'x';if(ctx.dataset.label==='Pedidos')return 'Pedidos: '+ctx.raw;return ctx.dataset.label+': $'+ctx.raw.toFixed(1)+'M'},afterBody:function(items){const rev=items.find(i=>i.dataset.label==='Revenue Odoo');const prof=items.find(i=>i.dataset.label==='Profit');if(rev&&prof){const margin=rev.raw>0?((prof.raw/rev.raw)*100).toFixed(0):'0';return 'Margen: '+margin+'%'}return ''}}}},scales:{y:{position:'left',grid:{color:'#f0f0f2'},border:{display:false},stacked:false,ticks:{color:'#86868b',callback:v=>'$'+v.toFixed(0)+'M'}},y1:{position:'right',grid:{drawOnChartArea:false},border:{display:false},ticks:{color:'#0071e3',callback:v=>v.toFixed(0)+'x'},min:0},y2:{position:'right',grid:{drawOnChartArea:false},border:{display:false},ticks:{display:false},min:0},x:{grid:{display:false},border:{display:false},stacked:true,ticks:{color:'#86868b'}}}}});
   }
 
   // ─── SALDO DE CUENTA (bloque separado después del semáforo) ───
@@ -398,6 +478,7 @@ function render(mo,ca,ad,de,pl,pla,adsets,objectives,targeting,regions,daily,not
   if(fundsTotal>0||balancePending>0){
     const semaEl=document.getElementById('sema');
     const balDiv=document.createElement('div');
+    balDiv.id='saldo-bar';
     balDiv.style.cssText='display:flex;justify-content:space-between;align-items:center;padding:10px 20px;margin:-8px 0 16px;background:var(--sa);border:1px solid var(--b);border-radius:10px;font-size:12px';
     let balDetail;
     if(fundsTotal>0){
@@ -422,18 +503,21 @@ function render(mo,ca,ad,de,pl,pla,adsets,objectives,targeting,regions,daily,not
     // Odoo daily data — check if ANY day has Odoo data (not just the first)
     const hasOdoo=dayData.some(d=>d.odoo_orders!==undefined);
 
-    const avgRevDay=dayData.reduce((a,d)=>a+(d.odoo_revenue||0)/1e6,0)/dayData.length;
-    const avgSpendDay=dSpend.reduce((a,s)=>a+s/1e6,0)/dSpend.length;
+    const dRoas=dayData.map(d=>d.spend>0?(d.odoo_revenue||0)/d.spend:0);
+    const avgRoasDay=dRoas.filter(v=>v>0).reduce((a,v)=>a+v,0)/(dRoas.filter(v=>v>0).length||1);
     const chartDatasets=hasOdoo?[
-      {label:'Revenue Odoo',data:dayData.map(d=>(d.odoo_revenue||0)/1e6),backgroundColor:'rgba(52,199,89,.25)',borderColor:'#34c759',borderWidth:2,borderRadius:6,barPercentage:.65,yAxisID:'y'},
-      {label:'Inversión Meta',data:dSpend.map(s=>s/1e6),type:'line',borderColor:'#ff9500',borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#ff9500',tension:.3,yAxisID:'y'},
-      {label:'Prom. Revenue',data:Array(dayData.length).fill(avgRevDay),type:'line',borderColor:'rgba(52,199,89,.5)',borderWidth:1.5,borderDash:[6,4],pointRadius:0,yAxisID:'y'},
-      {label:'Prom. Inversión',data:Array(dayData.length).fill(avgSpendDay),type:'line',borderColor:'rgba(255,149,0,.4)',borderWidth:1.5,borderDash:[6,4],pointRadius:0,yAxisID:'y'}
+      {label:'Revenue Odoo',data:dayData.map(d=>(d.odoo_revenue||0)/1e6),backgroundColor:'rgba(0,113,227,.12)',borderColor:'rgba(0,113,227,.25)',borderWidth:1,borderRadius:8,barPercentage:.75,order:3,yAxisID:'y'},
+      {label:'Profit',data:dayData.map(d=>((d.odoo_revenue||0)-d.spend)/1e6),backgroundColor:dayData.map(d=>(d.odoo_revenue||0)-d.spend>0?'rgba(52,199,89,.6)':'rgba(255,59,48,.5)'),borderColor:dayData.map(d=>(d.odoo_revenue||0)-d.spend>0?'#34c759':'#ff3b30'),borderWidth:1.5,borderRadius:6,barPercentage:.75,order:2,yAxisID:'y'},
+      {label:'Inversión Meta',data:dSpend.map(s=>s/1e6),type:'line',borderColor:'#ff9500',backgroundColor:'rgba(255,149,0,.05)',fill:false,borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#ff9500',tension:.3,order:1,yAxisID:'y'},
+      {label:'ROAS',data:dRoas,type:'line',borderColor:'#0071e3',backgroundColor:'rgba(0,113,227,.05)',fill:false,borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#0071e3',tension:.3,order:1,yAxisID:'y1'},
+      {label:'Objetivo ROAS ('+MER_T.green+'x)',data:Array(dayData.length).fill(MER_T.green),type:'line',borderColor:'rgba(0,113,227,.4)',borderWidth:1,borderDash:[4,3],pointRadius:0,order:0,yAxisID:'y1'},
+      {label:'Prom. ROAS',data:Array(dayData.length).fill(parseFloat(avgRoasDay.toFixed(2))),type:'line',borderColor:'#0071e3',borderWidth:1.5,borderDash:[6,4],pointRadius:0,order:0,yAxisID:'y1'},
+      {label:'Pedidos',data:dayData.map(d=>d.odoo_orders||0),type:'line',borderColor:'#1d1d1f',backgroundColor:'transparent',fill:false,borderWidth:1.5,pointRadius:4,pointBackgroundColor:'#1d1d1f',tension:.3,order:1,yAxisID:'y2',pointStyle:'circle'}
     ]:[
       {label:'Compras Pixel',data:dPurchases,backgroundColor:'rgba(52,199,89,.3)',borderColor:'#34c759',borderWidth:2,borderRadius:4,barPercentage:.6,yAxisID:'y'},
       {label:'Gasto',data:dSpend.map(s=>s/1e6),type:'line',borderColor:'#ff9500',borderWidth:2,pointRadius:3,pointBackgroundColor:'#ff9500',borderDash:[4,3],tension:.3,yAxisID:'y1'}
     ];
-    new Chart(document.getElementById('dailyChart'),{type:'bar',data:{labels:dLabels,datasets:chartDatasets},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},layout:{padding:{top:4,bottom:0,left:0,right:0}},plugins:{legend:{labels:{color:'#86868b',usePointStyle:true,pointStyle:'circle',padding:10,font:{size:10}}}},scales:{y:{grid:{color:'#f0f0f2'},border:{display:false},ticks:{color:'#86868b',callback:v=>'$'+v.toFixed(1)+'M'}},x:{grid:{display:false},border:{display:false},ticks:{color:'#86868b'}}}}});
+    new Chart(document.getElementById('dailyChart'),{type:'bar',data:{labels:dLabels,datasets:chartDatasets},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},layout:{padding:{top:4,bottom:0,left:0,right:0}},plugins:{legend:{labels:{color:'#86868b',usePointStyle:true,padding:10,font:{size:10},generateLabels:function(chart){const orig=Chart.defaults.plugins.legend.labels.generateLabels(chart);orig.forEach(item=>{const d=chart.data.datasets[item.datasetIndex];if(!d.type||d.type==='bar'){item.pointStyle='rect';}else if(d.borderDash){item.pointStyle='line';item.lineDash=d.borderDash;}else{item.pointStyle='circle';}});return orig;}}}},tooltip:{callbacks:{label:function(ctx){if(ctx.dataset.label==='ROAS')return 'ROAS: '+ctx.raw.toFixed(1)+'x';if(ctx.dataset.label==='Prom. ROAS')return 'Prom. ROAS: '+ctx.raw.toFixed(1)+'x';if(ctx.dataset.label.startsWith('Objetivo'))return 'Objetivo ROAS: '+ctx.raw+'x';if(ctx.dataset.label==='Pedidos')return 'Pedidos: '+ctx.raw;return ctx.dataset.label+': $'+ctx.raw.toFixed(2)+'M'}}},scales:{y:{grid:{color:'#f0f0f2'},border:{display:false},stacked:false,ticks:{color:'#86868b',callback:v=>'$'+v.toFixed(1)+'M'}},y1:{position:'right',grid:{drawOnChartArea:false},border:{display:false},ticks:{color:'#0071e3',callback:v=>v.toFixed(0)+'x'},min:0},y2:{position:'right',grid:{drawOnChartArea:false},border:{display:false},ticks:{display:false},min:0},x:{grid:{display:false},border:{display:false},stacked:true,ticks:{color:'#86868b'}}}}});
 
     // Tabla diaria
     let dtH;
@@ -979,7 +1063,7 @@ function render(mo,ca,ad,de,pl,pla,adsets,objectives,targeting,regions,daily,not
     const freqColor=adFreq>3?'#dc2626':adFreq>2?'#b45309':'var(--t1)';
     if(isTofu){
       const cpm=a.impressions>0?(a.spend/a.impressions*1000):0;
-      metrics=`<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px;font-size:11px">
+      metrics=`<div class="metrics-tofu" style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px;font-size:11px">
         <div><span style="color:var(--t3);font-size:9px">INVERSIÓN</span><br><strong>${fm(a.spend)}</strong></div>
         <div><span style="color:var(--t3);font-size:9px">${tt('REACH')}</span><br><strong>${(a.impressions/1000).toFixed(0)}K</strong></div>
         <div><span style="color:var(--t3);font-size:9px">${tt('CPM')}</span><br><strong>${fm(cpm)}</strong></div>
@@ -989,7 +1073,7 @@ function render(mo,ca,ad,de,pl,pla,adsets,objectives,targeting,regions,daily,not
       </div>`;
     } else {
       const ic=a.initiate_checkout||0;
-      metrics=`<div style="display:grid;grid-template-columns:repeat(8,1fr);gap:6px;font-size:11px">
+      metrics=`<div class="metrics-bofu" style="display:grid;grid-template-columns:repeat(8,1fr);gap:6px;font-size:11px">
         <div><span style="color:var(--t3);font-size:9px">${tt('COMPRAS')}</span><br><strong style="font-size:14px">${a.purchases}</strong></div>
         <div><span style="color:var(--t3);font-size:9px">${tt('CHECKOUTS')}</span><br><strong style="font-size:14px;color:var(--t3)">${ic}</strong></div>
         <div><span style="color:var(--t3);font-size:9px">${tt('ROAS')}</span><br><strong style="color:${a.roas>5?'#22c55e':a.roas>2?'var(--t1)':'#dc2626'}">${a.roas.toFixed(1)}x</strong></div>
