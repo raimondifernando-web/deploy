@@ -7,7 +7,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#0f0f13;color:#e5e5e5;min-height:100vh;padding:40px 20px}
+body{font-family:'Inter',sans-serif;background:#0f0f13;color:#e5e5e5;min-height:100vh;padding:0 20px 48px}
 .w{max-width:900px;margin:0 auto}
 h1{font-size:28px;font-weight:700;text-align:center;margin-bottom:4px}
 .sub{text-align:center;color:#888;font-size:14px;margin-bottom:40px}
@@ -103,11 +103,56 @@ h1{font-size:28px;font-weight:700;text-align:center;margin-bottom:4px}
 .pill-meta{background:#1877f220;color:#5a9cf5;border-color:#1877f233}
 .pill-odoo{background:#71639e20;color:#a99bce;border-color:#71639e33}
 .pill-memory{background:#06b6d420;color:#06b6d4;border-color:#06b6d433}
+
+/* Sticky nav */
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:#0f0f13;
+  border-bottom:1px solid #1e1e2a;
+  padding:10px 0;
+  margin:0 -20px;
+  padding-left:20px;
+  padding-right:20px;
+}
+
+/* Page title spacing */
+h1{margin-top:28px}
+
+/* Mobile – tablet */
+@media(max-width:900px){
+  .dbs{grid-template-columns:repeat(2,1fr)}
+  .infra-grid{grid-template-columns:1fr 1fr!important}
+}
+
+/* Mobile – phone */
+@media(max-width:640px){
+  body{padding:0 16px 48px}
+  nav{margin:0 -16px;padding-left:16px;padding-right:16px;gap:6px;flex-wrap:wrap}
+  h1{font-size:20px;margin-top:20px}
+  .sub{font-size:12px;margin-bottom:24px}
+  /* Steps */
+  .step-header{flex-wrap:wrap;padding:12px 14px;gap:8px}
+  .step-num{width:36px;height:36px;font-size:15px;border-radius:10px;flex-shrink:0}
+  .step-title{font-size:15px}
+  .step-badge{order:3;align-self:flex-start;font-size:9px;padding:2px 8px;white-space:normal;text-align:left;max-width:100%}
+  .step-detail{margin:0 0 12px 0;padding:12px 14px;font-size:12px}
+  .connector{margin:0 0 0 31px}
+  /* Grids */
+  .dbs{grid-template-columns:repeat(2,1fr);gap:8px}
+  .db-card{padding:12px}
+  .m2m-grid{grid-template-columns:1fr!important}
+  .m2m-arrow{display:none}
+  .infra-grid{grid-template-columns:1fr!important}
+  .step5-grid{grid-template-columns:1fr!important}
+  .m2m{padding:16px}
+}
 </style>
 </head>
 <body>
 <div class="w">
-<nav style="display:flex;gap:4px;margin-bottom:24px">
+<nav style="display:flex;gap:4px">
   <a href="index.html" style="display:inline-block;padding:5px 14px;border-radius:8px;font-size:11px;font-weight:600;color:#888;text-decoration:none;border:1px solid #333;transition:all .2s" onmouseover="this.style.background='#1a1a22';this.style.color='#e5e5e5'" onmouseout="this.style.background='transparent';this.style.color='#888'">Dashboard</a>
   <a href="performance-flow.html" style="display:inline-block;padding:5px 14px;border-radius:8px;font-size:11px;font-weight:600;background:#e5e5e5;color:#0f0f13;text-decoration:none;border:1px solid #e5e5e5">Proceso</a>
   <a href="https://www.notion.so/32d1b4e444eb817d805fc4ff4f994475" target="_blank" style="display:inline-block;padding:5px 14px;border-radius:8px;font-size:11px;font-weight:600;color:#888;text-decoration:none;border:1px solid #333;transition:all .2s" onmouseover="this.style.background='#1a1a22';this.style.color='#e5e5e5'" onmouseout="this.style.background='transparent';this.style.color='#888'">Acciones <span style="font-size:9px">↗</span></a>
@@ -246,7 +291,7 @@ h1{font-size:28px;font-weight:700;text-align:center;margin-bottom:4px}
   </div>
   <div class="step-detail">
     <strong>Cada acción tiene dos columnas clave:</strong>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0">
+    <div class="step5-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0">
       <div style="padding:10px 14px;background:#22c55e10;border:1px solid #22c55e33;border-radius:10px">
         <div style="font-size:12px;font-weight:600;color:#22c55e;margin-bottom:4px">Claude puede (SI / NO)</div>
         <div style="font-size:11px;color:#aaa">Lo llena Claude. Indica si tiene capacidad tecnica para ejecutar via API. No lo podes cambiar.</div>
@@ -369,7 +414,7 @@ h1{font-size:28px;font-weight:700;text-align:center;margin-bottom:4px}
 <div class="m2m" style="margin-top:40px;margin-bottom:0">
   <h2>🏗️ Infraestructura y backup automático</h2>
   <p style="font-size:13px;color:#888;margin-bottom:16px">El pipeline finaliza con deploy + backup a GitHub. Todo queda versionado y el dashboard live en Vercel.</p>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+  <div class="infra-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
     <div style="padding:14px 16px;border-radius:12px;background:#24292e30;border:1px solid #24292e80">
       <div style="font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">📦 Repo privado (scripts)</div>
       <div style="font-size:13px;font-weight:600;color:#e5e5e5;margin-bottom:4px">thisisbp-performance</div>
