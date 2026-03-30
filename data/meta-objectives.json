@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-28",
+  "updated": "2026-03-30",
   "objectives": {
     "2026 - 03 - Switch Sale - 4 BOFU (Retargeting)": {
       "objective": "OUTCOME_SALES",
       "status": "ACTIVE",
       "daily_budget": 360000.0,
       "lifetime_budget": 0.0,
-      "budget_remaining": 104983.18
+      "budget_remaining": 299381.46
     },
     "2026 - 03 - Switch Sale - 3 BOFU (Conversi\u00f3n)": {
       "objective": "OUTCOME_SALES",
@@ -20,7 +20,7 @@
       "status": "ACTIVE",
       "daily_budget": 100000.0,
       "lifetime_budget": 0.0,
-      "budget_remaining": 35227.91
+      "budget_remaining": 76136.91
     },
     "2026 - 01 - Summer Sale - 3 BOFU (Conversi\u00f3n)": {
       "objective": "OUTCOME_SALES",

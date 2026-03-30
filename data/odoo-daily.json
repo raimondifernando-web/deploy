@@ -1,18 +1,8 @@
 {
-  "updated": "2026-03-28",
+  "updated": "2026-03-30",
   "source": "odoo_api",
   "currency": "ARS",
   "days": [
-    {
-      "date": "2026-03-19",
-      "orders": 45,
-      "revenue": 5490644.95
-    },
-    {
-      "date": "2026-03-20",
-      "orders": 33,
-      "revenue": 3933635.3
-    },
     {
       "date": "2026-03-21",
       "orders": 28,
@@ -50,8 +40,18 @@
     },
     {
       "date": "2026-03-28",
-      "orders": 22,
-      "revenue": 2379538.25
+      "orders": 23,
+      "revenue": 2403985.55
+    },
+    {
+      "date": "2026-03-29",
+      "orders": 25,
+      "revenue": 2610687.94
+    },
+    {
+      "date": "2026-03-30",
+      "orders": 10,
+      "revenue": 1513286.33
     }
   ]
 }

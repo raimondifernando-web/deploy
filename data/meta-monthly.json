@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-28",
+  "updated": "2026-03-30",
   "account": "act_32288055",
   "currency": "ARS",
   "months": [
@@ -153,23 +153,23 @@
     {
       "month": "2026-03",
       "date_start": "2026-03-01",
-      "date_stop": "2026-03-28",
-      "spend": 7316747.68,
-      "impressions": 4621044,
-      "reach": 829209,
-      "frequency": 5.572834,
-      "clicks": 100877,
-      "link_clicks": 89196,
-      "outbound_clicks": 58738,
-      "landing_page_views": 57473,
-      "view_content": 105017,
-      "search": 2507,
-      "add_to_cart": 9264,
-      "initiate_checkout": 971,
-      "add_payment_info": 13151,
-      "purchases": 1200,
-      "roas_pixel": 4.431217,
-      "meta_revenue": 32422096.29
+      "date_stop": "2026-03-30",
+      "spend": 8015901.17,
+      "impressions": 5105158,
+      "reach": 899314,
+      "frequency": 5.676725,
+      "clicks": 111283,
+      "link_clicks": 98458,
+      "outbound_clicks": 64107,
+      "landing_page_views": 62849,
+      "view_content": 113945,
+      "search": 2656,
+      "add_to_cart": 9923,
+      "initiate_checkout": 1014,
+      "add_payment_info": 13922,
+      "purchases": 1268,
+      "roas_pixel": 4.180866,
+      "meta_revenue": 33513404.62
     }
   ]
 }
