@@ -1,21 +1,21 @@
 {
-  "updated": "2026-03-30",
+  "updated": "2026-03-31",
   "platforms": [
     {
       "platform": "facebook",
-      "spend": 1462093.048071,
-      "purchases": 228,
-      "link_clicks": 19144
+      "spend": 1476971.410895,
+      "purchases": 234,
+      "link_clicks": 19291
     },
     {
       "platform": "instagram",
-      "spend": 6548152.727126,
-      "purchases": 1038,
-      "link_clicks": 79151
+      "spend": 6614068.127559,
+      "purchases": 1062,
+      "link_clicks": 79900
     },
     {
       "platform": "threads",
-      "spend": 5655.394803,
+      "spend": 5714.021545,
       "purchases": 2,
       "link_clicks": 126
     },

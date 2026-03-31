@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-30",
+  "updated": "2026-03-31",
   "source": "odoo_api",
   "currency": "ARS",
   "months": [
@@ -40,8 +40,8 @@
     },
     {
       "month": "2026-03",
-      "revenue": 94175260.43,
-      "orders": 793
+      "revenue": 96165361.02,
+      "orders": 811
     }
   ]
 }

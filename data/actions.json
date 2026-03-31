@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-30",
+  "updated": "2026-03-31",
   "actions": [
     {
       "id": "AC-17",
@@ -34,57 +34,6 @@
       "result": "Ejecutada manualmente por Fernando el 24/03/2026. Ad pausado en Meta Ads Manager.",
       "learning_ids": "",
       "url": "https://www.notion.so/Pausar-Secuencia-14-Retargeting-ROAS-0-9x-Score-2-4-Bajo-32e1b4e444eb81a6ab5ae79fc4740525"
-    },
-    {
-      "id": "AC-30",
-      "page_id": "3301b4e4-44eb-8124-aa4e-e22b6e22cb59",
-      "action": "Freq alta en 2026 - 03 - Switch Sale - 3 BOFU (C: 9.6x > veto 7x",
-      "date": "2026-03-27",
-      "priority": 2,
-      "category": "Budget",
-      "decision": "⏳ Pendiente",
-      "impact": "Frecuencia 9.6x supera veto de 7x para BOFU",
-      "how": "Rotar creativos o expandir audiencia",
-      "claude_can": "SI",
-      "method": "Script",
-      "execute_with_claude": false,
-      "result": "",
-      "learning_ids": "",
-      "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3301b4e444eb8124aa4ee22b6e22cb59"
-    },
-    {
-      "id": "AC-31",
-      "page_id": "3301b4e4-44eb-8193-b842-d9e2c0571fd7",
-      "action": "Freq alta en 2026 - 03 - Switch Sale - 3 BOFU (C: 9.6x > veto 7x",
-      "date": "2026-03-27",
-      "priority": 2,
-      "category": "Budget",
-      "decision": "⏳ Pendiente",
-      "impact": "Frecuencia 9.6x supera veto de 7x para BOFU",
-      "how": "Rotar creativos o expandir audiencia",
-      "claude_can": "SI",
-      "method": "Script",
-      "execute_with_claude": false,
-      "result": "",
-      "learning_ids": "",
-      "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3301b4e444eb8193b842d9e2c0571fd7"
-    },
-    {
-      "id": "AC-32",
-      "page_id": "3301b4e4-44eb-810b-9417-eacab90c7140",
-      "action": "Freq alta en 2026 - 03 - Switch Sale - 3 BOFU (C: 9.6x > veto 7x",
-      "date": "2026-03-27",
-      "priority": 2,
-      "category": "Budget",
-      "decision": "⏳ Pendiente",
-      "impact": "Frecuencia 9.6x supera veto de 7x para BOFU",
-      "how": "Rotar creativos o expandir audiencia",
-      "claude_can": "SI",
-      "method": "Script",
-      "execute_with_claude": false,
-      "result": "",
-      "learning_ids": "",
-      "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3301b4e444eb810b9417eacab90c7140"
     },
     {
       "id": "AC-33",
@@ -153,6 +102,23 @@
       "result": "",
       "learning_ids": "",
       "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3331b4e444eb81508012dde16df93aae"
+    },
+    {
+      "id": "AC-37",
+      "page_id": "3341b4e4-44eb-81d6-a0c2-e22518a386e4",
+      "action": "Freq alta en 2026 - 03 - Switch Sale - 3 BOFU (C: 9.6x > veto 7x",
+      "date": "2026-03-31",
+      "priority": 2,
+      "category": "Budget",
+      "decision": "⏳ Pendiente",
+      "impact": "Frecuencia 9.6x supera veto de 7x para BOFU",
+      "how": "Rotar creativos o expandir audiencia",
+      "claude_can": "SI",
+      "method": "Script",
+      "execute_with_claude": false,
+      "result": "",
+      "learning_ids": "",
+      "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3341b4e444eb81d6a0c2e22518a386e4"
     }
   ],
   "learnings": [
