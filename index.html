@@ -365,7 +365,10 @@ async function load(){
 }
 
 function render(mo,ca,ad,de,pl,pla,adsets,objectives,targeting,regions,daily,notionActions,account,dashConfig,odooFile,scoringOverrides){
-  const mm=mo.months,ci=mm.length-1,pi=ci-1,cur=mm[ci],prev=mm[pi];
+  const mm=mo.months;
+  // Use last month with actual spend data (skip empty months at start of new month)
+  let ci=mm.length-1; while(ci>0&&mm[ci].spend===0)ci--;
+  const pi=ci>0?ci-1:0,cur=mm[ci],prev=mm[pi];
 
   // Dashboard config (externalized thresholds)
   const CFG=dashConfig||{scoring:{freq_veto:{TOFU:4,MOFU:6,BOFU:7,RETARG:8}},mer_thresholds:{green:8,yellow:4,red:2}};
@@ -452,7 +455,7 @@ function render(mo,ca,ad,de,pl,pla,adsets,objectives,targeting,regions,daily,not
   // ─── MER TRENDS (evolución mensual) ───
   if(odoo.length>=3){
     document.getElementById('trendsSection').style.display='';
-    const trendMonths=mm.slice(-8).map((m,i)=>{
+    const trendMonths=mm.filter(m=>m.spend>0).slice(-8).map((m,i)=>{
       const o=odoo.find(x=>x.m===m.month);
       return{label:m.month.substring(5),spend:m.spend,rev:o?o.rev:0,orders:o?o.ord:0,profit:o?o.rev-m.spend:0,mer:o&&m.spend>0?o.rev/m.spend:0};
     });
