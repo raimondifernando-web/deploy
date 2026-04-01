@@ -111,7 +111,15 @@
       "meta_revenue": 275928.84,
       "odoo_revenue": 974414.4,
       "odoo_orders": 8
+    },
+    {
+      "date": "2026-04-01",
+      "spend": 0.0,
+      "purchases": 0,
+      "meta_revenue": 0.0,
+      "odoo_revenue": 502750.21,
+      "odoo_orders": 6
     }
   ],
-  "updated": "2026-03-31"
+  "updated": "2026-04-01"
 }

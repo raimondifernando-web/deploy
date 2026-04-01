@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-31",
+  "updated": "2026-04-01",
   "actions": [
     {
       "id": "AC-17",
@@ -36,57 +36,6 @@
       "url": "https://www.notion.so/Pausar-Secuencia-14-Retargeting-ROAS-0-9x-Score-2-4-Bajo-32e1b4e444eb81a6ab5ae79fc4740525"
     },
     {
-      "id": "AC-33",
-      "page_id": "3311b4e4-44eb-8149-9724-f62d53daca8c",
-      "action": "Freq alta en 2026 - 03 - Switch Sale - 3 BOFU (C: 9.6x > veto 7x",
-      "date": "2026-03-28",
-      "priority": 2,
-      "category": "Budget",
-      "decision": "⏳ Pendiente",
-      "impact": "Frecuencia 9.6x supera veto de 7x para BOFU",
-      "how": "Rotar creativos o expandir audiencia",
-      "claude_can": "SI",
-      "method": "Script",
-      "execute_with_claude": false,
-      "result": "",
-      "learning_ids": "",
-      "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3311b4e444eb81499724f62d53daca8c"
-    },
-    {
-      "id": "AC-34",
-      "page_id": "3311b4e4-44eb-81ca-b7b9-f64a86fec649",
-      "action": "Recargar cuenta Meta: ~2 días de saldo",
-      "date": "2026-03-28",
-      "priority": 1,
-      "category": "Budget",
-      "decision": "⏳ Pendiente",
-      "impact": "Saldo $983,883 / Budget diario $460,000 = 2 días",
-      "how": "Recargar fondos en la cuenta de Meta Ads",
-      "claude_can": "SI",
-      "method": "Script",
-      "execute_with_claude": false,
-      "result": "",
-      "learning_ids": "",
-      "url": "https://www.notion.so/Recargar-cuenta-Meta-2-d-as-de-saldo-3311b4e444eb81cab7b9f64a86fec649"
-    },
-    {
-      "id": "AC-35",
-      "page_id": "3311b4e4-44eb-818f-82e1-e83238c96d78",
-      "action": "Freq alta en 2026 - 03 - Switch Sale - 3 BOFU (C: 9.6x > veto 7x",
-      "date": "2026-03-28",
-      "priority": 2,
-      "category": "Budget",
-      "decision": "⏳ Pendiente",
-      "impact": "Frecuencia 9.6x supera veto de 7x para BOFU",
-      "how": "Rotar creativos o expandir audiencia",
-      "claude_can": "SI",
-      "method": "Script",
-      "execute_with_claude": false,
-      "result": "",
-      "learning_ids": "",
-      "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3311b4e444eb818f82e1e83238c96d78"
-    },
-    {
       "id": "AC-36",
       "page_id": "3331b4e4-44eb-8150-8012-dde16df93aae",
       "action": "Freq alta en 2026 - 03 - Switch Sale - 3 BOFU (C: 9.6x > veto 7x",
@@ -119,6 +68,23 @@
       "result": "",
       "learning_ids": "",
       "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3341b4e444eb81d6a0c2e22518a386e4"
+    },
+    {
+      "id": "AC-38",
+      "page_id": "3351b4e4-44eb-8191-bc3c-df5277652a91",
+      "action": "Freq alta en 2026 - 03 - Switch Sale - 3 BOFU (C: 9.6x > veto 7x",
+      "date": "2026-04-01",
+      "priority": 2,
+      "category": "Budget",
+      "decision": "⏳ Pendiente",
+      "impact": "Frecuencia 9.6x supera veto de 7x para BOFU",
+      "how": "Rotar creativos o expandir audiencia",
+      "claude_can": "SI",
+      "method": "Script",
+      "execute_with_claude": false,
+      "result": "",
+      "learning_ids": "",
+      "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3351b4e444eb8191bc3cdf5277652a91"
     }
   ],
   "learnings": [

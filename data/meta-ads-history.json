@@ -197,6 +197,19 @@
           "hook_rate": 0,
           "ctr": 2.35,
           "status": "ACTIVE"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 1492026.94,
+          "impressions": 1406530,
+          "frequency": 2.3,
+          "clicks": 34739,
+          "link_clicks": 33064,
+          "purchases": 17,
+          "roas": 0.161773,
+          "hook_rate": 0,
+          "ctr": 2.35,
+          "status": "ACTIVE"
         }
       ],
       "fatigue": {
@@ -204,7 +217,7 @@
         "ctr_change_pct": 3.5,
         "avg_frequency": 2.2,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     },
     "6916015541891": {
@@ -404,6 +417,19 @@
           "hook_rate": 0,
           "ctr": 2.09,
           "status": "CAMPAIGN_PAUSED"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 651364.07,
+          "impressions": 326438,
+          "frequency": 4.5,
+          "clicks": 7748,
+          "link_clicks": 6831,
+          "purchases": 104,
+          "roas": 6.164553,
+          "hook_rate": 0,
+          "ctr": 2.09,
+          "status": "CAMPAIGN_PAUSED"
         }
       ],
       "fatigue": {
@@ -411,7 +437,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 4.5,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     },
     "6914696985691": {
@@ -611,6 +637,19 @@
           "hook_rate": 0,
           "ctr": 2.24,
           "status": "PAUSED"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 640133.52,
+          "impressions": 312910,
+          "frequency": 3.9,
+          "clicks": 7986,
+          "link_clicks": 6995,
+          "purchases": 197,
+          "roas": 7.153001,
+          "hook_rate": 0,
+          "ctr": 2.24,
+          "status": "PAUSED"
         }
       ],
       "fatigue": {
@@ -618,7 +657,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 3.9,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     },
     "6918734952291": {
@@ -818,14 +857,27 @@
           "hook_rate": 0,
           "ctr": 1.07,
           "status": "ACTIVE"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 1115951.07,
+          "impressions": 900043,
+          "frequency": 3.6,
+          "clicks": 11655,
+          "link_clicks": 9625,
+          "purchases": 130,
+          "roas": 3.521591,
+          "hook_rate": 0,
+          "ctr": 1.07,
+          "status": "ACTIVE"
         }
       ],
       "fatigue": {
         "is_fatigued": false,
         "ctr_change_pct": 11.5,
-        "avg_frequency": 3.1,
+        "avg_frequency": 3.2,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     },
     "6915080250091": {
@@ -1025,6 +1077,19 @@
           "hook_rate": 0,
           "ctr": 2.36,
           "status": "PAUSED"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 574966.62,
+          "impressions": 251077,
+          "frequency": 3.8,
+          "clicks": 6873,
+          "link_clicks": 5933,
+          "purchases": 192,
+          "roas": 8.608537,
+          "hook_rate": 0,
+          "ctr": 2.36,
+          "status": "PAUSED"
         }
       ],
       "fatigue": {
@@ -1032,7 +1097,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 3.8,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     },
     "6916017209491": {
@@ -1232,6 +1297,19 @@
           "hook_rate": 0,
           "ctr": 1.83,
           "status": "PAUSED"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 507731.02,
+          "impressions": 292801,
+          "frequency": 3.9,
+          "clicks": 6180,
+          "link_clicks": 5351,
+          "purchases": 137,
+          "roas": 8.380893,
+          "hook_rate": 0,
+          "ctr": 1.83,
+          "status": "PAUSED"
         }
       ],
       "fatigue": {
@@ -1239,7 +1317,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 3.9,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     },
     "6918736648291": {
@@ -1439,6 +1517,19 @@
           "hook_rate": 0,
           "ctr": 1.26,
           "status": "PAUSED"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 476420.06,
+          "impressions": 340871,
+          "frequency": 2.9,
+          "clicks": 5516,
+          "link_clicks": 4278,
+          "purchases": 34,
+          "roas": 1.623188,
+          "hook_rate": 0,
+          "ctr": 1.26,
+          "status": "PAUSED"
         }
       ],
       "fatigue": {
@@ -1446,7 +1537,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 2.9,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     },
     "6916018677291": {
@@ -1646,6 +1737,19 @@
           "hook_rate": 0,
           "ctr": 2.97,
           "status": "CAMPAIGN_PAUSED"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 455688.01,
+          "impressions": 210004,
+          "frequency": 3.4,
+          "clicks": 6927,
+          "link_clicks": 6238,
+          "purchases": 95,
+          "roas": 2.692297,
+          "hook_rate": 0,
+          "ctr": 2.97,
+          "status": "CAMPAIGN_PAUSED"
         }
       ],
       "fatigue": {
@@ -1653,7 +1757,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 3.4,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     },
     "6915100337691": {
@@ -1853,6 +1957,19 @@
           "hook_rate": 0,
           "ctr": 0.97,
           "status": "CAMPAIGN_PAUSED"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 164121.76,
+          "impressions": 82036,
+          "frequency": 3.0,
+          "clicks": 1086,
+          "link_clicks": 797,
+          "purchases": 43,
+          "roas": 14.450736,
+          "hook_rate": 0,
+          "ctr": 0.97,
+          "status": "CAMPAIGN_PAUSED"
         }
       ],
       "fatigue": {
@@ -1860,7 +1977,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 3.0,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     },
     "6916018925091": {
@@ -2060,6 +2177,19 @@
           "hook_rate": 0,
           "ctr": 2.43,
           "status": "PAUSED"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 156595.66,
+          "impressions": 65196,
+          "frequency": 2.4,
+          "clicks": 1792,
+          "link_clicks": 1584,
+          "purchases": 30,
+          "roas": 3.007339,
+          "hook_rate": 0,
+          "ctr": 2.43,
+          "status": "PAUSED"
         }
       ],
       "fatigue": {
@@ -2067,7 +2197,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 2.4,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     },
     "6918743124291": {
@@ -2267,6 +2397,19 @@
           "hook_rate": 0,
           "ctr": 1.9,
           "status": "ACTIVE"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 705360.98,
+          "impressions": 406000,
+          "frequency": 3.6,
+          "clicks": 9088,
+          "link_clicks": 7698,
+          "purchases": 127,
+          "roas": 2.893376,
+          "hook_rate": 0,
+          "ctr": 1.9,
+          "status": "ACTIVE"
         }
       ],
       "fatigue": {
@@ -2274,7 +2417,7 @@
         "ctr_change_pct": -15.2,
         "avg_frequency": 2.8,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     },
     "6918714002691": {
@@ -2474,6 +2617,19 @@
           "hook_rate": 0,
           "ctr": 1.82,
           "status": "ACTIVE"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 483364.01,
+          "impressions": 244650,
+          "frequency": 3.5,
+          "clicks": 5177,
+          "link_clicks": 4444,
+          "purchases": 80,
+          "roas": 4.241258,
+          "hook_rate": 0,
+          "ctr": 1.82,
+          "status": "ACTIVE"
         }
       ],
       "fatigue": {
@@ -2481,7 +2637,7 @@
         "ctr_change_pct": 16.7,
         "avg_frequency": 2.9,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     },
     "6918721160091": {
@@ -2681,6 +2837,19 @@
           "hook_rate": 0,
           "ctr": 1.8,
           "status": "ACTIVE"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 403290.63,
+          "impressions": 199542,
+          "frequency": 3.1,
+          "clicks": 4212,
+          "link_clicks": 3601,
+          "purchases": 71,
+          "roas": 6.337593,
+          "hook_rate": 0,
+          "ctr": 1.8,
+          "status": "ACTIVE"
         }
       ],
       "fatigue": {
@@ -2688,7 +2857,7 @@
         "ctr_change_pct": 7.1,
         "avg_frequency": 2.8,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     },
     "6918701542491": {
@@ -2888,6 +3057,19 @@
           "hook_rate": 0,
           "ctr": 3.03,
           "status": "PAUSED"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 84044.49,
+          "impressions": 38771,
+          "frequency": 2.3,
+          "clicks": 1332,
+          "link_clicks": 1176,
+          "purchases": 26,
+          "roas": 0.917688,
+          "hook_rate": 0,
+          "ctr": 3.03,
+          "status": "PAUSED"
         }
       ],
       "fatigue": {
@@ -2895,7 +3077,7 @@
         "ctr_change_pct": 0.0,
         "avg_frequency": 2.3,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     },
     "6918636245291": {
@@ -3095,16 +3277,29 @@
           "hook_rate": 0,
           "ctr": 2.03,
           "status": "PAUSED"
+        },
+        {
+          "date": "2026-04-01",
+          "spend": 185694.72,
+          "impressions": 83892,
+          "frequency": 4.1,
+          "clicks": 1921,
+          "link_clicks": 1702,
+          "purchases": 15,
+          "roas": 4.8594,
+          "hook_rate": 0,
+          "ctr": 2.03,
+          "status": "PAUSED"
         }
       ],
       "fatigue": {
         "is_fatigued": false,
         "ctr_change_pct": -17.8,
-        "avg_frequency": 3.2,
+        "avg_frequency": 3.3,
         "reason": "ok",
-        "data_points": 15
+        "data_points": 16
       }
     }
   },
-  "updated": "2026-03-31"
+  "updated": "2026-04-01"
 }

@@ -1,25 +1,6 @@
 {
-  "updated": "2026-03-31",
+  "updated": "2026-04-01",
   "days": [
-    {
-      "date": "2026-03-24",
-      "day_name": "",
-      "spend": 457908.47,
-      "impressions": 353741,
-      "reach": 210931,
-      "clicks": 7323,
-      "link_clicks": 6489,
-      "outbound_clicks": 3341,
-      "add_to_cart": 391,
-      "initiate_checkout": 50,
-      "purchases": 48,
-      "roas_pixel": 2.752231,
-      "meta_revenue": 1260269.85,
-      "cpc": 62.530175,
-      "cpm": 1294.473838,
-      "odoo_orders": 29,
-      "odoo_revenue": 3257031.54
-    },
     {
       "date": "2026-03-25",
       "day_name": "",
@@ -56,7 +37,7 @@
       "cpc": 76.755753,
       "cpm": 1690.831745,
       "odoo_orders": 39,
-      "odoo_revenue": 3508953.72
+      "odoo_revenue": 3534687.72
     },
     {
       "date": "2026-03-27",
@@ -118,8 +99,8 @@
     {
       "date": "2026-03-30",
       "day_name": "",
-      "spend": 163604.93,
-      "impressions": 113416,
+      "spend": 163616.15,
+      "impressions": 113422,
       "reach": 78190,
       "clicks": 2234,
       "link_clicks": 2014,
@@ -127,10 +108,10 @@
       "add_to_cart": 202,
       "initiate_checkout": 21,
       "purchases": 28,
-      "roas_pixel": 3.974062,
+      "roas_pixel": 3.973789,
       "meta_revenue": 650176.07,
-      "cpc": 73.234078,
-      "cpm": 1442.52072,
+      "cpc": 73.2391,
+      "cpm": 1442.543334,
       "odoo_orders": 20,
       "odoo_revenue": 2448704.52
     },
@@ -143,15 +124,34 @@
       "clicks": 0,
       "link_clicks": 0,
       "outbound_clicks": 0,
-      "add_to_cart": 19,
-      "initiate_checkout": 0,
-      "purchases": 6,
+      "add_to_cart": 47,
+      "initiate_checkout": 7,
+      "purchases": 17,
       "roas_pixel": 0.0,
-      "meta_revenue": 275928.84,
+      "meta_revenue": 529566.06,
       "cpc": 0.0,
       "cpm": 0.0,
-      "odoo_orders": 8,
-      "odoo_revenue": 974414.4
+      "odoo_orders": 15,
+      "odoo_revenue": 1810487.25
+    },
+    {
+      "date": "2026-04-01",
+      "day_name": "",
+      "spend": 0.0,
+      "impressions": 0,
+      "reach": 0,
+      "clicks": 0,
+      "link_clicks": 0,
+      "outbound_clicks": 0,
+      "add_to_cart": 3,
+      "initiate_checkout": 0,
+      "purchases": 0,
+      "roas_pixel": 0.0,
+      "meta_revenue": 0.0,
+      "cpc": 0.0,
+      "cpm": 0.0,
+      "odoo_orders": 6,
+      "odoo_revenue": 502750.21
     }
   ]
 }
