@@ -85,6 +85,23 @@
       "result": "",
       "learning_ids": "",
       "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3351b4e444eb8191bc3cdf5277652a91"
+    },
+    {
+      "id": "AC-39",
+      "page_id": "3351b4e4-44eb-81d1-93c9-d63e34f9a58f",
+      "action": "Freq alta en 2026 - 03 - Switch Sale - 3 BOFU (C: 9.6x > veto 7x",
+      "date": "2026-04-01",
+      "priority": 2,
+      "category": "Budget",
+      "decision": "⏳ Pendiente",
+      "impact": "Frecuencia 9.6x supera veto de 7x para BOFU",
+      "how": "Rotar creativos o expandir audiencia",
+      "claude_can": "SI",
+      "method": "Script",
+      "execute_with_claude": false,
+      "result": "",
+      "learning_ids": "",
+      "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3351b4e444eb81d193c9d63e34f9a58f"
     }
   ],
   "learnings": [
