@@ -1,25 +1,6 @@
 {
-  "updated": "2026-04-01",
+  "updated": "2026-04-02",
   "days": [
-    {
-      "date": "2026-03-25",
-      "day_name": "",
-      "spend": 414093.09,
-      "impressions": 280159,
-      "reach": 152886,
-      "clicks": 6116,
-      "link_clicks": 5453,
-      "outbound_clicks": 3108,
-      "add_to_cart": 412,
-      "initiate_checkout": 48,
-      "purchases": 70,
-      "roas_pixel": 4.090869,
-      "meta_revenue": 1694000.74,
-      "cpc": 67.706522,
-      "cpm": 1478.064563,
-      "odoo_orders": 37,
-      "odoo_revenue": 4199324.37
-    },
     {
       "date": "2026-03-26",
       "day_name": "",
@@ -143,15 +124,32 @@
       "clicks": 0,
       "link_clicks": 0,
       "outbound_clicks": 0,
-      "add_to_cart": 14,
-      "initiate_checkout": 2,
-      "purchases": 0,
+      "add_to_cart": 19,
+      "initiate_checkout": 4,
+      "purchases": 3,
       "roas_pixel": 0.0,
       "meta_revenue": 0.0,
       "cpc": 0.0,
       "cpm": 0.0,
       "odoo_orders": 7,
       "odoo_revenue": 637660.21
+    },
+    {
+      "date": "2026-04-02",
+      "day_name": "",
+      "spend": 0.0,
+      "impressions": 0,
+      "reach": 0,
+      "clicks": 0,
+      "link_clicks": 0,
+      "outbound_clicks": 0,
+      "add_to_cart": 1,
+      "initiate_checkout": 0,
+      "purchases": 0,
+      "roas_pixel": 0.0,
+      "meta_revenue": 0.0,
+      "cpc": 0.0,
+      "cpm": 0.0
     }
   ]
 }

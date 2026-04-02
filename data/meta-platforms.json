@@ -1,16 +1,16 @@
 {
-  "updated": "2026-04-01",
+  "updated": "2026-04-02",
   "platforms": [
     {
       "platform": "facebook",
       "spend": 0.0,
-      "purchases": 0,
+      "purchases": 1,
       "link_clicks": 0
     },
     {
       "platform": "instagram",
       "spend": 0.0,
-      "purchases": 0,
+      "purchases": 2,
       "link_clicks": 0
     }
   ]
