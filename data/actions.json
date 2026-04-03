@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-01",
+  "updated": "2026-04-03",
   "actions": [
     {
       "id": "AC-17",
@@ -34,23 +34,6 @@
       "result": "Ejecutada manualmente por Fernando el 24/03/2026. Ad pausado en Meta Ads Manager.",
       "learning_ids": "",
       "url": "https://www.notion.so/Pausar-Secuencia-14-Retargeting-ROAS-0-9x-Score-2-4-Bajo-32e1b4e444eb81a6ab5ae79fc4740525"
-    },
-    {
-      "id": "AC-36",
-      "page_id": "3331b4e4-44eb-8150-8012-dde16df93aae",
-      "action": "Freq alta en 2026 - 03 - Switch Sale - 3 BOFU (C: 9.6x > veto 7x",
-      "date": "2026-03-30",
-      "priority": 2,
-      "category": "Budget",
-      "decision": "⏳ Pendiente",
-      "impact": "Frecuencia 9.6x supera veto de 7x para BOFU",
-      "how": "Rotar creativos o expandir audiencia",
-      "claude_can": "SI",
-      "method": "Script",
-      "execute_with_claude": false,
-      "result": "",
-      "learning_ids": "",
-      "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3331b4e444eb81508012dde16df93aae"
     },
     {
       "id": "AC-37",
@@ -102,6 +85,40 @@
       "result": "",
       "learning_ids": "",
       "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3351b4e444eb81d193c9d63e34f9a58f"
+    },
+    {
+      "id": "AC-40",
+      "page_id": "3371b4e4-44eb-8151-8572-db1d1b91a27e",
+      "action": "Freq alta en 2026 - 03 - Switch Sale - 3 BOFU (C: 9.6x > veto 7x",
+      "date": "2026-04-03",
+      "priority": 2,
+      "category": "Budget",
+      "decision": "⏳ Pendiente",
+      "impact": "Frecuencia 9.6x supera veto de 7x para BOFU",
+      "how": "Rotar creativos o expandir audiencia",
+      "claude_can": "SI",
+      "method": "Script",
+      "execute_with_claude": false,
+      "result": "",
+      "learning_ids": "",
+      "url": "https://www.notion.so/Freq-alta-en-2026-03-Switch-Sale-3-BOFU-C-9-6x-veto-7x-3371b4e444eb81518572db1d1b91a27e"
+    },
+    {
+      "id": "AC-41",
+      "page_id": "3371b4e4-44eb-817f-ac02-fb4c80a59bcd",
+      "action": "Revisar tracking pixel: ratio 0.4x (pixel/odoo)",
+      "date": "2026-04-03",
+      "priority": 1,
+      "category": "Tracking",
+      "decision": "⏳ Pendiente",
+      "impact": "Pixel reporta 3 purchases vs Odoo 7 orders",
+      "how": "Verificar configuración de pixel y CAPI",
+      "claude_can": "SI",
+      "method": "Script",
+      "execute_with_claude": false,
+      "result": "",
+      "learning_ids": "",
+      "url": "https://www.notion.so/Revisar-tracking-pixel-ratio-0-4x-pixel-odoo-3371b4e444eb817fac02fb4c80a59bcd"
     }
   ],
   "learnings": [

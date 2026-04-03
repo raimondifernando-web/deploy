@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-02",
+  "updated": "2026-04-03",
   "account": "act_32288055",
   "currency": "ARS",
   "months": [
@@ -174,7 +174,7 @@
     {
       "month": "2026-04",
       "date_start": "2026-04-01",
-      "date_stop": "2026-04-02",
+      "date_stop": "2026-04-03",
       "spend": 0.0,
       "impressions": 0,
       "reach": 0,
@@ -183,7 +183,7 @@
       "link_clicks": 0,
       "outbound_clicks": 0,
       "landing_page_views": 0,
-      "view_content": 240,
+      "view_content": 251,
       "search": 2,
       "add_to_cart": 20,
       "initiate_checkout": 4,
