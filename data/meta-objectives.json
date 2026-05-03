@@ -1,6 +1,13 @@
 {
-  "updated": "2026-04-03",
+  "updated": "unknown",
   "objectives": {
+    "2026 - 2 MOFU": {
+      "objective": "OUTCOME_TRAFFIC",
+      "status": "ACTIVE",
+      "daily_budget": 0.0,
+      "lifetime_budget": 0.0,
+      "budget_remaining": 28545.72
+    },
     "2026 - 03 - Switch Sale - 4 BOFU (Retargeting)": {
       "objective": "OUTCOME_SALES",
       "status": "PAUSED",
@@ -163,13 +170,6 @@
       "budget_remaining": 0.0
     },
     "Advantage - Conversiones - D\u00eda del padre": {
-      "objective": "OUTCOME_SALES",
-      "status": "PAUSED",
-      "daily_budget": 0.0,
-      "lifetime_budget": 0.0,
-      "budget_remaining": 0.0
-    },
-    "RMKT  - Conversiones - Hot Sale - Mayo": {
       "objective": "OUTCOME_SALES",
       "status": "PAUSED",
       "daily_budget": 0.0,

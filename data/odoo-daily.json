@@ -1,57 +1,57 @@
 {
-  "updated": "2026-04-01",
-  "source": "odoo_api",
+  "updated": "2026-05-03",
+  "source": "odoo_v17",
   "currency": "ARS",
   "days": [
     {
-      "date": "2026-03-23",
-      "orders": 30,
-      "revenue": 3491203.31
+      "date": "2026-04-24",
+      "orders": 1,
+      "revenue": 113790.0
     },
     {
-      "date": "2026-03-24",
-      "orders": 29,
-      "revenue": 3257031.54
+      "date": "2026-04-25",
+      "orders": 1,
+      "revenue": 197203.0
     },
     {
-      "date": "2026-03-25",
-      "orders": 37,
-      "revenue": 4199324.37
+      "date": "2026-04-26",
+      "orders": 3,
+      "revenue": 265974.76
     },
     {
-      "date": "2026-03-26",
-      "orders": 39,
-      "revenue": 3534687.72
+      "date": "2026-04-27",
+      "orders": 4,
+      "revenue": 577725.0
     },
     {
-      "date": "2026-03-27",
-      "orders": 30,
-      "revenue": 3421549.45
+      "date": "2026-04-28",
+      "orders": 3,
+      "revenue": 601800.68
     },
     {
-      "date": "2026-03-28",
-      "orders": 23,
-      "revenue": 2403985.55
+      "date": "2026-04-29",
+      "orders": 1,
+      "revenue": 94316.23
     },
     {
-      "date": "2026-03-29",
-      "orders": 25,
-      "revenue": 2670021.94
+      "date": "2026-04-30",
+      "orders": 5,
+      "revenue": 822219.86
     },
     {
-      "date": "2026-03-30",
-      "orders": 20,
-      "revenue": 2448704.52
+      "date": "2026-05-01",
+      "orders": 5,
+      "revenue": 573872.86
     },
     {
-      "date": "2026-03-31",
-      "orders": 15,
-      "revenue": 1856075.25
+      "date": "2026-05-02",
+      "orders": 6,
+      "revenue": 621961.0
     },
     {
-      "date": "2026-04-01",
-      "orders": 7,
-      "revenue": 637660.21
+      "date": "2026-05-03",
+      "orders": 4,
+      "revenue": 563645.32
     }
   ]
 }

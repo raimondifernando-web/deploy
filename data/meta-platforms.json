@@ -1,17 +1,17 @@
 {
-  "updated": "2026-04-03",
+  "updated": "unknown",
   "platforms": [
     {
       "platform": "facebook",
-      "spend": 0.0,
-      "purchases": 1,
-      "link_clicks": 0
+      "spend": 3583.913679,
+      "purchases": 0,
+      "link_clicks": 65
     },
     {
       "platform": "instagram",
-      "spend": 0.0,
-      "purchases": 2,
-      "link_clicks": 0
+      "spend": 85008.176321,
+      "purchases": 0,
+      "link_clicks": 1624
     }
   ]
 }

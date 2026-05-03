@@ -1,6 +1,11 @@
 {
-  "updated": "2026-04-01",
-  "source": "odoo_api",
+  "updated": "2026-05-03",
+  "source": "dual_source",
+  "source_detail": {
+    "historical": "odoo-revenue-historical.json (solvoweb, frozen)",
+    "live": "Odoo V17 (https://thisisbp.com, desde 2026-04-01)",
+    "filter": "website_id=1 + state=sale + no Olivia A. (ART timezone)"
+  },
   "currency": "ARS",
   "months": [
     {
@@ -45,8 +50,13 @@
     },
     {
       "month": "2026-04",
-      "revenue": 637660.21,
-      "orders": 7
+      "revenue": 8896833.42,
+      "orders": 55
+    },
+    {
+      "month": "2026-05",
+      "revenue": 1759479.18,
+      "orders": 15
     }
   ]
 }

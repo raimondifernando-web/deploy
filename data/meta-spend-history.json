@@ -135,7 +135,71 @@
       "meta_revenue": 0.0,
       "odoo_revenue": 0,
       "odoo_orders": 0
+    },
+    {
+      "date": "2026-04-25",
+      "spend": 55956.53,
+      "purchases": 0,
+      "meta_revenue": 0.0,
+      "odoo_revenue": 197203.0,
+      "odoo_orders": 1
+    },
+    {
+      "date": "2026-04-26",
+      "spend": 62920.55,
+      "purchases": 0,
+      "meta_revenue": 0.0,
+      "odoo_revenue": 265974.76,
+      "odoo_orders": 3
+    },
+    {
+      "date": "2026-04-27",
+      "spend": 56133.18,
+      "purchases": 0,
+      "meta_revenue": 0.0,
+      "odoo_revenue": 577725.0,
+      "odoo_orders": 4
+    },
+    {
+      "date": "2026-04-28",
+      "spend": 53980.85,
+      "purchases": 0,
+      "meta_revenue": 0.0,
+      "odoo_revenue": 727027.52,
+      "odoo_orders": 4
+    },
+    {
+      "date": "2026-04-29",
+      "spend": 57617.95,
+      "purchases": 0,
+      "meta_revenue": 0.0,
+      "odoo_revenue": 94316.23,
+      "odoo_orders": 1
+    },
+    {
+      "date": "2026-04-30",
+      "spend": 85861.08,
+      "purchases": 0,
+      "meta_revenue": 0.0,
+      "odoo_revenue": 822219.86,
+      "odoo_orders": 5
+    },
+    {
+      "date": "2026-05-01",
+      "spend": 57137.81,
+      "purchases": 0,
+      "meta_revenue": 0.0,
+      "odoo_revenue": 573872.86,
+      "odoo_orders": 5
+    },
+    {
+      "date": "2026-05-02",
+      "spend": 31454.28,
+      "purchases": 0,
+      "meta_revenue": 0.0,
+      "odoo_revenue": 621961.0,
+      "odoo_orders": 7
     }
   ],
-  "updated": "2026-04-03"
+  "updated": "2026-05-02"
 }

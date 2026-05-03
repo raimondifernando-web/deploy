@@ -253,10 +253,7 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": 3.5,
-        "avg_frequency": 2.2,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
       }
     },
     "6916015541891": {
@@ -512,10 +509,7 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": 0.0,
-        "avg_frequency": 4.5,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
       }
     },
     "6914696985691": {
@@ -771,10 +765,7 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": 0.0,
-        "avg_frequency": 3.9,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
       }
     },
     "6918734952291": {
@@ -1030,10 +1021,7 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": 11.5,
-        "avg_frequency": 3.2,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
       }
     },
     "6915080250091": {
@@ -1289,10 +1277,7 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": 0.0,
-        "avg_frequency": 3.8,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
       }
     },
     "6916017209491": {
@@ -1548,10 +1533,7 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": 0.0,
-        "avg_frequency": 3.9,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
       }
     },
     "6918736648291": {
@@ -1807,10 +1789,7 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": 0.0,
-        "avg_frequency": 2.9,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
       }
     },
     "6916018677291": {
@@ -2066,10 +2045,7 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": 0.0,
-        "avg_frequency": 3.4,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
       }
     },
     "6915100337691": {
@@ -2325,10 +2301,7 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": 0.0,
-        "avg_frequency": 3.0,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
       }
     },
     "6916018925091": {
@@ -2584,10 +2557,7 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": 0.0,
-        "avg_frequency": 2.4,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
       }
     },
     "6918743124291": {
@@ -2843,10 +2813,7 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": -15.2,
-        "avg_frequency": 2.9,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
       }
     },
     "6918714002691": {
@@ -3102,10 +3069,7 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": 16.7,
-        "avg_frequency": 3.0,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
       }
     },
     "6918721160091": {
@@ -3361,10 +3325,7 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": 7.1,
-        "avg_frequency": 2.9,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
       }
     },
     "6918701542491": {
@@ -3620,10 +3581,7 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": 0.0,
-        "avg_frequency": 2.3,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
       }
     },
     "6918636245291": {
@@ -3879,12 +3837,31 @@
       ],
       "fatigue": {
         "is_fatigued": false,
-        "ctr_change_pct": -17.8,
-        "avg_frequency": 3.4,
-        "reason": "ok",
-        "data_points": 19
+        "reason": "insufficient_data"
+      }
+    },
+    "6938813718291": {
+      "name": "2026 - 2 MOFU",
+      "snapshots": [
+        {
+          "date": "2026-05-02",
+          "spend": 88592.09,
+          "impressions": 92453,
+          "frequency": 1.5,
+          "clicks": 1697,
+          "link_clicks": 1689,
+          "purchases": 0,
+          "roas": 0.0,
+          "hook_rate": 0,
+          "ctr": 1.83,
+          "status": "ACTIVE"
+        }
+      ],
+      "fatigue": {
+        "is_fatigued": false,
+        "reason": "insufficient_data"
       }
     }
   },
-  "updated": "2026-04-03"
+  "updated": "2026-05-02"
 }

@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+._*
+
+# Claude internal
+.claude/
+
+# Editor
+*.swp
+*.swo
+*~
